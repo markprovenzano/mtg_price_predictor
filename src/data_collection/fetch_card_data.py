@@ -1,16 +1,15 @@
-# src/data/fetch_card_data.py
+# src/utils/fetch_card_data.py
 import requests
 import json
 import os
 from datetime import datetime
-from src.utils.logger import logger
-from src.utils.error_handler import log_error
+from .logger import logger
+from .error_handler import log_error
 
-# Get project root directory (two levels up from src/data/)
+# Get project root directory (two levels up from src/utils/)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
-
 
 def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards"):
     """
@@ -62,7 +61,6 @@ def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards"):
         logger.error(f"Unexpected error in fetch_card_data: {e}")
         log_error(e, "Unexpected error in fetch_card_data")
         return False
-
 
 if __name__ == "__main__":
     fetch_card_data()

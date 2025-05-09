@@ -35,7 +35,9 @@
         "Do not ask for confirmation if something exists if it can be checked in the repository.",
         "Access the general preferences in the repository before making a response.",
         "When repeating general preferences with updates, provide a copy/paste of the full general_preferences.json file.",
-        "Prefer to make changes in PyCharm instead of using bash commands."
+        "Prefer to make changes in PyCharm instead of using bash commands.",
+        "Remind to commit with a copy/paste of the commit message after suggesting an edit.",
+        "Check the repository for the current version of a file before suggesting a new version."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."

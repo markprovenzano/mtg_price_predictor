@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="updated general preferences." />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="updated fetch card data.py">
+      <change afterPath="$PROJECT_DIR$/__init.py__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +47,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true"
+    "ignore.virus.scanning.warn.message": "true",
+    "settings.editor.selected.configurable": "editor.preferences.pyOptions"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -196,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746815206387</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="updated fetch card data.py">
+      <option name="closed" value="true" />
+      <created>1746815458124</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746815458124</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -215,6 +227,7 @@
     <MESSAGE value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
     <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run" />
     <MESSAGE value="updated general preferences." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated general preferences." />
+    <MESSAGE value="updated fetch card data.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated fetch card data.py" />
   </component>
 </project>
