@@ -1,10 +1,12 @@
-# error_handler.py
+# src/utils/error_handler.py
 import json
 import os
-from datetime import datetime  # Correct import
-from src.utils.logger import logger
+from datetime import datetime
+from .logger import logger  # Relative import from same directory
 
-ERROR_LOG_FILE = os.path.join("logs", "error_log.json")
+# Get project root directory (two levels up from src/utils/)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+ERROR_LOG_FILE = os.path.join(PROJECT_ROOT, "logs", "error_log.json")
 
 def log_error(error: Exception, context: str):
     """Log errors to a JSON file."""
@@ -20,3 +22,9 @@ def log_error(error: Exception, context: str):
         logger.info(f"Error logged to {ERROR_LOG_FILE}: {context}")
     except Exception as e:
         logger.error(f"Failed to log error: {e}")
+
+if __name__ == "__main__":
+    try:
+        raise ValueError("Test error from error_handler.py")
+    except ValueError as e:
+        log_error(e, "Testing error logging")  # For direct testing

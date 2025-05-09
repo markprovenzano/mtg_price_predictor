@@ -1,8 +1,9 @@
 # src/utils/test_logger.py
-from .logger import logger  # Import from same directory
-from .error_handler import log_error  # Navigate up to root for error_handler.py
+from .logger import logger  # Relative import from same directory
+from .error_handler import log_error  # Relative import from same directory
 
 def test_logging():
+    """Test logging functionality for mtg_price_predictor."""
     logger.info("Testing INFO log for mtg_price_predictor")
     try:
         raise ValueError("Simulated error for testing")
