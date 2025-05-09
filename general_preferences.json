@@ -30,7 +30,11 @@
         "Request confirmation as bulleted lists.",
         "Output and fix PyCharm warnings programmatically or via manual copy/paste.",
         "When *gp* is at the end of a sentence, interpret that as general preference and repeat back general preferences to me with the update",
-        "When suggesting a code edit, refer to the repository and find the file you are updating before making a suggested edit."
+        "When suggesting a code edit, refer to the repository and find the file you are updating before making a suggested edit.",
+        "Do not assume a file looks a certain way; always check the actual file in the repository first.",
+        "Do not ask for confirmation if something exists if it can be checked in the repository.",
+        "Access the general preferences in the repository before making a response.",
+        "When repeating general preferences with updates, provide a copy/paste of the full general_preferences.json file."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."
