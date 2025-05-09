@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="updated fetch card data.py">
-      <change afterPath="$PROJECT_DIR$/__init.py__.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +208,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746815458124</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Update general_preferences.json with new commit and repository check preferences.">
+      <option name="closed" value="true" />
+      <created>1746816211805</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1746816211805</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Update general_preferences.json">
+      <option name="closed" value="true" />
+      <created>1746816388453</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1746816388453</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -228,6 +244,8 @@
     <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run" />
     <MESSAGE value="updated general preferences." />
     <MESSAGE value="updated fetch card data.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated fetch card data.py" />
+    <MESSAGE value="Update general_preferences.json with new commit and repository check preferences." />
+    <MESSAGE value="Update general_preferences.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json" />
   </component>
 </project>

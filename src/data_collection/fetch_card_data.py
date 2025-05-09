@@ -1,12 +1,12 @@
-# src/utils/fetch_card_data.py
+# src/data_collection/fetch_card_data.py
 import requests
 import json
 import os
 from datetime import datetime
-from .logger import logger
-from .error_handler import log_error
+from src.utils.logger import logger
+from src.utils.error_handler import log_error
 
-# Get project root directory (two levels up from src/utils/)
+# Get project root directory (two levels up from src/data_collection/)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
