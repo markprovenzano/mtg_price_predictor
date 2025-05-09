@@ -37,7 +37,9 @@
         "When repeating general preferences with updates, provide a copy/paste of the full general_preferences.json file.",
         "Prefer to make changes in PyCharm instead of using bash commands.",
         "Remind to commit with a copy/paste of the commit message after suggesting an edit.",
-        "Check the repository for the current version of a file before suggesting a new version."
+        "Check the repository for the current version of a file before suggesting a new version.",
+        "Provide the updated general_preferences.json as the first part of the response.",
+        "Always check the current file structure in the repository before responding to ensure accurate file locations."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."
