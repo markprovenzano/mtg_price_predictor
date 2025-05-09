@@ -1,10 +1,8 @@
 # src/data_collection/fetch_card_data.py
-import requests
+import pandas as pd
 import json
 import os
 from datetime import datetime
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
 from src.utils.logger import logger
 from src.utils.error_handler import log_error
 
@@ -13,60 +11,49 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-
-def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards/search?q=*"):
+def fetch_card_data(csv_path: str = None):
     """
-    Fetch card data from the Scryfall API and save to data/raw/.
+    Load card data from a CSV file (e.g., card_list.csv) and save as JSON to data/raw/.
 
     Args:
-        api_endpoint (str): Scryfall API search endpoint with query (default: all cards).
+        csv_path (str): Path to CSV file (default: data/raw/card_list.csv).
 
     Returns:
         bool: True if successful, False if an error occurs.
     """
     try:
-        logger.info(f"Starting card data fetch from {api_endpoint}")
+        if csv_path is None:
+            csv_path = os.path.join(RAW_DATA_DIR, "card_list.csv")
 
-        # Set up session with retries
-        session = requests.Session()
-        retries = Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504])
-        session.mount("https://", HTTPAdapter(max_retries=retries))
+        logger.info(f"Loading card data from {csv_path}")
+        if not os.path.exists(csv_path):
+            logger.error(f"CSV file not found: {csv_path}")
+            log_error(FileNotFoundError(f"CSV file not found: {csv_path}"), "Loading card data from CSV")
+            return False
 
-        page = 1
-        url = api_endpoint
-        while url:
-            response = session.get(url, timeout=30)  # Increased timeout
-            response.raise_for_status()  # Raise exception for HTTP errors
+        # Load CSV
+        df = pd.read_csv(csv_path)
+        cards = df.to_dict(orient="records")
+        logger.info(f"Loaded {len(cards)} cards from {csv_path}")
 
-            data = response.json()
-            cards = data.get("data", [])
-            if not cards:
-                logger.info("No card data returned")
-                break
+        # Save as JSON
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_file = os.path.join(RAW_DATA_DIR, f"cards_{timestamp}.json")
+        with open(output_file, "w") as f:
+            json.dump(cards, f, indent=2)
+        logger.info(f"Saved {len(cards)} cards to {output_file}")
 
-            # Save cards to a JSON file
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_file = os.path.join(RAW_DATA_DIR, f"cards_page_{page}_{timestamp}.json")
-            with open(output_file, "w") as f:
-                json.dump(cards, f, indent=2)
-            logger.info(f"Saved {len(cards)} cards to {output_file}")
-
-            # Check for next page
-            url = data.get("next_page", None)
-            page += 1
-
-        logger.info("Card data fetch completed successfully")
+        logger.info("Card data processing completed successfully")
         return True
 
-    except requests.RequestException as e:
-        logger.error(f"Failed to fetch card data: {e}")
-        log_error(e, "Fetching card data from Scryfall API")
+    except pd.errors.EmptyDataError as e:
+        logger.error(f"Empty or invalid CSV file: {e}")
+        log_error(e, "Loading card data from CSV")
         return False
     except Exception as e:
         logger.error(f"Unexpected error in fetch_card_data: {e}")
         log_error(e, "Unexpected error in fetch_card_data")
         return False
-
 
 if __name__ == "__main__":
     fetch_card_data()

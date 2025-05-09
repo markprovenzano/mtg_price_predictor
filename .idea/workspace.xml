@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API">
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_152201.log" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to prioritize automatic repository checks for file structure and contents">
+      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,12 +295,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746818506869</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add log files and raw card data from fetch_card_data run">
+      <option name="closed" value="true" />
+      <created>1746818845867</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1746818845867</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Update general_preferences.json to prioritize automatic repository checks for file structure and contents">
+      <option name="closed" value="true" />
+      <created>1746818987756</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1746818987756</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated Initial File Structure" />
     <MESSAGE value="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup" />
     <MESSAGE value="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues" />
     <MESSAGE value="Fixed error_handler imports and added fetch_card_data with CSV filtering&#10;&#10;- Updated src/utils/error_handler.py with relative imports to fix PyCharm errors&#10;- Implemented src/data_collection/fetch_card_data.py with card_list.csv filtering and card_attributes.csv fallback&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and unresolved error_handler issues" />
@@ -318,13 +333,14 @@
     <MESSAGE value="Update general_preferences.json" />
     <MESSAGE value="Update fetch_card_data.py in src/data_collection/ to save card data to data/raw/" />
     <MESSAGE value="Update .gitignore to allow data/raw/ and data/processed/ for project outputs" />
-    <MESSAGE value="Add log files and raw card data from fetch_card_data run" />
     <MESSAGE value="Update general_preferences.json with preferences for requirements.txt and file content verificationUpdate general_preferences.json with preferences for requirements.txt and file content verification" />
     <MESSAGE value="Update fetch_card_data.py to use correct Scryfall API endpoint and pagination" />
     <MESSAGE value="Add clean_logs.py to automate log file cleanup" />
     <MESSAGE value="error logs from fetch card data run." />
     <MESSAGE value="Update general_preferences.json with preferences for file content handling and repository verification" />
     <MESSAGE value="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API" />
+    <MESSAGE value="Add log files and raw card data from fetch_card_data run" />
+    <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
   </component>
 </project>
