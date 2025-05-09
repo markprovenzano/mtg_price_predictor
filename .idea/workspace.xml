@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="updated general preferences.">
-      <change afterPath="$PROJECT_DIR$/src/logs/mtg_price_predictor_20250509_140001.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/error_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/error_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/test_logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test_logger.py" afterDir="false" />
-    </list>
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="debugging logger function." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -161,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746813023586</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="debugging logger function.">
+      <option name="closed" value="true" />
+      <created>1746813706567</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746813706567</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -176,6 +178,7 @@
     <MESSAGE value="error logs pushed" />
     <MESSAGE value="added test_logger.py" />
     <MESSAGE value="updated general preferences." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated general preferences." />
+    <MESSAGE value="debugging logger function." />
+    <option name="LAST_COMMIT_MESSAGE" value="debugging logger function." />
   </component>
 </project>
