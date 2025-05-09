@@ -1,4 +1,0 @@
-2025-05-09 16:05:46,377 - INFO - Loading card data from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
-2025-05-09 16:05:46,459 - INFO - Loaded 22037 cards from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
-2025-05-09 16:05:46,894 - INFO - Saved 22037 cards to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\cards_20250509_160546.json
-2025-05-09 16:05:46,894 - INFO - Card data processing completed successfully

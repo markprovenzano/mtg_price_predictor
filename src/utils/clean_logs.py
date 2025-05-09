@@ -4,7 +4,6 @@ import glob
 from datetime import datetime
 from src.utils.logger import logger  # Absolute import
 
-
 def clean_logs(log_dir: str = None, keep_latest: bool = True):
     """
     Remove outdated .log files from the log directory, optionally keeping the latest.
@@ -28,11 +27,14 @@ def clean_logs(log_dir: str = None, keep_latest: bool = True):
             logger.info("No log files found to clean")
             return True
 
-        if keep_latest:
-            # Find the latest file by modification time
-            latest_file = max(log_files, key=os.path.getmtime)
-            log_files.remove(latest_file)
+        if keep_latest and log_files:
+            # Sort files by modification time (newest first)
+            log_files.sort(key=os.path.getmtime, reverse=True)
+            latest_file = log_files[0]
+            log_files = log_files[1:]  # Exclude the latest file
             logger.info(f"Keeping latest log file: {latest_file}")
+        else:
+            logger.info("No files will be kept (keep_latest=False or no files)")
 
         # Delete outdated files
         for log_file in log_files:
@@ -45,7 +47,6 @@ def clean_logs(log_dir: str = None, keep_latest: bool = True):
     except Exception as e:
         logger.error(f"Failed to clean logs: {e}")
         return False
-
 
 if __name__ == "__main__":
     clean_logs()
