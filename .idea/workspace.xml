@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Fixed error_handler imports and added fetch_card_data with CSV filtering&#10;&#10;- Updated src/utils/error_handler.py with relative imports to fix PyCharm errors&#10;- Implemented src/data_collection/fetch_card_data.py with card_list.csv filtering and card_attributes.csv fallback&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and unresolved error_handler issues">
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logger file, general preferences and error handler updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/error_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/error_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logs/error_log.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/logs/info_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logs/info_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/project_status.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/general_preferences.json" beforeDir="false" afterPath="$PROJECT_DIR$/general_preferences.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746807791176</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="logger file, general preferences and error handler updated">
+      <option name="closed" value="true" />
+      <created>1746811085501</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746811085501</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -125,6 +128,7 @@
     <MESSAGE value="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup" />
     <MESSAGE value="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues" />
     <MESSAGE value="Fixed error_handler imports and added fetch_card_data with CSV filtering&#10;&#10;- Updated src/utils/error_handler.py with relative imports to fix PyCharm errors&#10;- Implemented src/data_collection/fetch_card_data.py with card_list.csv filtering and card_attributes.csv fallback&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and unresolved error_handler issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed error_handler imports and added fetch_card_data with CSV filtering&#10;&#10;- Updated src/utils/error_handler.py with relative imports to fix PyCharm errors&#10;- Implemented src/data_collection/fetch_card_data.py with card_list.csv filtering and card_attributes.csv fallback&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and unresolved error_handler issues" />
+    <MESSAGE value="logger file, general preferences and error handler updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="logger file, general preferences and error handler updated" />
   </component>
 </project>

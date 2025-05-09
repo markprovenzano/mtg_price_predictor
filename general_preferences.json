@@ -28,7 +28,9 @@
     "communication": [
         "Provide clear file-sharing instructions.",
         "Request confirmation as bulleted lists.",
-        "Output and fix PyCharm warnings programmatically or via manual copy/paste."
+        "Output and fix PyCharm warnings programmatically or via manual copy/paste.",
+        "When *gp* is at the end of a sentence, interpret that as general preference and repeat back general preferences to me with the update",
+        "When suggesting a code edit, refer to the repository and find the file you are updating before making a suggested edit."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."
