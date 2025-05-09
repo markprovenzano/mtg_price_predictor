@@ -34,6 +34,22 @@ def load_db_config():
         log_error(e, "Loading TimescaleDB configuration")
         raise
 
+def load_card_sku_ids(csv_path: str = os.path.join(RAW_DATA_DIR, "card_list.csv")):
+    """Load card_sku_id values from card_list.csv."""
+    try:
+        if not os.path.exists(csv_path):
+            logger.error(f"Card list CSV not found: {csv_path}")
+            log_error(FileNotFoundError(f"Card list CSV not found: {csv_path}"), "Loading card_sku_ids")
+            raise FileNotFoundError(f"Card list CSV not found: {csv_path}")
+        df = pd.read_csv(csv_path)
+        card_sku_ids = df["card_sku_id"].astype(str).tolist()
+        logger.info(f"Loaded {len(card_sku_ids)} card_sku_id values from {csv_path}")
+        return card_sku_ids
+    except Exception as e:
+        logger.error(f"Failed to load card_sku_ids: {e}")
+        log_error(e, "Loading card_sku_ids")
+        raise
+
 def serialize_value(value):
     """Convert datetime objects to ISO format strings for JSON serialization."""
     if isinstance(value, datetime):
@@ -42,7 +58,7 @@ def serialize_value(value):
 
 def fetch_market_data(tables: list = ["market_prices", "sales_history", "listings"]):
     """
-    Fetch data from specified TimescaleDB tables, save as JSON to data/raw/, and return DataFrames.
+    Fetch data from specified TimescaleDB tables, filtered by card_sku_id, and save as JSON to data/raw/.
 
     Args:
         tables (list): List of table names to query (market_prices, sales_history, listings).
@@ -51,6 +67,10 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         dict: Dictionary of pandas DataFrames, keyed by table name, or None if an error occurs.
     """
     try:
+        # Load card_sku_id filter
+        card_sku_ids = load_card_sku_ids()
+        sku_id_str = ",".join([f"'{sku_id}'" for sku_id in card_sku_ids])
+
         db_config = load_db_config()
         conn = psycopg2.connect(
             host=db_config["host"],
@@ -67,9 +87,9 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         for table in tables:
             logger.info(f"Querying table: {table}")
             if table == "sales_history":
-                query = f"SELECT * FROM {table} WHERE order_date >= CURRENT_DATE - INTERVAL '60 days'"
+                query = f"SELECT * FROM {table} WHERE order_date >= CURRENT_DATE - INTERVAL '60 days' AND card_sku_id IN ({sku_id_str})"
             else:
-                query = f"SELECT * FROM {table}"
+                query = f"SELECT * FROM {table} WHERE card_sku_id IN ({sku_id_str})"
             cursor.execute(query)
             rows = cursor.fetchall()
             columns = [desc[0] for desc in cursor.description]
