@@ -2,7 +2,7 @@
 import os
 import glob
 from datetime import datetime
-from .logger import logger
+from src.utils.logger import logger  # Absolute import
 
 
 def clean_logs(log_dir: str = None, keep_latest: bool = True):
