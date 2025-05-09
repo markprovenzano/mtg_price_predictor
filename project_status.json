@@ -1,16 +1,16 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-09T17:25:00",
+  "timestamp": "2025-05-09T19:52:00",
   "version": "0.1.0",
   "status": {
     "completed_modules": [
       "logger",
       "error_handler",
-      "fetch_card_data"
+      "fetch_card_data",
+      "fetch_market_data"
     ],
-    "in_progress_module": "fetch_market_data",
+    "in_progress_module": "clean_data",
     "pending_modules": [
-      "clean_data",
       "feature_engineering",
       "train_model",
       "predict",
@@ -68,13 +68,11 @@
       "card_data": "https://api.scryfall.com/cards"
     }
   },
-  "issues": [
-    "fetch_market_data performance improved by removing JSON output and filtering by card_sku_id"
-  ],
+  "issues": [],
   "pipeline_status": {
-    "last_run": "2025-05-09T17:25:00",
-    "success": null,
+    "last_run": "2025-05-09T19:52:00",
+    "success": true,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Completed fetch_card_data; fetch_market_data in progress with card_sku_id filter and no JSON output; .env used for TimescaleDB credentials."
+  "notes": "Completed fetch_card_data and fetch_market_data with 60-day limit and sales frequency filter; clean_data in progress; .env used for TimescaleDB credentials."
 }
