@@ -1,5 +1,5 @@
 # File: src/utils/error_handler.py
-from .logger import log_error  # Relative import
+from src.utils.logger import log_error  # Absolute import
 
 def handle_api_error(exception, module_name):
     """

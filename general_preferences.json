@@ -7,7 +7,7 @@
     ],
     "version_control": [
         "Use Git with local commits via PyCharm (Ctrl+K).",
-        "Provide copy/paste commit messages, specifying files.",
+        "Provide copy/paste commit messages, specifying files."
     ],
     "output_files": [
         "Generate logs",
@@ -19,15 +19,18 @@
         "Highlight outliers with diagnostics."
     ],
     "data_handling": [
-        "Normalize timestamps to dates (Step 2).",
+        "Normalize timestamps to dates (Step 2)."
     ],
     "performance": [
         "Optimize pipeline speed and model performance.",
-        "Ensure all steps run despite errors, logging failures.",
+        "Ensure all steps run despite errors, logging failures."
     ],
     "communication": [
         "Provide clear file-sharing instructions.",
         "Request confirmation as bulleted lists.",
         "Output and fix PyCharm warnings programmatically or via manual copy/paste."
+    ],
+    "repository_review": [
+        "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."
     ]
 }
