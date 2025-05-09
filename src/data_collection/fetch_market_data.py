@@ -1,7 +1,6 @@
 # src/data_collection/fetch_market_data.py
 import psycopg2
 import pandas as pd
-import json
 import os
 from datetime import datetime
 from dotenv import load_dotenv
@@ -50,15 +49,9 @@ def load_card_sku_ids(csv_path: str = os.path.join(RAW_DATA_DIR, "card_list.csv"
         log_error(e, "Loading card_sku_ids")
         raise
 
-def serialize_value(value):
-    """Convert datetime objects to ISO format strings for JSON serialization."""
-    if isinstance(value, datetime):
-        return value.isoformat()
-    return value
-
 def fetch_market_data(tables: list = ["market_prices", "sales_history", "listings"]):
     """
-    Fetch data from specified TimescaleDB tables, filtered by card_sku_id, and save as JSON to data/raw/.
+    Fetch data from specified TimescaleDB tables, filtered by card_sku_id, and return DataFrames.
 
     Args:
         tables (list): List of table names to query (market_prices, sales_history, listings).
@@ -82,10 +75,10 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         cursor = conn.cursor()
         logger.info(f"Connected to TimescaleDB database: {db_config['dbname']}")
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         dataframes = {}
         for table in tables:
             logger.info(f"Querying table: {table}")
+            start_time = datetime.now()
             if table == "sales_history":
                 query = f"SELECT * FROM {table} WHERE order_date >= CURRENT_DATE - INTERVAL '60 days' AND card_sku_id IN ({sku_id_str})"
             else:
@@ -97,16 +90,8 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
             # Create DataFrame
             data_df = pd.DataFrame(rows, columns=columns)
             dataframes[table] = data_df
-            logger.info(f"Created DataFrame for {table} with {len(data_df)} records")
-
-            # Serialize for JSON
-            json_data = [dict(zip(columns, [serialize_value(val) for val in row])) for row in rows]
-
-            # Save to JSON
-            output_file = os.path.join(RAW_DATA_DIR, f"{table}_{timestamp}.json")
-            with open(output_file, "w") as f:
-                json.dump(json_data, f, indent=2)
-            logger.info(f"Saved {len(json_data)} records from {table} to {output_file}")
+            query_duration = (datetime.now() - start_time).total_seconds()
+            logger.info(f"Queried {table} with {len(data_df)} records in {query_duration:.2f} seconds")
 
         cursor.close()
         conn.close()
