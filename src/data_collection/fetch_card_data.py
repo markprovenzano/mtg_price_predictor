@@ -11,12 +11,12 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards"):
+def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards/search?q=*"):
     """
     Fetch card data from the Scryfall API and save to data/raw/.
 
     Args:
-        api_endpoint (str): Scryfall API endpoint for card data.
+        api_endpoint (str): Scryfall API search endpoint with query (default: all cards).
 
     Returns:
         bool: True if successful, False if an error occurs.
@@ -24,16 +24,15 @@ def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards"):
     try:
         logger.info(f"Starting card data fetch from {api_endpoint}")
         page = 1
-        while True:
-            # Construct URL with pagination
-            url = f"{api_endpoint}?page={page}"
+        url = api_endpoint
+        while url:
             response = requests.get(url, timeout=10)
             response.raise_for_status()  # Raise exception for HTTP errors
 
             data = response.json()
             cards = data.get("data", [])
             if not cards:
-                logger.info("No more card data to fetch")
+                logger.info("No card data returned")
                 break
 
             # Save cards to a JSON file
@@ -44,10 +43,7 @@ def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards"):
             logger.info(f"Saved {len(cards)} cards to {output_file}")
 
             # Check for next page
-            if not data.get("has_more", False):
-                logger.info("Reached end of card data")
-                break
-
+            url = data.get("next_page", None)
             page += 1
 
         logger.info("Card data fetch completed successfully")
