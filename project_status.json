@@ -1,17 +1,16 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-09T14:00:00",
+  "timestamp": "2025-05-09T16:50:00",
   "version": "0.1.0",
   "status": {
     "completed_modules": [
       "logger",
-      "error_handler"
-    ],
-    "in_progress_module": "none",
-    "pending_modules": [
+      "error_handler",
       "fetch_card_data",
-      "fetch_market_data",
-      "clean_data",
+      "fetch_market_data"
+    ],
+    "in_progress_module": "clean_data",
+    "pending_modules": [
       "feature_engineering",
       "train_model",
       "predict",
@@ -25,17 +24,55 @@
       "processed": "data/processed/",
       "logs": "logs/"
     },
-    "config_file": "config/config.yaml",
+    "config_file": ".env",
+    "database": {
+      "type": "TimescaleDB",
+      "name": "tsdb",
+      "tables": {
+        "market_prices": {
+          "columns": [
+            {"name": "id", "type": "serial4", "constraints": "NOT NULL"},
+            {"name": "card_sku_id", "type": "int4", "constraints": "NOT NULL"},
+            {"name": "low", "type": "int8", "constraints": "NULL"},
+            {"name": "lowest_list", "type": "int8", "constraints": "NULL"},
+            {"name": "market", "type": "int8", "constraints": "NULL"},
+            {"name": "direct_low", "type": "int8", "constraints": "NULL"},
+            {"name": "updated_at", "type": "timestamp", "constraints": "NOT NULL"}
+          ]
+        },
+        "sales_history": {
+          "columns": [
+            {"name": "id", "type": "serial4", "constraints": "NOT NULL"},
+            {"name": "card_sku_id", "type": "int4", "constraints": "NOT NULL"},
+            {"name": "order_date", "type": "timestamp", "constraints": "NOT NULL"},
+            {"name": "quantity", "type": "int2", "constraints": "NOT NULL"},
+            {"name": "price", "type": "int8", "constraints": "NOT NULL"},
+            {"name": "CONSTRAINT", "value": "sales_history_pkey PRIMARY KEY (id, order_date)"}
+          ]
+        },
+        "listings": {
+          "columns": [
+            {"name": "id", "type": "serial4", "constraints": "NOT NULL"},
+            {"name": "card_sku_id", "type": "int4", "constraints": "NOT NULL"},
+            {"name": "seller_id", "type": "int4", "constraints": "NOT NULL"},
+            {"name": "direct_inventory_count", "type": "int4", "constraints": "NOT NULL"},
+            {"name": "shipping_price", "type": "int8", "constraints": "NOT NULL"},
+            {"name": "quantity", "type": "int4", "constraints": "NOT NULL"},
+            {"name": "price", "type": "int8", "constraints": "NOT NULL"},
+            {"name": "updated_at", "type": "timestamp", "constraints": "NOT NULL"}
+          ]
+        }
+      }
+    },
     "api_endpoints": {
-      "card_data": "https://api.scryfall.com/cards",
-      "market_data": "https://api.tcgplayer.com/pricing"
+      "card_data": "https://api.scryfall.com/cards"
     }
   },
   "issues": [],
   "pipeline_status": {
-    "last_run": null,
-    "success": null,
+    "last_run": "2025-05-09T16:50:00",
+    "success": true,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Initialized logger.py and error_handler.py; config.yaml set up with basic paths and placeholders."
+  "notes": "Completed fetch_card_data and fetch_market_data; clean_data in progress; .env used for TimescaleDB credentials."
 }
