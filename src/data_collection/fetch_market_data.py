@@ -33,12 +33,12 @@ def load_db_config():
         log_error(e, "Loading TimescaleDB configuration")
         raise
 
-def fetch_market_data(tables: list = ["prices", "card_metadata", "market_trends"]):
+def fetch_market_data(tables: list = ["market_prices", "sales_history", "listings"]):
     """
     Fetch data from specified TimescaleDB tables and save as JSON to data/raw/.
 
     Args:
-        tables (list): List of table names to query.
+        tables (list): List of table names to query (market_prices, sales_history, listings).
 
     Returns:
         bool: True if successful, False if an error occurs.
