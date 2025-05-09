@@ -1,91 +1,68 @@
-# File: src/data_collection/fetch_card_data.py
-import os
+# src/data/fetch_card_data.py
 import requests
-import pandas as pd
+import json
+import os
 from datetime import datetime
-from ..utils.logger import setup_logger, log_error
-from ..utils.error_handler import handle_api_error, handle_data_error, handle_general_error
+from src.utils.logger import logger
+from src.utils.error_handler import log_error
+
+# Get project root directory (two levels up from src/data/)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
+os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
 
-def fetch_cards(config, use_api=True, logger=None):
+def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards"):
     """
-    Fetch card metadata from Scryfall API or card_attributes.csv, filtered by card_list.csv.
+    Fetch card data from the Scryfall API and save to data/raw/.
+
     Args:
-        config (dict): Configuration dictionary with API endpoint and data paths.
-        use_api (bool): If True, fetch from API; else, use CSVs.
-        logger (logging.Logger): Logger instance.
+        api_endpoint (str): Scryfall API endpoint for card data.
+
     Returns:
-        pd.DataFrame: DataFrame with card metadata (card_sku_id, name, rarity, set_name, mana_cost, type_line).
+        bool: True if successful, False if an error occurs.
     """
-    logger = logger or setup_logger(config["data"]["logs_path"] + "info_log.txt")
-    logger.info("Starting card data fetch")
-
     try:
-        # Load filtered card list
-        list_path = config["data"]["card_list_csv"]
-        if not os.path.exists(list_path):
-            raise FileNotFoundError("card_list.csv not found")
-        card_list = pd.read_csv(list_path)
-        required_list_columns = ["card_sku_id", "name", "set_code", "collector_number"]
-        missing_list = [col for col in required_list_columns if col not in card_list.columns]
-        if missing_list:
-            raise ValueError(f"Missing columns in card_list.csv: {missing_list}")
+        logger.info(f"Starting card data fetch from {api_endpoint}")
+        page = 1
+        while True:
+            # Construct URL with pagination
+            url = f"{api_endpoint}?page={page}"
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()  # Raise exception for HTTP errors
 
-        if use_api:
-            # Fetch from Scryfall API
-            endpoint = config["api"]["card_endpoint"]
-            response = requests.get(endpoint, params={"page": 1})
-            response.raise_for_status()
-            data = response.json().get("data", [])
+            data = response.json()
+            cards = data.get("data", [])
+            if not cards:
+                logger.info("No more card data to fetch")
+                break
 
-            # Convert to DataFrame
-            df = pd.DataFrame(data)
-            required_columns = ["id", "name", "rarity", "set_name", "mana_cost", "type_line"]
-            if not all(col in df.columns for col in required_columns):
-                raise ValueError("Missing required columns in API data")
-            df = df[required_columns].rename(columns={"id": "card_sku_id"})
+            # Save cards to a JSON file
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_file = os.path.join(RAW_DATA_DIR, f"cards_page_{page}_{timestamp}.json")
+            with open(output_file, "w") as f:
+                json.dump(cards, f, indent=2)
+            logger.info(f"Saved {len(cards)} cards to {output_file}")
 
-            # Filter by card_list
-            df = df[df["card_sku_id"].isin(card_list["card_sku_id"])]
-        else:
-            # Load from card_attributes.csv
-            attributes_path = config["data"]["card_attributes_csv"]
-            if not os.path.exists(attributes_path):
-                raise FileNotFoundError("card_attributes.csv not found")
+            # Check for next page
+            if not data.get("has_more", False):
+                logger.info("Reached end of card data")
+                break
 
-            df = pd.read_csv(attributes_path)
-            required_columns = ["card_sku_id", "name", "rarity", "set_name", "mana_cost", "type_line"]
-            missing = [col for col in required_columns if col not in df.columns]
-            if missing:
-                raise ValueError(f"Missing columns in card_attributes.csv: {missing}")
+            page += 1
 
-            # Filter by card_list
-            df = df[df["card_sku_id"].isin(card_list["card_sku_id"])]
-
-        if df.empty:
-            raise ValueError("No matching cards found after filtering")
-
-        # Save to raw data path with timestamp
-        timestamp = datetime.now().strftime("%Y%m%d")
-        output_path = f"{config['data']['raw_path']}cards_{timestamp}.csv"
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        df.to_csv(output_path, index=False)
-        logger.info(f"Saved card data to {output_path}")
-
-        return df
+        logger.info("Card data fetch completed successfully")
+        return True
 
     except requests.RequestException as e:
-        handle_api_error(e, "fetch_card_data")
-    except (ValueError, FileNotFoundError) as e:
-        handle_data_error(e, "fetch_card_data")
+        logger.error(f"Failed to fetch card data: {e}")
+        log_error(e, "Fetching card data from Scryfall API")
+        return False
     except Exception as e:
-        handle_general_error(e, "fetch_card_data")
+        logger.error(f"Unexpected error in fetch_card_data: {e}")
+        log_error(e, "Unexpected error in fetch_card_data")
+        return False
 
 
 if __name__ == "__main__":
-    import yaml
-
-    with open("config/config.yaml", "r") as f:
-        config = yaml.safe_load(f)
-    df = fetch_cards(config, use_api=False)  # Test with CSVs
-    print(df.head())
+    fetch_card_data()

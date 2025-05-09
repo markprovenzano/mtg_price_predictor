@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/">
-      <change beforePath="$PROJECT_DIR$/src/utils/logs/info_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs/info_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/logs/mtg_price_predictor_20250509_140856.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs/mtg_price_predictor_20250509_140856.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/logs/mtg_price_predictor_20250509_140906.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs/mtg_price_predictor_20250509_140906.log" afterDir="false" />
-    </list>
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="updated general preferences." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,7 +180,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746814719873</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run">
+      <option name="closed" value="true" />
+      <created>1746814945002</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746814945002</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated general preferences.">
+      <option name="closed" value="true" />
+      <created>1746815206387</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746815206387</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -198,10 +210,11 @@
     <MESSAGE value="general preferences update" />
     <MESSAGE value="error logs pushed" />
     <MESSAGE value="added test_logger.py" />
-    <MESSAGE value="updated general preferences." />
     <MESSAGE value="debugging logger function." />
     <MESSAGE value="log files." />
     <MESSAGE value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
+    <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run" />
+    <MESSAGE value="updated general preferences." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated general preferences." />
   </component>
 </project>
