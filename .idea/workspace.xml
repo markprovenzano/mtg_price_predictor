@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logs">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_191308.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_status.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,22 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00008" summary="error logs pushed">
-      <option name="closed" value="true" />
-      <created>1746812572816</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1746812572816</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added test_logger.py">
-      <option name="closed" value="true" />
-      <created>1746812966317</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1746812966317</updated>
     </task>
     <task id="LOCAL-00010" summary="updated general preferences.">
       <option name="closed" value="true" />
@@ -476,12 +459,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746828234418</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="project status and Update fetch_market_data.py to query bottom 5 prices per card_sku_id per day for listings">
+      <option name="closed" value="true" />
+      <created>1746830844395</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1746830844395</updated>
+    </task>
+    <task id="LOCAL-00058" summary="logs">
+      <option name="closed" value="true" />
+      <created>1746830860942</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1746830860942</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API" />
     <MESSAGE value="Add log files and raw card data from fetch_card_data run" />
     <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
     <MESSAGE value="Update fetch_card_data.py to load card_list.csv instead of Scryfall API" />
@@ -505,6 +503,7 @@
     <MESSAGE value="Update fetch_market_data.py to filter queries by card_sku_id from card_list.csv" />
     <MESSAGE value="Update project_status.json to reflect fetch_market_data with card_sku_id filter" />
     <MESSAGE value="Update fetch_market_data.py to remove JSON output and optimize query performance" />
+    <MESSAGE value="project status and Update fetch_market_data.py to query bottom 5 prices per card_sku_id per day for listings" />
     <MESSAGE value="logs" />
     <option name="LAST_COMMIT_MESSAGE" value="logs" />
   </component>

@@ -33,6 +33,29 @@ def load_db_config():
         log_error(e, "Loading TimescaleDB configuration")
         raise
 
+def load_filtered_card_sku_ids(conn, card_sku_ids: list):
+    """Load card_sku_id values from sales_history with at least 12 sales over 60 days."""
+    try:
+        cursor = conn.cursor()
+        sku_id_str = ",".join([f"'{sku_id}'" for sku_id in card_sku_ids])
+        query = f"""
+            SELECT card_sku_id
+            FROM sales_history
+            WHERE order_date >= CURRENT_DATE - INTERVAL '60 days'
+            AND card_sku_id IN ({sku_id_str})
+            GROUP BY card_sku_id
+            HAVING COUNT(*) >= 12
+        """
+        cursor.execute(query)
+        filtered_sku_ids = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        logger.info(f"Filtered to {len(filtered_sku_ids)} card_sku_id values with >= 12 sales over 60 days")
+        return filtered_sku_ids
+    except Exception as e:
+        logger.error(f"Failed to load filtered card_sku_ids: {e}")
+        log_error(e, "Loading filtered card_sku_ids")
+        raise
+
 def load_card_sku_ids(csv_path: str = os.path.join(RAW_DATA_DIR, "card_list.csv")):
     """Load card_sku_id values from card_list.csv."""
     try:
@@ -51,7 +74,7 @@ def load_card_sku_ids(csv_path: str = os.path.join(RAW_DATA_DIR, "card_list.csv"
 
 def fetch_market_data(tables: list = ["market_prices", "sales_history", "listings"]):
     """
-    Fetch data from specified TimescaleDB tables, filtered by card_sku_id, and return DataFrames.
+    Fetch data from specified TimescaleDB tables, filtered by card_sku_id with >= 12 sales and 60-day limit, and return DataFrames.
 
     Args:
         tables (list): List of table names to query (market_prices, sales_history, listings).
@@ -60,9 +83,8 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         dict: Dictionary of pandas DataFrames, keyed by table name, or None if an error occurs.
     """
     try:
-        # Load card_sku_id filter
+        # Load initial card_sku_id from card_list.csv
         card_sku_ids = load_card_sku_ids()
-        sku_id_str = ",".join([f"'{sku_id}'" for sku_id in card_sku_ids])
 
         db_config = load_db_config()
         conn = psycopg2.connect(
@@ -74,6 +96,10 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         )
         cursor = conn.cursor()
         logger.info(f"Connected to TimescaleDB database: {db_config['dbname']}")
+
+        # Filter card_sku_id by sales frequency
+        filtered_sku_ids = load_filtered_card_sku_ids(conn, card_sku_ids)
+        sku_id_str = ",".join([f"'{sku_id}'" for sku_id in filtered_sku_ids])
 
         dataframes = {}
         for table in tables:
@@ -89,13 +115,14 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
                                ) AS price_rank
                         FROM listings
                         WHERE card_sku_id IN ({sku_id_str})
+                        AND updated_at >= CURRENT_DATE - INTERVAL '60 days'
                     )
                     SELECT * FROM ranked_listings WHERE price_rank <= 5
                 """
             elif table == "sales_history":
                 query = f"SELECT * FROM {table} WHERE order_date >= CURRENT_DATE - INTERVAL '60 days' AND card_sku_id IN ({sku_id_str})"
-            else:
-                query = f"SELECT * FROM {table} WHERE card_sku_id IN ({sku_id_str})"
+            else:  # market_prices
+                query = f"SELECT * FROM {table} WHERE card_sku_id IN ({sku_id_str}) AND updated_at >= CURRENT_DATE - INTERVAL '60 days'"
             cursor.execute(query)
             rows = cursor.fetchall()
             columns = [desc[0] for desc in cursor.description]
