@@ -1,4 +1,0 @@
-2025-05-09 17:01:18,021 - INFO - Connected to TimescaleDB database: tsdb
-2025-05-09 17:01:18,022 - INFO - Querying table: market_prices
-2025-05-09 17:05:20,489 - ERROR - Unexpected error in fetch_market_data: Object of type datetime is not JSON serializable
-2025-05-09 17:05:20,491 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Unexpected error in fetch_market_data

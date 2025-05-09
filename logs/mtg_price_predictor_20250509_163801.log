@@ -1,7 +1,0 @@
-2025-05-09 16:38:02,199 - INFO - Connected to TimescaleDB database: tsdb
-2025-05-09 16:38:02,199 - INFO - Querying table: prices
-2025-05-09 16:38:02,231 - ERROR - Database error fetching market data: relation "prices" does not exist
-LINE 1: SELECT * FROM prices
-                      ^
-
-2025-05-09 16:38:02,237 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Fetching market data from TimescaleDB

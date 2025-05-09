@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update fetch_market_data.py to query correct TimescaleDB tables (market_prices, sales_history, listings)">
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_165815.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_170117.log" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update fetch_market_data.py to return DataFrames and handle datetime serialization">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_171219.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,22 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Initial File Structure">
-      <option name="closed" value="true" />
-      <created>1746801782483</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1746801782483</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updated Initial File Structure">
-      <option name="closed" value="true" />
-      <created>1746803976677</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1746803976677</updated>
     </task>
     <task id="LOCAL-00003" summary="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup">
       <option name="closed" value="true" />
@@ -477,13 +458,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746824275962</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Add log files to repository for access">
+      <option name="closed" value="true" />
+      <created>1746824869768</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1746824869770</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Update fetch_market_data.py to return DataFrames and handle datetime serialization">
+      <option name="closed" value="true" />
+      <created>1746825122410</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1746825122410</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update fetch_card_data.py in src/data_collection/ to save card data to data/raw/" />
-    <MESSAGE value="Update .gitignore to allow data/raw/ and data/processed/ for project outputs" />
     <MESSAGE value="Update general_preferences.json with preferences for requirements.txt and file content verificationUpdate general_preferences.json with preferences for requirements.txt and file content verification" />
     <MESSAGE value="Update fetch_card_data.py to use correct Scryfall API endpoint and pagination" />
     <MESSAGE value="Add clean_logs.py to automate log file cleanup" />
@@ -507,6 +502,8 @@
     <MESSAGE value="Update general_preferences.json to include concise response rule for next steps" />
     <MESSAGE value="Update project_status.json to mark fetch_market_data complete and start clean_data" />
     <MESSAGE value="Update fetch_market_data.py to query correct TimescaleDB tables (market_prices, sales_history, listings)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update fetch_market_data.py to query correct TimescaleDB tables (market_prices, sales_history, listings)" />
+    <MESSAGE value="Add log files to repository for access" />
+    <MESSAGE value="Update fetch_market_data.py to return DataFrames and handle datetime serialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update fetch_market_data.py to return DataFrames and handle datetime serialization" />
   </component>
 </project>

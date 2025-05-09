@@ -1,2 +1,0 @@
-2025-05-09 16:58:15,585 - INFO - Connected to TimescaleDB database: tsdb
-2025-05-09 16:58:15,585 - INFO - Querying table: market_prices
