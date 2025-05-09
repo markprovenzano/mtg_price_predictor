@@ -1,5 +1,6 @@
 # src/data_collection/fetch_market_data.py
 import psycopg2
+import pandas as pd
 import json
 import os
 from datetime import datetime
@@ -33,15 +34,21 @@ def load_db_config():
         log_error(e, "Loading TimescaleDB configuration")
         raise
 
+def serialize_value(value):
+    """Convert datetime objects to ISO format strings for JSON serialization."""
+    if isinstance(value, datetime):
+        return value.isoformat()
+    return value
+
 def fetch_market_data(tables: list = ["market_prices", "sales_history", "listings"]):
     """
-    Fetch data from specified TimescaleDB tables and save as JSON to data/raw/.
+    Fetch data from specified TimescaleDB tables, save as JSON to data/raw/, and return DataFrames.
 
     Args:
         tables (list): List of table names to query (market_prices, sales_history, listings).
 
     Returns:
-        bool: True if successful, False if an error occurs.
+        dict: Dictionary of pandas DataFrames, keyed by table name, or None if an error occurs.
     """
     try:
         db_config = load_db_config()
@@ -56,6 +63,7 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         logger.info(f"Connected to TimescaleDB database: {db_config['dbname']}")
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        dataframes = {}
         for table in tables:
             logger.info(f"Querying table: {table}")
             if table == "sales_history":
@@ -65,27 +73,34 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
             cursor.execute(query)
             rows = cursor.fetchall()
             columns = [desc[0] for desc in cursor.description]
-            data = [dict(zip(columns, row)) for row in rows]
+
+            # Create DataFrame
+            data_df = pd.DataFrame(rows, columns=columns)
+            dataframes[table] = data_df
+            logger.info(f"Created DataFrame for {table} with {len(data_df)} records")
+
+            # Serialize for JSON
+            json_data = [dict(zip(columns, [serialize_value(val) for val in row])) for row in rows]
 
             # Save to JSON
             output_file = os.path.join(RAW_DATA_DIR, f"{table}_{timestamp}.json")
             with open(output_file, "w") as f:
-                json.dump(data, f, indent=2)
-            logger.info(f"Saved {len(data)} records from {table} to {output_file}")
+                json.dump(json_data, f, indent=2)
+            logger.info(f"Saved {len(json_data)} records from {table} to {output_file}")
 
         cursor.close()
         conn.close()
         logger.info("Market data fetch from TimescaleDB completed successfully")
-        return True
+        return dataframes
 
     except psycopg2.Error as e:
         logger.error(f"Database error fetching market data: {e}")
         log_error(e, "Fetching market data from TimescaleDB")
-        return False
+        return None
     except Exception as e:
         logger.error(f"Unexpected error in fetch_market_data: {e}")
         log_error(e, "Unexpected error in fetch_market_data")
-        return False
+        return None
 
 if __name__ == "__main__":
     fetch_market_data()
