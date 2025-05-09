@@ -1,0 +1,19 @@
+# File: config/config.yaml
+data:
+  raw_path: "data/raw/"
+  processed_path: "data/processed/"
+  models_path: "data/models/"
+  logs_path: "logs/"
+api:
+  card_endpoint: "https://api.scryfall.com/cards"
+  market_endpoint: "https://api.tcgplayer.com/pricing"  # Placeholder; update with actual endpoint
+database:
+  db_name: "tsdb"
+  db_user: "tsdbadmin"
+  db_host: "ct4nhqrnw0.mmjo31dkp0.tsdb.cloud.timescale.com"
+  db_port: 30171
+  sslmode: "require"
+model:
+  type: "xgboost"
+  max_depth: 5
+  n_estimators: 100
