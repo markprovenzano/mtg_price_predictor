@@ -1,0 +1,33 @@
+{
+    "coding_style": [
+        "Provide labeled, copy/paste code blocks with detailed comments.",
+        "Integrate solutions into code, avoiding manual steps.",
+        "Remove outdated code.",
+        "Provide full code blocks for modified files."
+    ],
+    "version_control": [
+        "Use Git with local commits via PyCharm (Ctrl+K).",
+        "Provide copy/paste commit messages, specifying files.",
+    ],
+    "output_files": [
+        "Generate logs",
+        "Produce timestamped outputs and project_summary.json.",
+        "Clean up outdated data when necessary."
+    ],
+    "reporting": [
+        "Explain metrics briefly (e.g., R²: model fit, 0-1).",
+        "Highlight outliers with diagnostics."
+    ],
+    "data_handling": [
+        "Normalize timestamps to dates (Step 2).",
+    ],
+    "performance": [
+        "Optimize pipeline speed and model performance.",
+        "Ensure all steps run despite errors, logging failures.",
+    ],
+    "communication": [
+        "Provide clear file-sharing instructions.",
+        "Request confirmation as bulleted lists.",
+        "Output and fix PyCharm warnings programmatically or via manual copy/paste."
+    ]
+}
