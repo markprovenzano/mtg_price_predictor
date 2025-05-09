@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json to reflect fetch_market_data with card_sku_id filter">
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_status.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,22 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00006" summary="logger file, general preferences and error handler updated">
-      <option name="closed" value="true" />
-      <created>1746811085501</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1746811085501</updated>
-    </task>
-    <task id="LOCAL-00007" summary="general preferences update">
-      <option name="closed" value="true" />
-      <created>1746812010155</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1746812010155</updated>
     </task>
     <task id="LOCAL-00008" summary="error logs pushed">
       <option name="closed" value="true" />
@@ -475,13 +460,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746826279010</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Update fetch_market_data.py to remove JSON output and optimize query performance">
+      <option name="closed" value="true" />
+      <created>1746828217812</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1746828217812</updated>
+    </task>
+    <task id="LOCAL-00056" summary="logs">
+      <option name="closed" value="true" />
+      <created>1746828234417</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1746828234418</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="error logs from fetch card data run." />
-    <MESSAGE value="Update general_preferences.json with preferences for file content handling and repository verification" />
     <MESSAGE value="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API" />
     <MESSAGE value="Add log files and raw card data from fetch_card_data run" />
     <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
@@ -505,6 +504,8 @@
     <MESSAGE value="update after running clean_logs.py" />
     <MESSAGE value="Update fetch_market_data.py to filter queries by card_sku_id from card_list.csv" />
     <MESSAGE value="Update project_status.json to reflect fetch_market_data with card_sku_id filter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json to reflect fetch_market_data with card_sku_id filter" />
+    <MESSAGE value="Update fetch_market_data.py to remove JSON output and optimize query performance" />
+    <MESSAGE value="logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="logs" />
   </component>
 </project>
