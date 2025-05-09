@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logger file, general preferences and error handler updated">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_preferences.json" beforeDir="false" afterPath="$PROJECT_DIR$/general_preferences.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="general preferences update">
+      <change beforePath="$PROJECT_DIR$/src/utils/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logs/error_log.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logs/info_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logs/info_log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/project_status.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746811085501</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="general preferences update">
+      <option name="closed" value="true" />
+      <created>1746812010155</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746812010155</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -129,6 +138,7 @@
     <MESSAGE value="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues" />
     <MESSAGE value="Fixed error_handler imports and added fetch_card_data with CSV filtering&#10;&#10;- Updated src/utils/error_handler.py with relative imports to fix PyCharm errors&#10;- Implemented src/data_collection/fetch_card_data.py with card_list.csv filtering and card_attributes.csv fallback&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and unresolved error_handler issues" />
     <MESSAGE value="logger file, general preferences and error handler updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="logger file, general preferences and error handler updated" />
+    <MESSAGE value="general preferences update" />
+    <option name="LAST_COMMIT_MESSAGE" value="general preferences update" />
   </component>
 </project>

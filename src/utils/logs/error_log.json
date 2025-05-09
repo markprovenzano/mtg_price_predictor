@@ -18,5 +18,10 @@
     "module": "test",
     "error": "Sample error for testing",
     "timestamp": "2025-05-09T13:14:59.474383"
+  },
+  {
+    "module": "test",
+    "error": "Sample error for testing",
+    "timestamp": "2025-05-09T13:35:50.414111"
   }
 ]
