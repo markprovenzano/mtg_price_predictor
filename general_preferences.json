@@ -47,7 +47,10 @@
         "Always check the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) for the current file structure and file contents before responding, treating this as the highest priority without requiring user prompting, and never assume file contents without verification.",
         "Before suggesting package installations, always verify the contents of requirements.txt in the repository to confirm if the package is already included.",
         "When presenting general_preferences.json, explicitly note any updates or changes made compared to the previous version presented.",
-        "Omit mentioning files when no updates are made to keep responses concise."
+        "Omit mentioning files when no updates are made to keep responses concise.",
+        "Do not repeat general preferences back to the user if no updates are made to the previous version.",
+        "Do not repeat the repository file structure unless clarification is needed from the user.",
+        "Explicitly explain any inability to access files in the GitHub repository, detailing the specific reasons and limitations."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions, ensuring all file contents and structure are verified."
