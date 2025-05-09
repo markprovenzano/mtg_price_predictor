@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json with preferences for file content handling and repository verification" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_152201.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -285,12 +287,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746818189393</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API">
+      <option name="closed" value="true" />
+      <created>1746818506869</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1746818506869</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial File Structure" />
     <MESSAGE value="Updated Initial File Structure" />
     <MESSAGE value="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup" />
     <MESSAGE value="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues" />
@@ -315,6 +324,7 @@
     <MESSAGE value="Add clean_logs.py to automate log file cleanup" />
     <MESSAGE value="error logs from fetch card data run." />
     <MESSAGE value="Update general_preferences.json with preferences for file content handling and repository verification" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json with preferences for file content handling and repository verification" />
+    <MESSAGE value="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update fetch_card_data.py with retry logic and increased timeout for Scryfall API" />
   </component>
 </project>
