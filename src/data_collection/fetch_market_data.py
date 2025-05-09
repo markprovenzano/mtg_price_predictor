@@ -58,7 +58,11 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         for table in tables:
             logger.info(f"Querying table: {table}")
-            cursor.execute(f"SELECT * FROM {table}")
+            if table == "sales_history":
+                query = f"SELECT * FROM {table} WHERE order_date >= CURRENT_DATE - INTERVAL '60 days'"
+            else:
+                query = f"SELECT * FROM {table}"
+            cursor.execute(query)
             rows = cursor.fetchall()
             columns = [desc[0] for desc in cursor.description]
             data = [dict(zip(columns, row)) for row in rows]
