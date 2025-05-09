@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to include notification of changes">
-      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_154956.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_160546.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/clean_logs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/clean_logs.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to include preference for concise responses">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -394,13 +394,43 @@
       <option name="project" value="LOCAL" />
       <updated>1746821521432</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Update clean_logs.py to fix deletion of most recent log file">
+      <option name="closed" value="true" />
+      <created>1746821820224</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1746821820224</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Update clean_logs.py to fix deletion of most recent log file">
+      <option name="closed" value="true" />
+      <created>1746821837605</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1746821837605</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Update clean_logs.py to fix deletion of most recent log file">
+      <option name="closed" value="true" />
+      <created>1746821880102</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1746821880102</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Update general_preferences.json to include preference for concise responses">
+      <option name="closed" value="true" />
+      <created>1746822011758</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1746822011758</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="debugging logger function." />
-    <MESSAGE value="log files." />
     <MESSAGE value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
     <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run" />
     <MESSAGE value="updated general preferences." />
@@ -424,6 +454,8 @@
     <MESSAGE value="Add log files and card data JSON from fetch_card_data run" />
     <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json" />
     <MESSAGE value="Update general_preferences.json to include notification of changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to include notification of changes" />
+    <MESSAGE value="Update clean_logs.py to fix deletion of most recent log file" />
+    <MESSAGE value="Update general_preferences.json to include preference for concise responses" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to include preference for concise responses" />
   </component>
 </project>
