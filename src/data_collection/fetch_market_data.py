@@ -2,25 +2,31 @@
 import psycopg2
 import json
 import os
-import yaml
 from datetime import datetime
+from dotenv import load_dotenv
 from src.utils.logger import logger
 from src.utils.error_handler import log_error
+
+# Load environment variables from .env
+load_dotenv()
 
 # Get project root directory (two levels up from src/data_collection/)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
-CONFIG_FILE = os.path.join(PROJECT_ROOT, "config", "config.yaml")
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-def load_db_config(config_file: str = CONFIG_FILE):
-    """Load TimescaleDB configuration from config.yaml."""
+def load_db_config():
+    """Load TimescaleDB configuration from .env."""
     try:
-        with open(config_file, "r") as f:
-            config = yaml.safe_load(f)
-        db_config = config.get("database", {})
-        if not all(key in db_config for key in ["host", "port", "dbname", "user", "password"]):
-            raise ValueError("Incomplete TimescaleDB configuration in config.yaml")
+        db_config = {
+            "host": os.getenv("DB_HOST"),
+            "port": os.getenv("DB_PORT"),
+            "dbname": os.getenv("DB_NAME"),
+            "user": os.getenv("DB_USER"),
+            "password": os.getenv("DB_PASSWORD")
+        }
+        if not all(db_config.values()):
+            raise ValueError("Incomplete TimescaleDB configuration in .env")
         return db_config
     except Exception as e:
         logger.error(f"Failed to load DB config: {e}")

@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to include preference for concise responses">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_market_data.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to include rules for concise responses and repository access explanations">
+      <change beforePath="$PROJECT_DIR$/general_preferences.json" beforeDir="false" afterPath="$PROJECT_DIR$/general_preferences.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -426,13 +424,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746822011758</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables">
+      <option name="closed" value="true" />
+      <created>1746822495641</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1746822495641</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Update general_preferences.json to include rules for concise responses and repository access explanations">
+      <option name="closed" value="true" />
+      <created>1746822777852</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1746822777852</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
-    <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run" />
     <MESSAGE value="updated general preferences." />
     <MESSAGE value="updated fetch card data.py" />
     <MESSAGE value="Update general_preferences.json with new commit and repository check preferences." />
@@ -456,6 +468,8 @@
     <MESSAGE value="Update general_preferences.json to include notification of changes" />
     <MESSAGE value="Update clean_logs.py to fix deletion of most recent log file" />
     <MESSAGE value="Update general_preferences.json to include preference for concise responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to include preference for concise responses" />
+    <MESSAGE value="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables" />
+    <MESSAGE value="Update general_preferences.json to include rules for concise responses and repository access explanations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to include rules for concise responses and repository access explanations" />
   </component>
 </project>
