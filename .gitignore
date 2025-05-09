@@ -1,6 +1,12 @@
-data/raw/
-data/processed/
-data/models/
+# .gitignore
+# Ignore data/ by default
+data/
+# Allow specific subdirectories
+!data/raw/
+!data/processed/
+# Ensure logs are included
+!logs/*.log
+!logs/error_log.json
 *.pyc
 __pycache__/
 .env
