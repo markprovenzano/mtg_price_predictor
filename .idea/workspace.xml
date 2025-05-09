@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="log files.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/error_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/error_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logger.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/">
+      <change beforePath="$PROJECT_DIR$/src/utils/logs/info_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs/info_log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logs/mtg_price_predictor_20250509_140856.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs/mtg_price_predictor_20250509_140856.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logs/mtg_price_predictor_20250509_140906.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs/mtg_price_predictor_20250509_140906.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +58,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor\src\logs" />
       <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor\src\utils" />
       <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor\src" />
       <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor" />
@@ -175,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746814161561</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/">
+      <option name="closed" value="true" />
+      <created>1746814719873</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1746814719873</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -192,6 +201,7 @@
     <MESSAGE value="updated general preferences." />
     <MESSAGE value="debugging logger function." />
     <MESSAGE value="log files." />
-    <option name="LAST_COMMIT_MESSAGE" value="log files." />
+    <MESSAGE value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/" />
   </component>
 </project>
