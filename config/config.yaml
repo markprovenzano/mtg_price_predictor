@@ -4,6 +4,8 @@ data:
   processed_path: "data/processed/"
   models_path: "data/models/"
   logs_path: "logs/"
+  card_attributes_csv: "data/raw/card_attributes.csv"
+  card_list_csv: "data/raw/card_list.csv"
 api:
   card_endpoint: "https://api.scryfall.com/cards"
   market_endpoint: "https://api.tcgplayer.com/pricing"  # Placeholder; update with actual endpoint

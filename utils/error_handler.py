@@ -1,4 +1,8 @@
 # File: src/utils/error_handler.py
+import os
+import sys
+# Add src/ to sys.path to ensure imports work
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from src.utils.logger import log_error
 
 def handle_api_error(exception, module_name):

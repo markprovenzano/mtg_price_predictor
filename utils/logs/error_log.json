@@ -1,0 +1,12 @@
+[
+  {
+    "module": "test",
+    "error": "Sample error for testing",
+    "timestamp": "2025-05-09T11:38:26.647013"
+  },
+  {
+    "module": "test",
+    "error": "Sample error for testing",
+    "timestamp": "2025-05-09T12:05:16.425727"
+  }
+]
