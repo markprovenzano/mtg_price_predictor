@@ -3,6 +3,8 @@ import requests
 import json
 import os
 from datetime import datetime
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 from src.utils.logger import logger
 from src.utils.error_handler import log_error
 
@@ -10,6 +12,7 @@ from src.utils.error_handler import log_error
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 RAW_DATA_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
+
 
 def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards/search?q=*"):
     """
@@ -23,10 +26,16 @@ def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards/search?q
     """
     try:
         logger.info(f"Starting card data fetch from {api_endpoint}")
+
+        # Set up session with retries
+        session = requests.Session()
+        retries = Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504])
+        session.mount("https://", HTTPAdapter(max_retries=retries))
+
         page = 1
         url = api_endpoint
         while url:
-            response = requests.get(url, timeout=10)
+            response = session.get(url, timeout=30)  # Increased timeout
             response.raise_for_status()  # Raise exception for HTTP errors
 
             data = response.json()
@@ -57,6 +66,7 @@ def fetch_card_data(api_endpoint: str = "https://api.scryfall.com/cards/search?q
         logger.error(f"Unexpected error in fetch_card_data: {e}")
         log_error(e, "Unexpected error in fetch_card_data")
         return False
+
 
 if __name__ == "__main__":
     fetch_card_data()

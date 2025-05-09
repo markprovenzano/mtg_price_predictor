@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Add clean_logs.py to automate log file cleanup">
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_151144.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
-    </list>
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json with preferences for file content handling and repository verification" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -272,7 +269,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746817867204</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="error logs from fetch card data run.">
+      <option name="closed" value="true" />
+      <created>1746817978618</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1746817978618</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Update general_preferences.json with preferences for file content handling and repository verification">
+      <option name="closed" value="true" />
+      <created>1746818189392</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1746818189393</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -300,6 +313,8 @@
     <MESSAGE value="Update general_preferences.json with preferences for requirements.txt and file content verificationUpdate general_preferences.json with preferences for requirements.txt and file content verification" />
     <MESSAGE value="Update fetch_card_data.py to use correct Scryfall API endpoint and pagination" />
     <MESSAGE value="Add clean_logs.py to automate log file cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add clean_logs.py to automate log file cleanup" />
+    <MESSAGE value="error logs from fetch card data run." />
+    <MESSAGE value="Update general_preferences.json with preferences for file content handling and repository verification" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json with preferences for file content handling and repository verification" />
   </component>
 </project>
