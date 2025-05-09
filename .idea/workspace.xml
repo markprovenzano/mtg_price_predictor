@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update clean_logs.py to fix relative import error" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -342,13 +344,43 @@
       <option name="project" value="LOCAL" />
       <updated>1746819889432</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Add card_list.csv to data/raw/ for card data processing">
+      <option name="closed" value="true" />
+      <created>1746820038069</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1746820038069</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Add log files and card data JSON from fetch_card_data run">
+      <option name="closed" value="true" />
+      <created>1746820082806</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1746820082806</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
+      <option name="closed" value="true" />
+      <created>1746820172460</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1746820172460</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
+      <option name="closed" value="true" />
+      <created>1746820206420</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1746820206420</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="general preferences update" />
-    <MESSAGE value="error logs pushed" />
     <MESSAGE value="added test_logger.py" />
     <MESSAGE value="debugging logger function." />
     <MESSAGE value="log files." />
@@ -369,9 +401,11 @@
     <MESSAGE value="Add log files and raw card data from fetch_card_data run" />
     <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
     <MESSAGE value="Update fetch_card_data.py to load card_list.csv instead of Scryfall API" />
-    <MESSAGE value="Add log files and card data JSON from fetch_card_data run" />
     <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks and requirements.txt verification" />
     <MESSAGE value="Update clean_logs.py to fix relative import error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update clean_logs.py to fix relative import error" />
+    <MESSAGE value="Add card_list.csv to data/raw/ for card data processing" />
+    <MESSAGE value="Add log files and card data JSON from fetch_card_data run" />
+    <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json" />
   </component>
 </project>
