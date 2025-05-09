@@ -1,6 +1,6 @@
-# test_logger.py
-from logger import logger
-from error_handler import log_error
+# src/utils/test_logger.py
+from .logger import logger  # Import from same directory
+from .error_handler import log_error  # Navigate up to root for error_handler.py
 
 def test_logging():
     logger.info("Testing INFO log for mtg_price_predictor")

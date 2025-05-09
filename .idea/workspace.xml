@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="error logs pushed" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="updated general preferences.">
+      <change afterPath="$PROJECT_DIR$/src/logs/mtg_price_predictor_20250509_140001.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/error_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/error_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/test_logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test_logger.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python tests.Python tests in test_logger.py.executor": "Run",
     "Python.error_handler.executor": "Run",
     "Python.fetch_card_data.executor": "Run",
     "Python.logger.executor": "Run",
@@ -53,7 +60,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor\src\utils" />
       <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor\src" />
+      <recent name="C:\Users\mprov\PycharmProjects\mtg_price_predictor" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -136,7 +145,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746812572816</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added test_logger.py">
+      <option name="closed" value="true" />
+      <created>1746812966317</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746812966317</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated general preferences.">
+      <option name="closed" value="true" />
+      <created>1746813023586</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746813023586</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -149,6 +174,8 @@
     <MESSAGE value="logger file, general preferences and error handler updated" />
     <MESSAGE value="general preferences update" />
     <MESSAGE value="error logs pushed" />
-    <option name="LAST_COMMIT_MESSAGE" value="error logs pushed" />
+    <MESSAGE value="added test_logger.py" />
+    <MESSAGE value="updated general preferences." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated general preferences." />
   </component>
 </project>
