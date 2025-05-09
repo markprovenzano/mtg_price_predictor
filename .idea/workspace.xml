@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to include rules for concise responses and repository access explanations">
-      <change beforePath="$PROJECT_DIR$/general_preferences.json" beforeDir="false" afterPath="$PROJECT_DIR$/general_preferences.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Add fetch_market_data module to query TimescaleDB tables using .env credentials">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_163801.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +44,7 @@
     "Python.clean_logs.executor": "Run",
     "Python.error_handler.executor": "Run",
     "Python.fetch_card_data.executor": "Run",
+    "Python.fetch_market_data.executor": "Run",
     "Python.logger.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -440,12 +442,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746822777852</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Add fetch_market_data module to query TimescaleDB tables using .env credentials">
+      <option name="closed" value="true" />
+      <created>1746823027172</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1746823027172</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updated general preferences." />
     <MESSAGE value="updated fetch card data.py" />
     <MESSAGE value="Update general_preferences.json with new commit and repository check preferences." />
     <MESSAGE value="Update general_preferences.json" />
@@ -470,6 +479,7 @@
     <MESSAGE value="Update general_preferences.json to include preference for concise responses" />
     <MESSAGE value="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables" />
     <MESSAGE value="Update general_preferences.json to include rules for concise responses and repository access explanations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to include rules for concise responses and repository access explanations" />
+    <MESSAGE value="Add fetch_market_data module to query TimescaleDB tables using .env credentials" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add fetch_market_data module to query TimescaleDB tables using .env credentials" />
   </component>
 </project>

@@ -50,7 +50,8 @@
         "Omit mentioning files when no updates are made to keep responses concise.",
         "Do not repeat general preferences back to the user if no updates are made to the previous version.",
         "Do not repeat the repository file structure unless clarification is needed from the user.",
-        "Explicitly explain any inability to access files in the GitHub repository, detailing the specific reasons and limitations."
+        "Explicitly explain any inability to access files in the GitHub repository, detailing the specific reasons and limitations.",
+        "When moving forward with user instructions, provide a concise response stating 'I understand the next step, but I need...' and list the required files with their paths."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions, ensuring all file contents and structure are verified."

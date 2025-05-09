@@ -1,3 +1,4 @@
 {"timestamp": "2025-05-09T14:17:34.396779", "context": "Testing error logging in test_logger.py", "error": "Simulated error for testing"}
 {"timestamp": "2025-05-09T14:55:50.844354", "context": "Fetching card data from Scryfall API", "error": "404 Client Error: Not Found for url: https://api.scryfall.com/cards?page=1"}
 {"timestamp": "2025-05-09T15:11:54.940206", "context": "Fetching card data from Scryfall API", "error": "HTTPSConnectionPool(host='api.scryfall.com', port=443): Read timed out. (read timeout=10)"}
+{"timestamp": "2025-05-09T16:38:02.232789", "context": "Fetching market data from TimescaleDB", "error": "relation \"prices\" does not exist\nLINE 1: SELECT * FROM prices\n                      ^\n"}
