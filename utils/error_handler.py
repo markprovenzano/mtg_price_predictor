@@ -1,9 +1,5 @@
 # File: src/utils/error_handler.py
-import os
-import sys
-# Add src/ to sys.path to ensure imports work
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from src.utils.logger import log_error
+from .logger import log_error  # Relative import
 
 def handle_api_error(exception, module_name):
     """
@@ -52,3 +48,10 @@ def handle_general_error(exception, module_name):
     }
     log_error(error_data)
     raise
+
+if __name__ == "__main__":
+    # Test error handling
+    try:
+        raise ValueError("Test error")
+    except ValueError as e:
+        handle_data_error(e, "test")

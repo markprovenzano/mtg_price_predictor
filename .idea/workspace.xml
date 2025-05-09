@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup">
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/logs/error_log.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/logs/info_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/project_status.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues">
+      <change beforePath="$PROJECT_DIR$/.idea/mtg_price_predictor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mtg_price_predictor.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/error_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/error_handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,9 +28,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2wrXn3HdFvZ7b4z4QRnuqhfbcVk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -43,16 +39,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.logger.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.logger.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -93,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746805038244</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues">
+      <option name="closed" value="true" />
+      <created>1746806792830</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746806792830</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -101,6 +105,7 @@
     <MESSAGE value="Initial File Structure" />
     <MESSAGE value="Updated Initial File Structure" />
     <MESSAGE value="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial implementation of logger and error handler modules&#10;&#10;- Added src/utils/logger.py for info and error logging&#10;- Added src/utils/error_handler.py for standardized error handling&#10;- Created config/config.yaml with initial paths and placeholders&#10;- Initialized project_status.json with current state&#10;- Updated requirements.txt with python-dotenv&#10;- Verified .gitignore and .env setup" />
+    <MESSAGE value="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented data collection modules and fixed error_handler imports&#10;&#10;- Fixed import errors in src/utils/error_handler.py with __init__.py and sys.path&#10;- Added src/__init__.py and src/utils/__init__.py to make src/ a package&#10;- Implemented src/data_collection/fetch_card_data.py for Scryfall API and CSV input&#10;- Implemented src/data_collection/fetch_market_data.py for TimescaleDB and CSV input&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and resolved issues" />
   </component>
 </project>
