@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Add log files and card data JSON from fetch_card_data run">
-      <change beforePath="$PROJECT_DIR$/general_preferences.json" beforeDir="false" afterPath="$PROJECT_DIR$/general_preferences.json" afterDir="false" />
-    </list>
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update clean_logs.py to fix relative import error" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -328,13 +326,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746819505481</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Update general_preferences.json to prioritize automatic repository checks and requirements.txt verification">
+      <option name="closed" value="true" />
+      <created>1746819663521</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1746819663521</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Update clean_logs.py to fix relative import error">
+      <option name="closed" value="true" />
+      <created>1746819889432</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1746819889432</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed error_handler imports and added fetch_card_data with CSV filtering&#10;&#10;- Updated src/utils/error_handler.py with relative imports to fix PyCharm errors&#10;- Implemented src/data_collection/fetch_card_data.py with card_list.csv filtering and card_attributes.csv fallback&#10;- Updated config/config.yaml with CSV paths&#10;- Updated project_status.json with progress and unresolved error_handler issues" />
-    <MESSAGE value="logger file, general preferences and error handler updated" />
     <MESSAGE value="general preferences update" />
     <MESSAGE value="error logs pushed" />
     <MESSAGE value="added test_logger.py" />
@@ -358,6 +370,8 @@
     <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
     <MESSAGE value="Update fetch_card_data.py to load card_list.csv instead of Scryfall API" />
     <MESSAGE value="Add log files and card data JSON from fetch_card_data run" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add log files and card data JSON from fetch_card_data run" />
+    <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks and requirements.txt verification" />
+    <MESSAGE value="Update clean_logs.py to fix relative import error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update clean_logs.py to fix relative import error" />
   </component>
 </project>
