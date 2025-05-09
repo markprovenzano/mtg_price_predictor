@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection/fetch_card_data.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update .gitignore to allow data/raw/ and data/processed/ for project outputs">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_145549.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +224,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746816388453</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Update fetch_card_data.py in src/data_collection/ to save card data to data/raw/">
+      <option name="closed" value="true" />
+      <created>1746816680270</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1746816680270</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update .gitignore to allow data/raw/ and data/processed/ for project outputs">
+      <option name="closed" value="true" />
+      <created>1746816805693</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1746816805693</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -246,6 +262,8 @@
     <MESSAGE value="updated fetch card data.py" />
     <MESSAGE value="Update general_preferences.json with new commit and repository check preferences." />
     <MESSAGE value="Update general_preferences.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json" />
+    <MESSAGE value="Update fetch_card_data.py in src/data_collection/ to save card data to data/raw/" />
+    <MESSAGE value="Update .gitignore to allow data/raw/ and data/processed/ for project outputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore to allow data/raw/ and data/processed/ for project outputs" />
   </component>
 </project>

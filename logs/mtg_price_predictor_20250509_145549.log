@@ -1,0 +1,3 @@
+2025-05-09 14:55:49,648 - INFO - Starting card data fetch from https://api.scryfall.com/cards
+2025-05-09 14:55:50,843 - ERROR - Failed to fetch card data: 404 Client Error: Not Found for url: https://api.scryfall.com/cards?page=1
+2025-05-09 14:55:50,844 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Fetching card data from Scryfall API

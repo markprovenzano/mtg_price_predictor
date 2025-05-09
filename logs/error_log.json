@@ -1,1 +1,2 @@
 {"timestamp": "2025-05-09T14:17:34.396779", "context": "Testing error logging in test_logger.py", "error": "Simulated error for testing"}
+{"timestamp": "2025-05-09T14:55:50.844354", "context": "Fetching card data from Scryfall API", "error": "404 Client Error: Not Found for url: https://api.scryfall.com/cards?page=1"}
