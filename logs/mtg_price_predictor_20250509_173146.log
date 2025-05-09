@@ -1,0 +1,11 @@
+2025-05-09 17:31:46,587 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 17:31:46,743 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-09 17:31:46,743 - INFO - Querying table: market_prices
+2025-05-09 17:32:47,284 - INFO - Created DataFrame for market_prices with 11450141 records
+2025-05-09 17:35:59,234 - INFO - Saved 11450141 records from market_prices to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\market_prices_20250509_173146.json
+2025-05-09 17:35:59,234 - INFO - Querying table: sales_history
+2025-05-09 17:36:25,052 - INFO - Created DataFrame for sales_history with 1675639 records
+2025-05-09 17:36:48,131 - INFO - Saved 1675639 records from sales_history to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\sales_history_20250509_173146.json
+2025-05-09 17:36:48,132 - INFO - Querying table: listings
+2025-05-09 17:57:40,822 - ERROR - Unexpected error in fetch_market_data: Unable to allocate 812. MiB for an array with shape (106410110,) and data type datetime64[ns]
+2025-05-09 17:57:40,841 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Unexpected error in fetch_market_data
