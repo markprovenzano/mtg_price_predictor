@@ -39,7 +39,9 @@
         "Remind to commit with a copy/paste of the commit message after suggesting an edit.",
         "Check the repository for the current version of a file before suggesting a new version.",
         "Provide the updated general_preferences.json as the first part of the response.",
-        "Always check the current file structure in the repository before responding to ensure accurate file locations."
+        "Always check the current file structure in the repository before responding to ensure accurate file locations.",
+        "Check requirements.txt before suggesting new package installations.",
+        "When user provides a file path, verify its contents in the repository or request the file contents if not accessible."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."
