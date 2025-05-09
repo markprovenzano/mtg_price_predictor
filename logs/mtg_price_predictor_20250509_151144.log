@@ -1,3 +1,0 @@
-2025-05-09 15:11:44,862 - INFO - Starting card data fetch from https://api.scryfall.com/cards/search?q=*
-2025-05-09 15:11:54,939 - ERROR - Failed to fetch card data: HTTPSConnectionPool(host='api.scryfall.com', port=443): Read timed out. (read timeout=10)
-2025-05-09 15:11:54,941 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Fetching card data from Scryfall API
