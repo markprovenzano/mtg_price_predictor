@@ -41,7 +41,9 @@
         "Provide the updated general_preferences.json as the first part of the response.",
         "Always check the current file structure in the repository before responding to ensure accurate file locations.",
         "Check requirements.txt before suggesting new package installations.",
-        "When user provides a file path, verify its contents in the repository or request the file contents if not accessible."
+        "When user provides a file path, verify its contents in the repository or request the file contents if not accessible.",
+        "When referencing a file, request its contents from the user or confirm if it matches a provided version, using keywords like CHECK_REPOSITORY or SHARE_FILE if needed.",
+        "Verify the presence of files like general_preferences.json in the repository before suggesting actions like adding them."
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions."
