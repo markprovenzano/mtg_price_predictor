@@ -1,22 +1,22 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-10T21:00:00",
-  "version": "0.2.0",
+  "timestamp": "2025-05-11T04:00:00",
+  "version": "0.2.8",
   "status": {
     "completed_modules": [
       "logger",
       "error_handler",
       "fetch_card_data",
       "fetch_market_data",
-      "merge_data"
+      "merge_data",
+      "pipeline"
     ],
     "in_progress_module": "clean_data",
     "pending_modules": [
       "feature_engineering",
       "train_model",
       "predict",
-      "evaluate_model",
-      "pipeline"
+      "evaluate_model"
     ]
   },
   "configuration": {
@@ -76,24 +76,28 @@
     "significant missing days in listings and market_prices (e.g., 2025-04-19 to 2025-04-22, 2025-05-05), requiring imputation in clean_data.py",
     "recurring TypeError: Object of type Timestamp is not JSON serializable in scratch files, resolved with timestamp string conversion",
     "high NaNs in sales_history post-merge (34.85% granular), resolved in merge_data.py with date aggregation and zero-filling",
-    "high outlier removal rate in sales_history (7.81% IQR 2.0, 4.93% IQR 3.0), mitigated with asymmetric IQR (3.65%)"
+    "high outlier removal rate in sales_history (7.81% IQR 2.0, 4.93% IQR 3.0), mitigated with asymmetric IQR (2.78%)",
+    "pipeline.py failed due to missing pandas import, resolved by adding import",
+    "pipeline.py failed due to merge_data naming conflict, resolved by renaming argument to run_merge_data"
   ],
   "pipeline_status": {
-    "last_run": "2025-05-10T03:26:22",
-    "success": true,
+    "last_run": "2025-05-10T12:10:13",
+    "success": false,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, and merge_data modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge (6.6M rows, 27.36% low-inventory) with asymmetric IQR (low: 1.5, high: 4.0), Eastern Time (ET) timestamp handling, and zero-filled sales_history missing days (sales_quantity = 0, sales_price_max = 0). Latest scratch_merge_data.py run (2025-05-10T03:26:22) succeeded, reducing sales_history NaNs from 34.85% to 1.86% granular.
+  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge (6.6M rows, 27.38% low-inventory) with asymmetric IQR (low: 1.5, high: 5.0), Eastern Time (ET) timestamp handling, and zero-filled sales_history missing days (sales_quantity = 0, sales_price_max = 0). Latest merge_data.py run (2025-05-10T11:46:03) succeeded, producing 6,624,411 rows with 1.24% NaN residuals.
 
-**Outlier Analysis**: Asymmetric IQR (low: 1.5, high: 4.0) removed 3.65% (60,075 rows, $27.01–$500.00, mean $45.55), vs. 4.93% (IQR 3.0) and 7.81% (IQR 2.0), preserving more high prices. No low-value outliers (e.g., $0.25) removed. High prices (e.g., $38.99–$500) may include legitimate max prices (e.g., $32.99 for card_sku_id 7010582). Plan: Validate against market_prices.direct_low in clean_data.py (e.g., > 100x deviation).
+**Outlier Analysis**: Asymmetric IQR (low: 1.5, high: 5.0) removed 2.78% (46,466 rows, $32.20–$500.00, mean $50.60), preserving high prices. Validation flagged 38 rows > 100x direct_low. No low-value outliers (e.g., $0.25) removed. Plan: Further validate in clean_data.py.
 
-**Timestamp Handling**: Intraday ET timestamps (e.g., order_date: 2025-03-11 00:00:07) caused high NaNs, resolved by aggregating sales_history by date, filling missing days with zeros, and localizing to ET. Residual NaNs (1.86% granular) to be investigated in clean_data.py.
+**Timestamp Handling**: Intraday ET timestamps resolved by aggregating sales_history by date, filling missing days with zeros, and localizing to ET. Residual NaNs (1.24% granular) to be investigated in clean_data.py.
 
-**Direct Low Insight**: direct_low NaNs (6.62% granular, 39.46% aggregated) indicate dropshipper out-of-stock, correlating with missing listings (396,902 rows). direct_low is a key max price indicator (e.g., $61.77 for 7009315). Plan: Flag as is_dropshipper_out_of_stock in clean_data.py.
+**Direct Low Insight**: direct_low NaNs (1.36% granular post-imputation) indicate dropshipper out-of-stock, correlating with missing listings (115,920 rows). Plan: Flag as is_dropshipper_out_of_stock in clean_data.py.
 
-**Merge Strategy**: Granular merge preserves seller variability and low-inventory signals (27.36% vs. 17.63% aggregated). merge_data.py stable with granular merge, IQR filtering, and zero-filled sales_history.
+**Merge Strategy**: Granular merge preserves seller variability and low-inventory signals (27.38%). merge_data.py stable, integrated into pipeline.py with modular switches.
+
+**Pipeline Strategy**: pipeline.py implemented with switches (--fetch-data, --merge-data) for testing flexibility. Fixed pandas import and naming conflict issues.
 
 **Clean Data Plan**: Sample granular merge (1M rows) for testing. Flag direct_low NaNs, impute listings missing days (direct_inventory_count = 0, is_missing_day flag), defer market_prices imputation. Validate outliers against direct_low, one-hot encode rarity and condition, keep set_name raw. Defer set release date via Scryfall to feature_engineering.
 
-**Next Steps**: Develop clean_data.py with direct_low flagging, imputation, and encoding. Investigate residual sales_history NaNs. Address ingestion issues (missing days, no out-of-stock records) in clean_data.py or pipeline."
+**Next Steps**: Develop clean_data.py with direct_low flagging, imputation, and encoding. Test pipeline.py with updated merge_data.py. Address ingestion issues (missing days, no out-of-stock records) in clean_data.py or pipeline."
 }
