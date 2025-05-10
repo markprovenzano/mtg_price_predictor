@@ -23,7 +23,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 def load_card_attributes():
     """Load card_attributes from CSV."""
     csv_path = os.path.join(PROJECT_ROOT, "data", "raw", "card_attributes.csv")
@@ -32,7 +31,6 @@ def load_card_attributes():
     df = pd.read_csv(csv_path)
     logger.info(f"Loaded {len(df)} card_attributes records")
     return df
-
 
 def run_pipeline(fetch_data=True, run_merge_data=True):
     """Run the data pipeline with optional module switches."""
@@ -69,6 +67,14 @@ def run_pipeline(fetch_data=True, run_merge_data=True):
             merged_data, stats = merge_data(market_data, card_attributes)
             logger.info(f"Merged data size: {len(merged_data)}")
             logger.info(f"Merge stats: {stats}")
+
+            # Save merged data
+            processed_dir = os.path.join(PROJECT_ROOT, "data", "processed")
+            os.makedirs(processed_dir, exist_ok=True)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            merged_data_path = os.path.join(processed_dir, f"merged_data_{timestamp}.csv")
+            merged_data.to_csv(merged_data_path, index=False)
+            logger.info(f"Saved merged data to {merged_data_path}")
         except Exception as e:
             logger.error(f"Failed to merge data: {str(e)}")
             raise
@@ -76,7 +82,6 @@ def run_pipeline(fetch_data=True, run_merge_data=True):
     # Placeholder for future steps (e.g., clean_data, feature_engineering)
     logger.info("Pipeline execution completed")
     return merged_data
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="MTG Price Predictor Pipeline")

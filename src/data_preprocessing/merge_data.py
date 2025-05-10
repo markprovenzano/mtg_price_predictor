@@ -22,7 +22,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
     """Filter outliers using asymmetric IQR method."""
     Q1 = df[column].quantile(0.25)
@@ -42,7 +41,6 @@ def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
     }
     logger.info(f"Filtered {stats['removed_count']} outliers from {column}")
     return filtered, stats
-
 
 def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     """Perform granular merge of market_data and card_attributes with diagnostics."""
@@ -70,72 +68,59 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
     logger.info(f"Filtered card_attributes to {len(card_attributes)} relevant records")
 
     # Normalize dates to Eastern Time (ET)
-    market_prices["date"] = pd.to_datetime(market_prices["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime(
-        "%Y-%m-%d")
+    market_prices["date"] = pd.to_datetime(market_prices["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
     listings["date"] = pd.to_datetime(listings["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
-    sales_history["date"] = pd.to_datetime(sales_history["order_date"]).dt.tz_localize("US/Eastern").dt.strftime(
-        "%Y-%m-%d")
+    sales_history["date"] = pd.to_datetime(sales_history["order_date"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
 
     # Filter outliers from sales_history.price
-    sales_history_filtered, outlier_stats = filter_outliers(sales_history, "price", low_multiplier=1.5,
-                                                            high_multiplier=5.0)
+    sales_history_filtered, outlier_stats = filter_outliers(sales_history, "price", low_multiplier=1.5, high_multiplier=5.0)
 
     # Aggregate sales_history by date
     sales_agg = sales_history_filtered.groupby(["card_sku_id", "date"]).agg({
         "quantity": "sum",
         "price": ["mean", "median", "count", "max"]
     }).reset_index()
-    sales_agg.columns = ["card_sku_id", "date", "sales_quantity", "sales_price_mean", "sales_price_median",
-                         "sales_count", "sales_price_max"]
+    sales_agg.columns = ["card_sku_id", "date", "sales_quantity", "sales_price_mean", "sales_price_median", "sales_count", "sales_price_max"]
 
-    # Fill missing sales_history days
+    # Create complete date range and combinations
     date_range = pd.date_range(start="2025-03-11", end="2025-05-09").strftime("%Y-%m-%d").tolist()
     all_combinations = pd.DataFrame(
-        [(sku, d) for sku in sales_agg["card_sku_id"].unique() for d in date_range],
+        [(sku, d) for sku in relevant_sku for d in date_range],
         columns=["card_sku_id", "date"]
     )
-    sales_agg = all_combinations.merge(
-        sales_agg,
-        on=["card_sku_id", "date"],
-        how="left"
-    ).fillna({
-        "sales_quantity": 0,
-        "sales_price_mean": 0,
-        "sales_price_median": 0,
-        "sales_count": 0,
-        "sales_price_max": 0
-    })
 
-    # Granular merge
-    merged = market_prices.merge(
-        listings,
-        on=["card_sku_id", "date"],
-        how="left",
-        suffixes=("_market", "_listings")
-    ).merge(
-        sales_agg,
-        on=["card_sku_id", "date"],
-        how="left"
-    ).merge(
-        card_attributes,
-        on="card_sku_id",
-        how="left"
-    )
+    # Merge with market_prices and carry forward
+    merged = all_combinations.merge(market_prices, on=["card_sku_id", "date"], how="left")
+    merged = merged.sort_values("date")
+    market_cols = market_prices.columns.difference(["card_sku_id", "date", "updated_at"])
+    for col in market_cols:
+        merged[col] = merged.groupby("card_sku_id")[col].transform(lambda x: x.ffill().bfill())
+
+    # Merge with listings and handle missing days
+    merged = merged.merge(listings, on=["card_sku_id", "date"], how="left", suffixes=("", "_listings"))
+    merged["is_missing_day"] = merged["price"].isna()  # Flag missing listings data
+    merged["quantity"] = merged["quantity"].fillna(0)
+    merged["direct_inventory_count"] = merged["direct_inventory_count"].fillna(0)
+    # Note: 'price' remains NaN for missing days
+
+    # Merge with sales_agg
+    merged = merged.merge(sales_agg, on=["card_sku_id", "date"], how="left")
+    merged[["sales_quantity", "sales_price_mean", "sales_price_median", "sales_count", "sales_price_max"]] = merged[
+        ["sales_quantity", "sales_price_mean", "sales_price_median", "sales_count", "sales_price_max"]
+    ].fillna(0)
+
+    # Merge with card_attributes
+    merged = merged.merge(card_attributes, on="card_sku_id", how="left")
     logger.info(f"Merged data size: {len(merged)}")
-
-    # Carry-forward imputation
-    for col in ["direct_low", "market", "low", "lowest_list", "price", "quantity", "direct_inventory_count"]:
-        if col in merged.columns:
-            merged[col] = merged.groupby("card_sku_id")[col].transform(lambda x: x.ffill().bfill())
 
     # Flag dropshipper out-of-stock
     merged["is_dropshipper_out_of_stock"] = merged["direct_low"].isna()
 
-    # Outlier validation against direct_low
+    # Outlier validation against direct_low, excluding zeros
     validation_stats = {
-        "25x": int((merged["sales_price_max"] > 25 * merged["direct_low"]).sum()),
-        "50x": int((merged["sales_price_max"] > 50 * merged["direct_low"]).sum()),
-        "100x": int((merged["sales_price_max"] > 100 * merged["direct_low"]).sum())
+        "25x": int(((merged["direct_low"] > 0) & (merged["sales_price_max"] > 25 * merged["direct_low"])).sum()),
+        "50x": int(((merged["direct_low"] > 0) & (merged["sales_price_max"] > 50 * merged["direct_low"])).sum()),
+        "100x": int(((merged["direct_low"] > 0) & (merged["sales_price_max"] > 100 * merged["direct_low"])).sum())
     }
     outlier_stats["validation"] = validation_stats
     logger.info(f"Outlier validation stats: {validation_stats}")
@@ -153,7 +138,7 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
         "nan_counts": {
             col: int(merged[col].isna().sum()) for col in [
                 "low", "market", "direct_low", "price", "quantity",
-                "direct_inventory_count", "sales_quantity", "sales_price_mean", "sales_price_max"
+                "direct_inventory_count", "sales_quantity", "sales_price_max"
             ] if col in merged.columns
         },
         "low_inventory": {
@@ -161,6 +146,7 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
             "proportion": float(merged["is_low_inventory"].mean()) if "is_low_inventory" in merged.columns else 0
         },
         "outlier_stats": outlier_stats,
+        "direct_low_zero_count": int((merged["direct_low"] == 0).sum()),  # Added to track zeros
         "non_zero_sales": int(merged["sales_price_max"].gt(0).sum()),
         "correlation": merged["sales_price_max"].corr(merged["direct_low"]) if "direct_low" in merged.columns else None
     }

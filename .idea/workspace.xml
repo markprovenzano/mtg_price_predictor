@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_summary.json with pipeline fix&#10;- Documented resolution of pipeline.py NameError&#10;Files: project_summary.json">
-      <change beforePath="$PROJECT_DIR$/src/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipeline.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json">
+      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_121850.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_121559.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,22 +89,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Update general_preferences.json to include concise response rule for next steps">
-      <option name="closed" value="true" />
-      <created>1746823202648</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1746823202648</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Update project_status.json to mark fetch_market_data complete and start clean_data">
-      <option name="closed" value="true" />
-      <created>1746824161540</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1746824161540</updated>
     </task>
     <task id="LOCAL-00049" summary="Update fetch_market_data.py to query correct TimescaleDB tables (market_prices, sales_history, listings)">
       <option name="closed" value="true" />
@@ -480,13 +466,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746893248807</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Fix pipeline.py TypeError&#10;- Renamed merge_data argument to run_merge_data to avoid function shadowing&#10;Files: src/pipeline.py">
+      <option name="closed" value="true" />
+      <created>1746893585325</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1746893585325</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json">
+      <option name="closed" value="true" />
+      <created>1746893619608</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1746893619608</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update project_status.json with clean_data requirements&#10;- Specified IQR as primary outlier removal method, testing additional methods&#10;- Updated listings handling to denote dropshipper_out_of_stock and no-seller-inventory&#10;- Added skewness, kurtosis, volatility to price metrics&#10;Files: project_status.json" />
-    <MESSAGE value="Simplify listings query in fetch_market_data.py&#10;- Removed price_rank &lt;= 5 filter to capture all listings&#10;- Retained card_sku_id filter for &gt;= 12 sales over 60 days&#10;- Added pd.to_numeric for robust price handling&#10;- Added is_low_inventory flag for direct_inventory_count &lt;= 5&#10;Files: src/data_collection/fetch_market_data.py" />
     <MESSAGE value="Update project_status.json with recent progress&#10;- Added simplified listings query in fetch_market_data.py&#10;- Noted data ingestion issue and missing days in listings&#10;- Planned imputation strategy for clean_data.py&#10;- Updated issues and notes with diagnostic findings&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with merge progress and Timestamp issue&#10;- Added TypeError: Timestamp not JSON serializable as issue&#10;- Noted merge_data progress with granular and aggregated listings&#10;- Updated sales_history outlier filtering and encoding preferences&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with merge progress and issues&#10;- Noted high NaNs in sales_history post-merge&#10;- Updated merge_data testing with granular and aggregated results&#10;- Documented sales_history outlier filtering and Timestamp error fix&#10;Files: project_status.json" />
@@ -510,6 +510,8 @@
     <MESSAGE value="Update merge_data.py for pipeline integration&#10;- Removed __main__ block to prevent double-calling modules&#10;- Added input logging for pipeline debugging&#10;Files: src/data_preprocessing/merge_data.py" />
     <MESSAGE value="Fix pipeline.py NameError&#10;- Added pandas import to resolve pd undefined error&#10;Files: src/pipeline.py" />
     <MESSAGE value="Update project_summary.json with pipeline fix&#10;- Documented resolution of pipeline.py NameError&#10;Files: project_summary.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_summary.json with pipeline fix&#10;- Documented resolution of pipeline.py NameError&#10;Files: project_summary.json" />
+    <MESSAGE value="Fix pipeline.py TypeError&#10;- Renamed merge_data argument to run_merge_data to avoid function shadowing&#10;Files: src/pipeline.py" />
+    <MESSAGE value="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json" />
   </component>
 </project>
