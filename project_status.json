@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
   "timestamp": "2025-05-11T04:00:00",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "status": {
     "completed_modules": [
       "logger",
@@ -23,9 +23,11 @@
     "data_paths": {
       "raw": "data/raw/",
       "processed": "data/processed/",
-      "logs": "logs/"
+      "logs": "logs/",
+      "config": "config/"
     },
     "config_file": ".env",
+    "filter_file": "config/filters.json",
     "database": {
       "type": "TimescaleDB",
       "name": "tsdb",
@@ -70,26 +72,28 @@
     }
   },
   "pipeline_status": {
-    "last_run": "2025-05-10T13:57:51",
-    "success": true,
+    "last_run": "2025-05-10T14:52:47",
+    "success": false,
     "error_log": "logs/error_log.json"
   },
   "data_handling": {
     "market_prices": {
       "direct_low": {
         "description": "Lowest direct price, key max price indicator",
-        "strategy": "carry_forward",
-        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "strategy": "preserve_nans",
+        "method": "Flag NaNs as is_direct_low_nan, impute in clean_data.py using listings and sales_history",
         "stats": {
-          "nan_count_granular": 96185,
-          "nan_proportion_granular": 0.0137
+          "nan_count_granular": 148053,
+          "nan_proportion_granular": 0.0210,
+          "raw_nan_count": 358317,
+          "raw_nan_proportion": 0.3961
         },
-        "evaluation": "NaNs reduced, but 1.37% remain for card_sku_ids with no data."
+        "evaluation": "NaNs preserved for clean_data.py imputation."
       },
       "market": {
         "description": "Average market price",
         "strategy": "carry_forward",
-        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "method": "Forward-fill and backfill per card_sku_id",
         "stats": {
           "nan_count_granular": 0,
           "nan_proportion_granular": 0.0
@@ -98,49 +102,52 @@
       },
       "low": {
         "description": "Lowest price",
-        "strategy": "carry_forward",
-        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "strategy": "preserve_nans",
+        "method": "Flag NaNs as is_low_nan, impute in clean_data.py using sales_history",
         "stats": {
-          "nan_count_granular": 0,
-          "nan_proportion_granular": 0.0
+          "nan_count_granular": 492,
+          "nan_proportion_granular": 0.00007,
+          "raw_nan_count": 4557,
+          "raw_nan_proportion": 0.0050
         },
-        "evaluation": "No NaNs, suitable for price continuity."
+        "evaluation": "NaNs preserved for clean_data.py imputation."
       },
       "lowest_list": {
         "description": "Lowest listing price",
-        "strategy": "carry_forward",
-        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "strategy": "preserve_nans",
+        "method": "Flag NaNs as is_lowest_list_nan, impute in clean_data.py using sales_history",
         "stats": {
-          "nan_count_granular": 0,
-          "nan_proportion_granular": 0.0
+          "nan_count_granular": 4557,
+          "nan_proportion_granular": 0.00065,
+          "raw_nan_count": 4557,
+          "raw_nan_proportion": 0.0050
         },
-        "evaluation": "No NaNs, strategy effective."
+        "evaluation": "NaNs preserved for clean_data.py imputation."
       }
     },
     "sales_history": {
       "sales_quantity": {
-        "description": "Total sales quantity per day",
-        "strategy": "current",
-        "method": "Aggregate by card_sku_id and date, fill missing days with 0",
+        "description": "Total sales quantity per transaction",
+        "strategy": "zero_fill",
+        "method": "Fill missing transactions with 0",
         "stats": {
           "nan_count_granular": 0,
           "nan_proportion_granular": 0.0,
-          "non_zero_sales": 4899454,
-          "correlation_with_direct_low": 0.0787
+          "non_zero_sales": 4924670
         },
-        "evaluation": "No NaNs, sufficient for model."
+        "evaluation": "No NaNs, suitable for raw granularity."
       },
-      "sales_price_max": {
-        "description": "Maximum sale price per day",
-        "strategy": "current",
-        "method": "Aggregate by card_sku_id and date, fill missing days with 0",
+      "sales_price": {
+        "description": "Sale price per transaction",
+        "strategy": "zero_fill",
+        "method": "Fill missing transactions with 0",
         "stats": {
           "nan_count_granular": 0,
           "nan_proportion_granular": 0.0,
-          "non_zero_sales": 4899454,
-          "correlation_with_direct_low": 0.0787
+          "non_zero_sales": 4924670,
+          "correlation_with_direct_low": 0.1057
         },
-        "evaluation": "No NaNs, sufficient for model."
+        "evaluation": "No NaNs, suitable for raw granularity."
       }
     },
     "listings": {
@@ -242,7 +249,7 @@
     {
       "type": "data",
       "description": "high outlier removal rate in sales_history (7.81% IQR 2.0, 4.93% IQR 3.0)",
-      "resolution": "Mitigated with asymmetric IQR (0.61% with high_multiplier=10.0)"
+      "resolution": "Moved outlier handling to clean_data.py, flagging in merge_data.py"
     },
     {
       "type": "operational",
@@ -253,7 +260,12 @@
       "type": "operational",
       "description": "pipeline.py failed due to merge_data naming conflict",
       "resolution": "Resolved by renaming argument to run_merge_data"
+    },
+    {
+      "type": "operational",
+      "description": "merge_data.py failed due to KeyError: None of [Index(['quantity', 'price'], dtype='object')] are in the [columns]",
+      "resolution": "Fixed by correcting sales_history column handling"
     }
   ],
-  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge with a complete grid of card_sku_id and dates, carrying forward market_prices, setting listings quantity and direct_inventory_count to 0 for missing days (indicating data unavailability) with an is_missing_day flag, and filling sales_history missing days with zeros (sales_quantity = 0, sales_price_max = 0). Latest merge_data.py run (2025-05-10T13:57:51) succeeded, producing 7,038,364 rows with 426,548 NaNs in listings price (6.06%) and 96,185 NaNs in direct_low (1.37%). Pipeline saves merged data to data/processed/merged_data_<timestamp>.csv. Outlier Analysis: Asymmetric IQR (low: 1.5, high: 10.0) removed 0.61% (10,256 rows, $58.15–$500.00, mean $83.22), preserving high prices. Validation flagged 41 rows > 100x direct_low (excluding direct_low == 0), saved to logs/extreme_outliers_<timestamp>.csv for review. Random samples saved to logs/random_sample_<timestamp>.csv for test cases. Direct Low Insight: 1.37% NaNs indicate card_sku_ids with no direct_low data, flagged as is_all_direct_low_nan for clean_data.py. Next Steps: Develop clean_data.py to validate outliers, impute NaNs, and encode features. Optimize fetch_market_data.py for speed."
+  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge with a complete card_sku_id × date grid, preserving direct_low/low/lowest_list NaNs, zero-filling listings quantity and direct_inventory_count, and merging sales_history at raw granularity. Latest run (2025-05-10T14:52:47) failed due to KeyError, fixed in merge_data.py. Dropped card_sku_ids with all direct_low NaNs, logged to logs/dropped_sku_ids_<timestamp>.txt. Added config/filters.json for dynamic thresholds. Flags for clean_data.py: is_direct_low_nan, is_missing_day, is_extreme_outlier, is_all_direct_low_nan, is_low_inventory, is_low_nan, is_lowest_list_nan, is_no_recent_sales. Samples in merge_data_diagnostic_<timestamp>.json for NaNs and outliers. Next Steps: Develop clean_data.py to impute direct_low using listings and sales_history, validate outliers, and encode features. Optimize fetch_market_data.py for speed."
 }
