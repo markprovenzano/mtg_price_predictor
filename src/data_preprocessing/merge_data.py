@@ -1,15 +1,26 @@
-# src/data_processing/merge_data.py
+# src/data_preprocessing/merge_data.py
 import pandas as pd
 import numpy as np
 import os
 import json
 from datetime import datetime
-from src.utils.logger import logger
-from src.utils.error_handler import log_error
+import logging
 
+# Project constants
 PROJECT_ROOT = r"C:\Users\mprov\PycharmProjects\mtg_price_predictor"
 LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
+
+# Logging setup
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),  # Output to console
+        logging.FileHandler(os.path.join(LOG_DIR, "merge_data.log"))
+    ]
+)
+logger = logging.getLogger(__name__)
 
 
 def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
@@ -29,150 +40,162 @@ def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
         "price_mean": float(removed[column].mean()) if not removed.empty else None,
         "price_median": float(removed[column].median()) if not removed.empty else None
     }
-    logger.info(
-        f"Filtered {stats['removed_count']} outliers from {column} (low_multiplier: {low_multiplier}, high_multiplier: {high_multiplier})")
+    logger.info(f"Filtered {stats['removed_count']} outliers from {column}")
     return filtered, stats
 
 
-def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> pd.DataFrame:
-    """Merge market_data and card_attributes dataframes with carry-forward imputation."""
+def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Perform granular merge of market_data and card_attributes with diagnostics."""
+    logger.info("Starting merge_data execution")
+
+    # Validate inputs
+    if not market_data or not isinstance(market_data, dict):
+        raise ValueError("market_data is invalid or empty")
+    if card_attributes is None or card_attributes.empty:
+        raise ValueError("card_attributes is invalid or empty")
+
+    market_prices = market_data.get("market_prices")
+    sales_history = market_data.get("sales_history")
+    listings = market_data.get("listings")
+
+    if not all([market_prices is not None, sales_history is not None, listings is not None]):
+        raise ValueError("Missing required market_data components")
+
+    logger.info(
+        f"Input sizes: market_prices={len(market_prices)}, sales_history={len(sales_history)}, listings={len(listings)}, card_attributes={len(card_attributes)}")
+
+    # Filter card_attributes to relevant card_sku_id
+    relevant_sku = set(market_prices["card_sku_id"]).union(set(sales_history["card_sku_id"]))
+    card_attributes = card_attributes[card_attributes["card_sku_id"].isin(relevant_sku)]
+    logger.info(f"Filtered card_attributes to {len(card_attributes)} relevant records")
+
+    # Normalize dates to Eastern Time (ET)
+    market_prices["date"] = pd.to_datetime(market_prices["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime(
+        "%Y-%m-%d")
+    listings["date"] = pd.to_datetime(listings["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
+    sales_history["date"] = pd.to_datetime(sales_history["order_date"]).dt.tz_localize("US/Eastern").dt.strftime(
+        "%Y-%m-%d")
+
+    # Filter outliers from sales_history.price
+    sales_history_filtered, outlier_stats = filter_outliers(sales_history, "price", low_multiplier=1.5,
+                                                            high_multiplier=5.0)
+
+    # Aggregate sales_history by date
+    sales_agg = sales_history_filtered.groupby(["card_sku_id", "date"]).agg({
+        "quantity": "sum",
+        "price": ["mean", "median", "count", "max"]
+    }).reset_index()
+    sales_agg.columns = ["card_sku_id", "date", "sales_quantity", "sales_price_mean", "sales_price_median",
+                         "sales_count", "sales_price_max"]
+
+    # Fill missing sales_history days
+    date_range = pd.date_range(start="2025-03-11", end="2025-05-09").strftime("%Y-%m-%d").tolist()
+    all_combinations = pd.DataFrame(
+        [(sku, d) for sku in sales_agg["card_sku_id"].unique() for d in date_range],
+        columns=["card_sku_id", "date"]
+    )
+    sales_agg = all_combinations.merge(
+        sales_agg,
+        on=["card_sku_id", "date"],
+        how="left"
+    ).fillna({
+        "sales_quantity": 0,
+        "sales_price_mean": 0,
+        "sales_price_median": 0,
+        "sales_count": 0,
+        "sales_price_max": 0
+    })
+
+    # Granular merge: market_prices -> listings -> sales_agg -> card_attributes
+    merged = market_prices.merge(
+        listings,
+        on=["card_sku_id", "date"],
+        how="left",
+        suffixes=("_market", "_listings")
+    ).merge(
+        sales_agg,
+        on=["card_sku_id", "date"],
+        how="left"
+    ).merge(
+        card_attributes,
+        on="card_sku_id",
+        how="left"
+    )
+    logger.info(f"Merged data size: {len(merged)}")
+
+    # Carry-forward imputation
+    for col in ["direct_low", "market", "low", "lowest_list", "price", "quantity", "direct_inventory_count"]:
+        if col in merged.columns:
+            merged[col] = merged.groupby("card_sku_id")[col].transform(lambda x: x.ffill().bfill())
+
+    # Flag dropshipper out-of-stock
+    merged["is_dropshipper_out_of_stock"] = merged["direct_low"].isna()
+
+    # Outlier validation against direct_low
+    validation_stats = {
+        "25x": int((merged["sales_price_max"] > 25 * merged["direct_low"]).sum()),
+        "50x": int((merged["sales_price_max"] > 50 * merged["direct_low"]).sum()),
+        "100x": int((merged["sales_price_max"] > 100 * merged["direct_low"]).sum())
+    }
+    outlier_stats["validation"] = validation_stats
+    logger.info(f"Outlier validation stats: {validation_stats}")
+
+    # Statistics
+    stats = {
+        "record_counts": {
+            "market_prices": len(market_prices),
+            "sales_history": len(sales_history),
+            "sales_history_filtered": len(sales_history_filtered),
+            "listings": len(listings),
+            "card_attributes": len(card_attributes),
+            "merged": len(merged)
+        },
+        "nan_counts": {
+            col: int(merged[col].isna().sum()) for col in [
+                "low", "market", "direct_low", "price", "quantity",
+                "direct_inventory_count", "sales_quantity", "sales_price_mean", "sales_price_max"
+            ] if col in merged.columns
+        },
+        "low_inventory": {
+            "count": int(merged["is_low_inventory"].sum()) if "is_low_inventory" in merged.columns else 0,
+            "proportion": float(merged["is_low_inventory"].mean()) if "is_low_inventory" in merged.columns else 0
+        },
+        "outlier_stats": outlier_stats,
+        "non_zero_sales": int(merged["sales_price_max"].gt(0).sum()),
+        "correlation": merged["sales_price_max"].corr(merged["direct_low"]) if "direct_low" in merged.columns else None
+    }
+
+    # Save diagnostics
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    diagnostic_path = os.path.join(LOG_DIR, f"merge_data_diagnostic_{timestamp}.json")
+    with open(diagnostic_path, "w") as f:
+        json.dump(stats, f, indent=4)
+    logger.info(f"Saved diagnostics to {diagnostic_path}")
+    print(f"Saved diagnostics to {diagnostic_path}")
+
+    return merged, stats
+
+
+# Standalone execution
+if __name__ == "__main__":
+    from src.data_collection.fetch_market_data import fetch_market_data
+
+
+    def load_card_attributes():
+        csv_path = os.path.join(PROJECT_ROOT, "data", "raw", "card_attributes.csv")
+        if not os.path.exists(csv_path):
+            raise FileNotFoundError(f"Card attributes CSV not found at {csv_path}")
+        df = pd.read_csv(csv_path)
+        logger.info(f"Loaded {len(df)} card_attributes records")
+        return df
+
+
     try:
-        # Validate inputs
-        if not market_data or not isinstance(market_data, dict):
-            raise ValueError("Invalid or empty market_data")
-        if card_attributes is None or card_attributes.empty:
-            raise ValueError("Invalid or empty card_attributes")
-
-        market_prices = market_data.get("market_prices")
-        sales_history = market_data.get("sales_history")
-        listings = market_data.get("listings")
-
-        if market_prices is None or market_prices.empty:
-            raise ValueError("market_prices is empty")
-        if sales_history is None or sales_history.empty:
-            raise ValueError("sales_history is empty")
-        if listings is None or listings.empty:
-            raise ValueError("listings is empty")
-
-        logger.info(
-            f"Input sizes: market_prices={len(market_prices)}, sales_history={len(sales_history)}, listings={len(listings)}, card_attributes={len(card_attributes)}")
-
-        # Filter card_attributes to relevant card_sku_id
-        relevant_sku = set(market_prices["card_sku_id"]).union(set(sales_history["card_sku_id"]))
-        card_attributes = card_attributes[card_attributes["card_sku_id"].isin(relevant_sku)]
-        logger.info(f"Filtered card_attributes to {len(card_attributes)} relevant records")
-
-        # Normalize dates to Eastern Time (ET)
-        market_prices["date"] = pd.to_datetime(market_prices["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime(
-            "%Y-%m-%d")
-        listings["date"] = pd.to_datetime(listings["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
-        sales_history["date"] = pd.to_datetime(sales_history["order_date"]).dt.tz_localize("US/Eastern").dt.strftime(
-            "%Y-%m-%d")
-
-        # Filter outliers from sales_history.price
-        sales_history_filtered, outlier_stats = filter_outliers(sales_history, "price", low_multiplier=1.5,
-                                                                high_multiplier=5.0)
-
-        # Aggregate sales_history by date
-        sales_agg = sales_history_filtered.groupby(["card_sku_id", "date"]).agg({
-            "quantity": "sum",
-            "price": ["mean", "median", "count", "max"]
-        }).reset_index()
-        sales_agg.columns = ["card_sku_id", "date", "sales_quantity", "sales_price_mean", "sales_price_median",
-                             "sales_count", "sales_price_max"]
-
-        # Fill missing sales_history days
-        date_range = pd.date_range(start="2025-03-11", end="2025-05-09").strftime("%Y-%m-%d").tolist()
-        all_combinations = pd.DataFrame(
-            [(sku, d) for sku in sales_agg["card_sku_id"].unique() for d in date_range],
-            columns=["card_sku_id", "date"]
-        )
-        sales_agg = all_combinations.merge(
-            sales_agg,
-            on=["card_sku_id", "date"],
-            how="left"
-        ).fillna({
-            "sales_quantity": 0,
-            "sales_price_mean": 0,
-            "sales_price_median": 0,
-            "sales_count": 0,
-            "sales_price_max": 0
-        })
-
-        # Granular merge
-        merged = market_prices.merge(
-            listings,
-            on=["card_sku_id", "date"],
-            how="left",
-            suffixes=("_market", "_listings")
-        ).merge(
-            sales_agg,
-            on=["card_sku_id", "date"],
-            how="left"
-        ).merge(
-            card_attributes,
-            on="card_sku_id",
-            how="left"
-        )
-
-        # Carry-forward imputation
-        for col in ["direct_low", "market", "low", "lowest_list", "price", "quantity", "direct_inventory_count"]:
-            if col in merged.columns:
-                merged[col] = merged.groupby("card_sku_id")[col].transform(lambda x: x.ffill().bfill())
-
-        # Flag dropshipper out-of-stock
-        merged["is_dropshipper_out_of_stock"] = merged["direct_low"].isna()
-
-        # Outlier validation against direct_low
-        validation_stats = {
-            "25x": int((merged["sales_price_max"] > 25 * merged["direct_low"]).sum()),
-            "50x": int((merged["sales_price_max"] > 50 * merged["direct_low"]).sum()),
-            "100x": int((merged["sales_price_max"] > 100 * merged["direct_low"]).sum())
-        }
-        outlier_stats["validation"] = validation_stats
-        logger.info(f"Outlier validation stats: {validation_stats}")
-
-        # Statistics
-        stats = {
-            "record_counts": {
-                "market_prices": len(market_prices),
-                "sales_history": len(sales_history),
-                "sales_history_filtered": len(sales_history_filtered),
-                "listings": len(listings),
-                "card_attributes": len(card_attributes),
-                "merged": len(merged)
-            },
-            "nan_counts": {
-                col: int(merged[col].isna().sum()) for col in [
-                    "low", "market", "direct_low", "price", "quantity",
-                    "direct_inventory_count", "sales_quantity", "sales_price_mean", "sales_price_max"
-                ] if col in merged.columns
-            },
-            "low_inventory": {
-                "count": int(merged["is_low_inventory"].sum()) if "is_low_inventory" in merged.columns else 0,
-                "proportion": float(merged["is_low_inventory"].mean()) if "is_low_inventory" in merged.columns else 0
-            },
-            "outlier_stats": outlier_stats,
-            "non_zero_sales": int(merged["sales_price_max"].gt(0).sum()),
-            "correlation": merged["sales_price_max"].corr(
-                merged["direct_low"]) if "direct_low" in merged.columns else None
-        }
-
-        # Save diagnostic
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_path = os.path.join(LOG_DIR, f"merge_data_diagnostic_{timestamp}.json")
-        try:
-            with open(output_path, "w") as f:
-                json.dump(stats, f, indent=4)
-            logger.info(f"Saved merge diagnostics to {output_path}")
-            print(f"Saved merge diagnostics to {output_path}")
-        except Exception as e:
-            logger.error(f"Failed to save diagnostic: {str(e)}")
-            raise
-
-        return merged, stats
-
+        logger.info("Running merge_data.py standalone")
+        market_data = fetch_market_data()
+        card_attributes = load_card_attributes()
+        merged, stats = merge_data(market_data, card_attributes)
+        logger.info("Completed merge_data execution")
     except Exception as e:
-        logger.error(f"Error in merge_data: {str(e)}")
-        log_error(e, "Merging data")
+        logger.error(f"Error during execution: {str(e)}")
         raise
