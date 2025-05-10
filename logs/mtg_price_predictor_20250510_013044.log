@@ -1,0 +1,3 @@
+2025-05-10 01:30:44,402 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 01:30:45,419 - INFO - Queried listings with 131045 records for 102 card_sku_id
+2025-05-10 01:30:45,545 - INFO - Saved results to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\listings_sku_diagnostic_20250510_013045.json

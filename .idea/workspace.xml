@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json with clean_data requirements&#10;- Specified IQR as primary outlier removal method, testing additional methods&#10;- Updated listings handling to denote dropshipper_out_of_stock and no-seller-inventory&#10;- Added skewness, kurtosis, volatility to price metrics&#10;Files: project_status.json">
-      <change afterPath="$PROJECT_DIR$/logs/clean_data_test_results_20250510_005532.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/listings_out_of_stock_diagnostic_20250510_011516.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/listings_out_of_stock_diagnostic_20250510_011807.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/listings_query_diagnostic_20250510_012318.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_002159.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_003046.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_004150.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_005348.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_011403.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_011656.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_012312.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Simplify listings query in fetch_market_data.py&#10;- Removed price_rank &lt;= 5 filter to capture all listings&#10;- Retained card_sku_id filter for &gt;= 12 sales over 60 days&#10;- Added pd.to_numeric for robust price handling&#10;- Added is_low_inventory flag for direct_inventory_count &lt;= 5&#10;Files: src/data_collection/fetch_market_data.py">
+      <change afterPath="$PROJECT_DIR$/logs/listings_sku_diagnostic_20250510_013045.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_013044.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_014209.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,14 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Update fetch_card_data.py to use correct Scryfall API endpoint and pagination">
-      <option name="closed" value="true" />
-      <created>1746817632921</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1746817632921</updated>
     </task>
     <task id="LOCAL-00024" summary="Add clean_logs.py to automate log file cleanup">
       <option name="closed" value="true" />
@@ -489,12 +471,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746850351470</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Simplify listings query in fetch_market_data.py&#10;- Removed price_rank &lt;= 5 filter to capture all listings&#10;- Retained card_sku_id filter for &gt;= 12 sales over 60 days&#10;- Added pd.to_numeric for robust price handling&#10;- Added is_low_inventory flag for direct_inventory_count &lt;= 5&#10;Files: src/data_collection/fetch_market_data.py">
+      <option name="closed" value="true" />
+      <created>1746855720073</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1746855720073</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update general_preferences.json to include preference for concise responses" />
     <MESSAGE value="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables" />
     <MESSAGE value="Update general_preferences.json to include rules for concise responses and repository access explanations" />
     <MESSAGE value="Add fetch_market_data module to query TimescaleDB tables using .env credentials" />
@@ -519,6 +508,7 @@
     <MESSAGE value="logs" />
     <MESSAGE value="Update project_status.json to reflect clean_data test error resolution" />
     <MESSAGE value="Update project_status.json with clean_data requirements&#10;- Specified IQR as primary outlier removal method, testing additional methods&#10;- Updated listings handling to denote dropshipper_out_of_stock and no-seller-inventory&#10;- Added skewness, kurtosis, volatility to price metrics&#10;Files: project_status.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json with clean_data requirements&#10;- Specified IQR as primary outlier removal method, testing additional methods&#10;- Updated listings handling to denote dropshipper_out_of_stock and no-seller-inventory&#10;- Added skewness, kurtosis, volatility to price metrics&#10;Files: project_status.json" />
+    <MESSAGE value="Simplify listings query in fetch_market_data.py&#10;- Removed price_rank &lt;= 5 filter to capture all listings&#10;- Retained card_sku_id filter for &gt;= 12 sales over 60 days&#10;- Added pd.to_numeric for robust price handling&#10;- Added is_low_inventory flag for direct_inventory_count &lt;= 5&#10;Files: src/data_collection/fetch_market_data.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplify listings query in fetch_market_data.py&#10;- Removed price_rank &lt;= 5 filter to capture all listings&#10;- Retained card_sku_id filter for &gt;= 12 sales over 60 days&#10;- Added pd.to_numeric for robust price handling&#10;- Added is_low_inventory flag for direct_inventory_count &lt;= 5&#10;Files: src/data_collection/fetch_market_data.py" />
   </component>
 </project>
