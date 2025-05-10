@@ -1,61 +1,57 @@
 {
-    "coding_style": [
-        "Provide labeled, copy/paste code blocks with detailed comments.",
-        "Integrate solutions into code, avoiding manual steps.",
-        "Remove outdated code.",
-        "Provide full code blocks for modified files."
-    ],
-    "version_control": [
-        "Use Git with local commits via PyCharm (Ctrl+K).",
-        "Provide copy/paste commit messages, specifying files."
-    ],
-    "output_files": [
-        "Generate logs",
-        "Produce timestamped outputs and project_summary.json.",
-        "Clean up outdated data when necessary.",
-        "Update project_summary.json to document exact data handling, strategies tested, and key evaluation statistics for each data point."
-    ],
-    "reporting": [
-        "Explain metrics briefly (e.g., R²: model fit, 0-1).",
-        "Highlight outliers with diagnostics."
-    ],
-    "data_handling": [
-        "Normalize timestamps to dates (Step 2).",
-        "Convert all timestamp columns to strings (\"%Y-%m-%d\") before JSON serialization to prevent TypeError: Object of type Timestamp is not JSON serializable."
-    ],
-    "performance": [
-        "Optimize pipeline speed and model performance.",
-        "Ensure all steps run despite errors, logging failures."
-    ],
-    "communication": [
-        "Provide clear file-sharing instructions.",
-        "Request confirmation as bulleted lists.",
-        "Output and fix PyCharm warnings programmatically or via manual copy/paste.",
-        "When *gp* is at the end of a sentence, interpret that as general preference and repeat back general_preferences to me with the update",
-        "When suggesting a code edit, refer to the repository and find the file you are updating before making a suggested edit.",
-        "Do not assume a file looks a certain way; always check the actual file in the repository first.",
-        "Do not ask for confirmation if something exists if it can be checked in the repository.",
-        "Access the general preferences in the repository before making a response.",
-        "When repeating general preferences with updates, provide a copy/paste of the full general_preferences.json file.",
-        "Prefer to make changes in PyCharm instead of using bash commands.",
-        "Remind to commit with a copy/paste of the commit message after suggesting an edit.",
-        "Check the repository for the current version of a file before suggesting a new version.",
-        "Provide the updated general_preferences.json as the first part of the response.",
-        "Always check the current file structure in the repository before responding to ensure accurate file locations.",
-        "Check requirements.txt before suggesting new package installations.",
-        "When user provides a file path, verify its contents in the repository or request the file contents if not accessible.",
-        "When referencing a file, request its contents from the user or confirm if it matches a provided version, using keywords like CHECK_REPOSITORY or SHARE_FILE if needed.",
-        "Verify the presence of files like general_preferences.json in the repository before suggesting actions like adding them.",
-        "Always check the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) for the current file structure and file contents before responding, treating this as the highest priority without requiring user prompting, and never assume file contents without verification.",
-        "Before suggesting package installations, always verify the contents of requirements.txt in the repository to confirm if the package is already included.",
-        "When presenting general_preferences.json, explicitly note any updates or changes made compared to the previous version presented.",
-        "Omit mentioning files when no updates are made to keep responses concise.",
-        "Do not repeat general preferences back to the user if no updates are made to the previous version.",
-        "Do not repeat the repository file structure unless clarification is needed from the user.",
-        "Explicitly explain any inability to access files in the GitHub repository, detailing the specific reasons and limitations.",
-        "When moving forward with user instructions, provide a concise response stating 'I understand the next step, but I need...' and list the required files with their paths"
-    ],
-    "repository_review": [
-        "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions, ensuring all file contents and structure are verified."
-    ]
+  "coding_style": [
+    "Provide full, labeled code blocks for easy Ctrl+A, Ctrl+V updates.",
+    "Include detailed comments in code.",
+    "Remove outdated code and ensure solutions are integrated."
+  ],
+  "version_control": [
+    "Use Git with local commits via PyCharm (Ctrl+K).",
+    "Provide copy/paste commit messages specifying updated files."
+  ],
+  "output_files": [
+    "Generate logs and timestamped outputs.",
+    "Update project_summary.json with data handling and evaluation stats."
+  ],
+  "reporting": [
+    "Explain metrics briefly (e.g., R²: model fit, 0-1).",
+    "Highlight outliers with diagnostics."
+  ],
+  "data_handling": [
+    "Normalize timestamps to dates (Step 2).",
+    "Convert timestamps to strings (\"%Y-%m-%d\") before JSON serialization."
+  ],
+  "performance": [
+    "Optimize pipeline speed and model performance.",
+    "Ensure all steps run despite errors, logging failures."
+  ],
+  "communication": [
+    "Provide clear file-sharing instructions.",
+    "Request confirmation as bulleted lists.",
+    "Output and fix PyCharm warnings programmatically or via manual copy/paste.",
+    "When suggesting a code edit, refer to the repository and find the file you are updating before making a suggested edit.",
+    "Do not assume a file looks a certain way; always check the actual file in the repository first.",
+    "Do not ask for confirmation if something exists if it can be checked in the repository.",
+    "Access the general preferences in the repository before making a response.",
+    "When repeating general preferences with updates, provide a copy/paste of the full general_preferences.json file.",
+    "Prefer to make changes in PyCharm instead of using bash commands.",
+    "Remind to commit with a copy/paste of the commit message after suggesting an edit.",
+    "Check the repository for the current version of a file before suggesting a new version.",
+    "Provide the updated general_preferences.json as the first part of the response.",
+    "Always check the current file structure in the repository before responding to ensure accurate file locations.",
+    "Check requirements.txt before suggesting new package installations.",
+    "When user provides a file path, verify its contents in the repository or request the file contents if not accessible.",
+    "When referencing a file, request its contents from the user or confirm if it matches a provided version, using keywords like CHECK_REPOSITORY or SHARE_FILE if needed.",
+    "Verify the presence of files like general_preferences.json in the repository before suggesting actions like adding them.",
+    "Always check the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) for the current file structure and file contents before responding, treating this as the highest priority without requiring user prompting, and never assume file contents without verification.",
+    "Before suggesting package installations, always verify the contents of requirements.txt in the repository to confirm if the package is already included.",
+    "When presenting general_preferences.json, explicitly note any updates or changes made compared to the previous version presented.",
+    "Omit mentioning files when no updates are made to keep responses concise.",
+    "Do not repeat general preferences back to the user if no updates are made to the previous version.",
+    "Do not repeat the repository file structure unless clarification is needed from the user.",
+    "Explicitly explain any inability to access files in the GitHub repository, detailing the specific reasons and limitations.",
+    "When moving forward with user instructions, provide a concise response stating 'I understand the next step, but I need...' and list the required files with their paths."
+  ],
+  "repository_review": [
+    "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions, ensuring all file contents and structure are verified."
+  ]
 }
