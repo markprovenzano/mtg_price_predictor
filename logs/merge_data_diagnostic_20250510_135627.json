@@ -1,0 +1,41 @@
+{
+    "record_counts": {
+        "market_prices": 904566,
+        "sales_history": 1671935,
+        "sales_history_filtered": 1661679,
+        "listings": 6724910,
+        "card_attributes": 16035,
+        "merged": 7038364
+    },
+    "nan_counts": {
+        "low": 0,
+        "market": 0,
+        "direct_low": 96185,
+        "price": 426548,
+        "quantity": 0,
+        "direct_inventory_count": 0,
+        "sales_quantity": 0,
+        "sales_price_max": 0
+    },
+    "low_inventory": {
+        "count": 1805055,
+        "proportion": 0.2730044211756649
+    },
+    "outlier_stats": {
+        "removed_count": 10256,
+        "removed_proportion": 0.006134209762939349,
+        "price_min": 58.15,
+        "price_max": 500.0,
+        "price_mean": 83.2192414196568,
+        "price_median": 74.79,
+        "validation": {
+            "25x": 371,
+            "50x": 105,
+            "100x": 41
+        }
+    },
+    "extreme_outlier_count": 41,
+    "direct_low_zero_count": 0,
+    "non_zero_sales": 4899454,
+    "correlation": 0.07872719637558748
+}

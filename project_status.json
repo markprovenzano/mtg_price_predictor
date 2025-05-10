@@ -69,21 +69,191 @@
       "card_data": "https://api.scryfall.com/cards"
     }
   },
-  "issues": [
-    "clean_data.py error: 'card_sku_id' missing after outlier removal, fixed with robust column preservation",
-    "clean_data.py triggered fetch_market_data.py in test, resolved with pre-fetched DataFrames",
-    "listings table lacks explicit out-of-stock records (quantity == 0, direct_inventory_count == 0), indicating data unavailability for those days",
-    "significant missing days in listings and market_prices (e.g., 2025-04-19 to 2025-04-22, 2025-05-05), handled in merge_data.py with 'is_missing_day' flag and zero imputation",
-    "recurring TypeError: Object of type Timestamp is not JSON serializable in scratch files, resolved with timestamp string conversion",
-    "high NaNs in sales_history post-merge (34.85% granular), resolved in merge_data.py with date aggregation and zero-filling",
-    "high outlier removal rate in sales_history (7.81% IQR 2.0, 4.93% IQR 3.0), mitigated with asymmetric IQR (2.78%)",
-    "pipeline.py failed due to missing pandas import, resolved by adding import",
-    "pipeline.py failed due to merge_data naming conflict, resolved by renaming argument to run_merge_data"
-  ],
   "pipeline_status": {
-    "last_run": "2025-05-10T12:50:15",
+    "last_run": "2025-05-10T13:57:51",
     "success": true,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge with a complete grid of card_sku_id and dates, carrying forward market_prices, setting listings quantity and direct_inventory_count to 0 for missing days (indicating data unavailability) with an 'is_missing_day' flag, and filling sales_history missing days with zeros (sales_quantity = 0, sales_price_max = 0). Latest merge_data.py run (2025-05-10T12:50:15) succeeded, producing 7,038,364 rows with 426,548 NaNs in 'price' (listings price) due to missing days. Pipeline updated to save merged data to C:\\Users\\mprov\\PycharmProjects\\mtg_price_predictor\\data\\processed\\merged_data_<timestamp>.csv. Outlier Analysis: Asymmetric IQR (low: 1.5, high: 5.0) removed 2.78% (46,466 rows, $32.20–$500.00, mean $50.60), preserving high prices. Validation flagged 41 rows > 100x direct_low (excluding direct_low == 0). Added 'direct_low_zero_count': 0, indicating no zero values in direct_low. No low-value outliers (e.g., $0.25) removed. Plan: Adjust IQR high multiplier to 10.0 to retain more high-value sales for testing."
+  "data_handling": {
+    "market_prices": {
+      "direct_low": {
+        "description": "Lowest direct price, key max price indicator",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 96185,
+          "nan_proportion_granular": 0.0137
+        },
+        "evaluation": "NaNs reduced, but 1.37% remain for card_sku_ids with no data."
+      },
+      "market": {
+        "description": "Average market price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      },
+      "low": {
+        "description": "Lowest price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, suitable for price continuity."
+      },
+      "lowest_list": {
+        "description": "Lowest listing price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      }
+    },
+    "sales_history": {
+      "sales_quantity": {
+        "description": "Total sales quantity per day",
+        "strategy": "current",
+        "method": "Aggregate by card_sku_id and date, fill missing days with 0",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0,
+          "non_zero_sales": 4899454,
+          "correlation_with_direct_low": 0.0787
+        },
+        "evaluation": "No NaNs, sufficient for model."
+      },
+      "sales_price_max": {
+        "description": "Maximum sale price per day",
+        "strategy": "current",
+        "method": "Aggregate by card_sku_id and date, fill missing days with 0",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0,
+          "non_zero_sales": 4899454,
+          "correlation_with_direct_low": 0.0787
+        },
+        "evaluation": "No NaNs, sufficient for model."
+      }
+    },
+    "listings": {
+      "price": {
+        "description": "Listing price",
+        "strategy": "preserve_nans",
+        "method": "Leave NaNs for missing days, flagged as is_missing_day",
+        "stats": {
+          "nan_count_granular": 426548,
+          "nan_proportion_granular": 0.0606
+        },
+        "evaluation": "NaNs preserved for missing days, to be handled in clean_data.py."
+      },
+      "quantity": {
+        "description": "Listing quantity",
+        "strategy": "zero_fill",
+        "method": "Fill missing days with 0",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, indicates no inventory on missing days."
+      },
+      "direct_inventory_count": {
+        "description": "Direct inventory count",
+        "strategy": "zero_fill",
+        "method": "Fill missing days with 0",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, suitable for inventory tracking."
+      }
+    },
+    "card_attributes": {
+      "set_name": {
+        "description": "Card set name",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      },
+      "rarity": {
+        "description": "Card rarity",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      },
+      "condition": {
+        "description": "Card condition",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      }
+    }
+  },
+  "issues": [
+    {
+      "type": "operational",
+      "description": "clean_data.py error: 'card_sku_id' missing after outlier removal",
+      "resolution": "Fixed with robust column preservation"
+    },
+    {
+      "type": "operational",
+      "description": "clean_data.py triggered fetch_market_data.py in test",
+      "resolution": "Resolved with pre-fetched DataFrames"
+    },
+    {
+      "type": "data",
+      "description": "listings table lacks explicit out-of-stock records (quantity == 0, direct_inventory_count == 0), indicating data unavailability",
+      "resolution": "Handled in merge_data.py with is_missing_day flag and zero imputation"
+    },
+    {
+      "type": "data",
+      "description": "significant missing days in listings and market_prices (e.g., 2025-04-19 to 2025-04-22, 2025-05-05)",
+      "resolution": "Handled in merge_data.py with is_missing_day flag and zero imputation"
+    },
+    {
+      "type": "operational",
+      "description": "recurring TypeError: Object of type Timestamp is not JSON serializable in scratch files",
+      "resolution": "Resolved with timestamp string conversion"
+    },
+    {
+      "type": "data",
+      "description": "high NaNs in sales_history post-merge (34.85% granular)",
+      "resolution": "Resolved in merge_data.py with date aggregation and zero-filling"
+    },
+    {
+      "type": "data",
+      "description": "high outlier removal rate in sales_history (7.81% IQR 2.0, 4.93% IQR 3.0)",
+      "resolution": "Mitigated with asymmetric IQR (0.61% with high_multiplier=10.0)"
+    },
+    {
+      "type": "operational",
+      "description": "pipeline.py failed due to missing pandas import",
+      "resolution": "Resolved by adding import"
+    },
+    {
+      "type": "operational",
+      "description": "pipeline.py failed due to merge_data naming conflict",
+      "resolution": "Resolved by renaming argument to run_merge_data"
+    }
+  ],
+  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge with a complete grid of card_sku_id and dates, carrying forward market_prices, setting listings quantity and direct_inventory_count to 0 for missing days (indicating data unavailability) with an is_missing_day flag, and filling sales_history missing days with zeros (sales_quantity = 0, sales_price_max = 0). Latest merge_data.py run (2025-05-10T13:57:51) succeeded, producing 7,038,364 rows with 426,548 NaNs in listings price (6.06%) and 96,185 NaNs in direct_low (1.37%). Pipeline saves merged data to data/processed/merged_data_<timestamp>.csv. Outlier Analysis: Asymmetric IQR (low: 1.5, high: 10.0) removed 0.61% (10,256 rows, $58.15–$500.00, mean $83.22), preserving high prices. Validation flagged 41 rows > 100x direct_low (excluding direct_low == 0), saved to logs/extreme_outliers_<timestamp>.csv for review. Random samples saved to logs/random_sample_<timestamp>.csv for test cases. Direct Low Insight: 1.37% NaNs indicate card_sku_ids with no direct_low data, flagged as is_all_direct_low_nan for clean_data.py. Next Steps: Develop clean_data.py to validate outliers, impute NaNs, and encode features. Optimize fetch_market_data.py for speed."
 }

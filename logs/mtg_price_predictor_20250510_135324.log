@@ -1,0 +1,28 @@
+2025-05-10 13:53:24,664 - INFO - Starting pipeline execution
+2025-05-10 13:53:24,664 - INFO - Fetching market data
+2025-05-10 13:53:24,694 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 13:53:24,895 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 13:53:49,272 - INFO - Filtered to 16035 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 13:53:49,274 - INFO - Querying table: market_prices
+2025-05-10 13:53:56,367 - INFO - Queried market_prices with 904566 records in 7.09 seconds
+2025-05-10 13:53:56,367 - INFO - Querying table: sales_history
+2025-05-10 13:54:20,056 - INFO - Queried sales_history with 1671935 records in 23.69 seconds
+2025-05-10 13:54:20,062 - INFO - Querying table: listings
+2025-05-10 13:55:16,063 - INFO - Queried listings with 6724910 records in 56.00 seconds
+2025-05-10 13:55:16,261 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 13:55:16,701 - INFO - Fetched market data: 904566 market_prices, 1671935 sales_history, 6724910 listings
+2025-05-10 13:55:16,701 - INFO - Loading card attributes
+2025-05-10 13:55:16,853 - INFO - Loaded 284714 card_attributes records
+2025-05-10 13:55:16,853 - INFO - Running merge_data
+2025-05-10 13:55:16,853 - INFO - Starting merge_data execution
+2025-05-10 13:55:16,853 - INFO - Received input sizes: market_prices=904566, sales_history=1671935, listings=6724910, card_attributes=284714
+2025-05-10 13:55:17,130 - INFO - Filtered card_attributes to 16035 relevant records
+2025-05-10 13:56:10,504 - INFO - Filtered 10256 outliers from price in 0.09 seconds
+2025-05-10 13:56:26,694 - INFO - Merged data size: 7038364
+2025-05-10 13:56:26,839 - INFO - Outlier validation stats: {'25x': 371, '50x': 105, '100x': 41}
+2025-05-10 13:56:27,740 - INFO - Saved diagnostics to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\merge_data_diagnostic_20250510_135627.json
+2025-05-10 13:56:27,740 - INFO - merge_data completed in 70.89 seconds
+2025-05-10 13:56:27,753 - INFO - Merged data size: 7038364
+2025-05-10 13:56:27,753 - INFO - Merge stats: {'record_counts': {'market_prices': 904566, 'sales_history': 1671935, 'sales_history_filtered': 1661679, 'listings': 6724910, 'card_attributes': 16035, 'merged': 7038364}, 'nan_counts': {'low': 0, 'market': 0, 'direct_low': 96185, 'price': 426548, 'quantity': 0, 'direct_inventory_count': 0, 'sales_quantity': 0, 'sales_price_max': 0}, 'low_inventory': {'count': 1805055, 'proportion': 0.2730044211756649}, 'outlier_stats': {'removed_count': 10256, 'removed_proportion': 0.006134209762939349, 'price_min': 58.15, 'price_max': 500.0, 'price_mean': 83.2192414196568, 'price_median': 74.79, 'validation': {'25x': 371, '50x': 105, '100x': 41}}, 'extreme_outlier_count': 41, 'direct_low_zero_count': 0, 'non_zero_sales': 4899454, 'correlation': np.float64(0.07872719637558748)}
+2025-05-10 13:57:51,926 - INFO - Saved merged data to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\processed\merged_data_20250510_135627.csv
+2025-05-10 13:57:51,926 - INFO - Pipeline execution completed
