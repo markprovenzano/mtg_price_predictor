@@ -1,0 +1,14 @@
+2025-05-10 03:13:00,361 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 03:13:00,565 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 03:13:25,429 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 03:13:25,435 - INFO - Querying table: market_prices
+2025-05-10 03:13:32,090 - INFO - Queried market_prices with 897172 records in 6.65 seconds
+2025-05-10 03:13:32,090 - INFO - Querying table: sales_history
+2025-05-10 03:13:50,904 - INFO - Queried sales_history with 1644689 records in 18.81 seconds
+2025-05-10 03:13:50,904 - INFO - Querying table: listings
+2025-05-10 03:14:40,441 - INFO - Queried listings with 6609938 records in 49.53 seconds
+2025-05-10 03:14:40,654 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 03:14:41,195 - INFO - Loaded 284714 card_attributes records
+2025-05-10 03:14:45,255 - INFO - Filtered 81159 outliers from price (multiplier: 3.0)
+2025-05-10 03:15:00,162 - ERROR - Error in merge_data: "['price_listings', 'quantity_listings'] not in index"
+2025-05-10 03:15:00,163 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Merging data

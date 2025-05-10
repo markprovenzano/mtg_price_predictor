@@ -10,3 +10,4 @@
 {"timestamp": "2025-05-10T01:15:16.224486", "context": "Testing listings out-of-stock", "error": "Object of type date is not JSON serializable"}
 {"timestamp": "2025-05-10T02:05:46.998975", "context": "Merging data", "error": "Object of type Timestamp is not JSON serializable"}
 {"timestamp": "2025-05-10T02:20:40.431214", "context": "Merging data", "error": "Object of type Timestamp is not JSON serializable"}
+{"timestamp": "2025-05-10T03:15:00.162695", "context": "Merging data", "error": "\"['price_listings', 'quantity_listings'] not in index\""}
