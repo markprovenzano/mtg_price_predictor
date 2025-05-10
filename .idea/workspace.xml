@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py">
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_142217.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipeline.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json to reference project_status.json instead of project_summary.json">
+      <change afterPath="$PROJECT_DIR$/logs/extreme_outliers_20250510_142501.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_142501.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/random_sample_20250510_142501.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,14 +90,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00056" summary="logs">
-      <option name="closed" value="true" />
-      <created>1746828234417</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1746828234418</updated>
     </task>
     <task id="LOCAL-00057" summary="project status and Update fetch_market_data.py to query bottom 5 prices per card_sku_id per day for listings">
       <option name="closed" value="true" />
@@ -481,12 +475,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746901327032</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Update general_preferences.json to reference project_status.json instead of project_summary.json">
+      <option name="closed" value="true" />
+      <created>1746901690422</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1746901690422</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update merge_data.py with dropshipper out-of-stock flag&#10;- Added is_dropshipper_out_of_stock for direct_low NaNs&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Add clean_data.py skeleton&#10;- Implemented direct_low flagging, missing day handling, and encoding&#10;Files: src/data_processing/clean_data.py" />
     <MESSAGE value="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Update general_preferences.json with new project_summary.json rule&#10;- Added rule to document data handling and strategies&#10;Files: general_preferences.json" />
@@ -511,6 +512,7 @@
     <MESSAGE value="Update merge_data.py to flag extreme outliers, add timing logs, and ensure error logging" />
     <MESSAGE value="Combine project_status.json and project_summary.json into a single project_status.json, removing redundancy" />
     <MESSAGE value="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py" />
+    <MESSAGE value="Update general_preferences.json to reference project_status.json instead of project_summary.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json to reference project_status.json instead of project_summary.json" />
   </component>
 </project>
