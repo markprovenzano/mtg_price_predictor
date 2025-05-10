@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Add clean_data.py skeleton&#10;- Implemented direct_low flagging, missing day handling, and encoding&#10;Files: src/data_processing/clean_data.py">
-      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +47,7 @@
     "Python.fetch_card_data.executor": "Run",
     "Python.fetch_market_data.executor": "Run",
     "Python.logger.executor": "Run",
+    "Python.merge_data.executor": "Run",
     "Python.scratch_merge_data.executor": "Run",
     "Python.scratch_test_clean_data.executor": "Run",
     "Python.scratch_test_listings_out_of_stock.executor": "Run",
@@ -85,14 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Update clean_logs.py to fix relative import error">
-      <option name="closed" value="true" />
-      <created>1746819889432</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1746819889432</updated>
     </task>
     <task id="LOCAL-00034" summary="Add card_list.csv to data/raw/ for card data processing">
       <option name="closed" value="true" />
@@ -478,12 +471,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746886395274</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py">
+      <option name="closed" value="true" />
+      <created>1746886425827</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1746886425827</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update project_status.json to reflect fetch_market_data with card_sku_id filter" />
     <MESSAGE value="Update fetch_market_data.py to remove JSON output and optimize query performance" />
     <MESSAGE value="project status and Update fetch_market_data.py to query bottom 5 prices per card_sku_id per day for listings" />
     <MESSAGE value="Update fetch_market_data.py to add 60-day limit to all queries and filter by sales_history with &gt;= 12 sales" />
@@ -508,6 +508,7 @@
     <MESSAGE value="Update project_status.json with successful merge and reduced NaNs&#10;- Noted 3.65% outlier removal and 1.86% sales_history NaNs&#10;- Added clean_data.py plan with direct_low flagging&#10;Files: project_status.json" />
     <MESSAGE value="Update merge_data.py with dropshipper out-of-stock flag&#10;- Added is_dropshipper_out_of_stock for direct_low NaNs&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Add clean_data.py skeleton&#10;- Implemented direct_low flagging, missing day handling, and encoding&#10;Files: src/data_processing/clean_data.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add clean_data.py skeleton&#10;- Implemented direct_low flagging, missing day handling, and encoding&#10;Files: src/data_processing/clean_data.py" />
+    <MESSAGE value="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py" />
   </component>
 </project>

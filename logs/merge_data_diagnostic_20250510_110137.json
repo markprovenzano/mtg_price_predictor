@@ -1,0 +1,179 @@
+{
+    "current": {
+        "record_counts": {
+            "market_prices": 897956,
+            "sales_history": 1671935,
+            "sales_history_filtered": 1625469,
+            "listings": 6612645,
+            "card_attributes": 284714,
+            "merged": 6624411
+        },
+        "nan_counts_carry_forward": {
+            "low": 0,
+            "market": 0,
+            "direct_low": 0,
+            "price": 0,
+            "quantity": 0,
+            "direct_inventory_count": 0,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "nan_counts_zero_fill": {
+            "low": 45069,
+            "market": 0,
+            "direct_low": 0,
+            "price": 0,
+            "quantity": 0,
+            "direct_inventory_count": 0,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "nan_counts_listings_based": {
+            "low": 45069,
+            "market": 0,
+            "direct_low": 347971,
+            "price": 397514,
+            "quantity": 397514,
+            "direct_inventory_count": 397514,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "low_inventory": {
+            "count": 1705144,
+            "proportion": 0.2738352665862307
+        },
+        "outlier_stats": {
+            "removed_count": 46466,
+            "removed_proportion": 0.027791750277373222,
+            "price_min": 32.2,
+            "price_max": 500.0,
+            "price_mean": 50.6034582275212,
+            "price_median": 42.92,
+            "lower_bound": -6.725,
+            "upper_bound": 32.199999999999996
+        },
+        "non_zero_sales": 4528030,
+        "correlation": 0.05312818891852177
+    },
+    "time_shifted": {
+        "record_counts": {
+            "market_prices": 897956,
+            "sales_history": 1671935,
+            "sales_history_filtered": 1625469,
+            "listings": 6612645,
+            "card_attributes": 284714,
+            "merged": 6624411
+        },
+        "nan_counts_carry_forward": {
+            "low": 0,
+            "market": 0,
+            "direct_low": 0,
+            "price": 0,
+            "quantity": 0,
+            "direct_inventory_count": 0,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "nan_counts_zero_fill": {
+            "low": 45069,
+            "market": 0,
+            "direct_low": 0,
+            "price": 0,
+            "quantity": 0,
+            "direct_inventory_count": 0,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "nan_counts_listings_based": {
+            "low": 45069,
+            "market": 0,
+            "direct_low": 347971,
+            "price": 397514,
+            "quantity": 397514,
+            "direct_inventory_count": 397514,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "low_inventory": {
+            "count": 1705144,
+            "proportion": 0.2738352665862307
+        },
+        "outlier_stats": {
+            "removed_count": 46466,
+            "removed_proportion": 0.027791750277373222,
+            "price_min": 32.2,
+            "price_max": 500.0,
+            "price_mean": 50.6034582275212,
+            "price_median": 42.92,
+            "lower_bound": -6.725,
+            "upper_bound": 32.199999999999996
+        },
+        "non_zero_sales": 4407853,
+        "correlation": 0.05323566430183131
+    },
+    "weighted": {
+        "record_counts": {
+            "market_prices": 897956,
+            "sales_history": 1671935,
+            "sales_history_filtered": 1625469,
+            "listings": 6612645,
+            "card_attributes": 284714,
+            "merged": 6624411
+        },
+        "nan_counts_carry_forward": {
+            "low": 0,
+            "market": 0,
+            "direct_low": 0,
+            "price": 0,
+            "quantity": 0,
+            "direct_inventory_count": 0,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "nan_counts_zero_fill": {
+            "low": 45069,
+            "market": 0,
+            "direct_low": 0,
+            "price": 0,
+            "quantity": 0,
+            "direct_inventory_count": 0,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "nan_counts_listings_based": {
+            "low": 45069,
+            "market": 0,
+            "direct_low": 347971,
+            "price": 397514,
+            "quantity": 397514,
+            "direct_inventory_count": 397514,
+            "sales_quantity": 82438,
+            "sales_price_mean": 82438,
+            "sales_price_max": 82438
+        },
+        "low_inventory": {
+            "count": 1705144,
+            "proportion": 0.2738352665862307
+        },
+        "outlier_stats": {
+            "removed_count": 46466,
+            "removed_proportion": 0.027791750277373222,
+            "price_min": 32.2,
+            "price_max": 500.0,
+            "price_mean": 50.6034582275212,
+            "price_median": 42.92,
+            "lower_bound": -6.725,
+            "upper_bound": 32.199999999999996
+        },
+        "non_zero_sales": 4528030,
+        "correlation": 0.05312818891852177
+    }
+}

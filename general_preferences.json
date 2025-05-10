@@ -12,7 +12,8 @@
     "output_files": [
         "Generate logs",
         "Produce timestamped outputs and project_summary.json.",
-        "Clean up outdated data when necessary."
+        "Clean up outdated data when necessary.",
+        "Update project_summary.json to document exact data handling, strategies tested, and key evaluation statistics for each data point."
     ],
     "reporting": [
         "Explain metrics briefly (e.g., R²: model fit, 0-1).",
