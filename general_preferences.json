@@ -19,7 +19,8 @@
         "Highlight outliers with diagnostics."
     ],
     "data_handling": [
-        "Normalize timestamps to dates (Step 2)."
+        "Normalize timestamps to dates (Step 2).",
+        "Convert all timestamp columns to strings (\"%Y-%m-%d\") before JSON serialization to prevent TypeError: Object of type Timestamp is not JSON serializable."
     ],
     "performance": [
         "Optimize pipeline speed and model performance.",
@@ -51,7 +52,7 @@
         "Do not repeat general preferences back to the user if no updates are made to the previous version.",
         "Do not repeat the repository file structure unless clarification is needed from the user.",
         "Explicitly explain any inability to access files in the GitHub repository, detailing the specific reasons and limitations.",
-        "When moving forward with user instructions, provide a concise response stating 'I understand the next step, but I need...' and list the required files with their paths."
+        "When moving forward with user instructions, provide a concise response stating 'I understand the next step, but I need...' and list the required files with their paths"
     ],
     "repository_review": [
         "Review all files in the GitHub repository (https://github.com/markprovenzano/mtg_price_predictor) before making suggestions, ensuring all file contents and structure are verified."

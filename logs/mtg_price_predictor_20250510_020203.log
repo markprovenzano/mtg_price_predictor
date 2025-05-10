@@ -1,0 +1,13 @@
+2025-05-10 02:02:03,593 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 02:02:03,751 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 02:02:28,343 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 02:02:28,346 - INFO - Querying table: market_prices
+2025-05-10 02:02:34,497 - INFO - Queried market_prices with 897172 records in 6.15 seconds
+2025-05-10 02:02:34,497 - INFO - Querying table: sales_history
+2025-05-10 02:02:53,177 - INFO - Queried sales_history with 1644689 records in 18.68 seconds
+2025-05-10 02:02:53,177 - INFO - Querying table: listings
+2025-05-10 02:03:41,406 - INFO - Queried listings with 6609938 records in 48.22 seconds
+2025-05-10 02:03:41,571 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 02:03:42,172 - INFO - Loaded 284714 card_attributes records
+2025-05-10 02:05:46,998 - ERROR - Error in merge_data: Object of type Timestamp is not JSON serializable
+2025-05-10 02:05:46,998 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Merging data
