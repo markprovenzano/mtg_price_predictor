@@ -87,6 +87,9 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> pd.DataFrame
             how="left"
         )
 
+        # Flag dropshipper out-of-stock
+        merged["is_dropshipper_out_of_stock"] = merged["direct_low"].isna()
+
         # Statistics
         stats = {
             "record_counts": {
