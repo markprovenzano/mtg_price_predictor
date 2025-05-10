@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logs">
-      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/clean_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/clean_data.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json to reflect clean_data test error resolution">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_214953.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_215009.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_172853.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_173146.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_180403.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_191308.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_195019.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_201744.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_201757.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_202757.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_210927.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_212842.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_213037.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_214109.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_status.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,14 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Add log files and raw card data from fetch_card_data run">
-      <option name="closed" value="true" />
-      <created>1746817061928</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1746817061928</updated>
     </task>
     <task id="LOCAL-00022" summary="Update general_preferences.json with preferences for requirements.txt and file content verificationUpdate general_preferences.json with preferences for requirements.txt and file content verification">
       <option name="closed" value="true" />
@@ -474,12 +481,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746841394891</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Update project_status.json to reflect clean_data test error resolution">
+      <option name="closed" value="true" />
+      <created>1746841734941</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1746841734941</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update general_preferences.json to include notification of changes" />
     <MESSAGE value="Update clean_logs.py to fix deletion of most recent log file" />
     <MESSAGE value="Update general_preferences.json to include preference for concise responses" />
     <MESSAGE value="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables" />
@@ -504,6 +518,7 @@
     <MESSAGE value="logs and project status" />
     <MESSAGE value="Update project_status.json to reflect clean_data test error and ongoing fixes" />
     <MESSAGE value="logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="logs" />
+    <MESSAGE value="Update project_status.json to reflect clean_data test error resolution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json to reflect clean_data test error resolution" />
   </component>
 </project>

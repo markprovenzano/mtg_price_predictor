@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-09T21:42:00",
-  "version": "0.1.0",
+  "timestamp": "2025-05-10T12:00:00",
+  "version": "0.1.1",
   "status": {
     "completed_modules": [
       "logger",
@@ -77,5 +77,5 @@
     "success": false,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter, price columns corrected by dividing by 100); clean_data in progress with z-score, IQR, and percentile-based outlier removal for sales_history, enhanced price metrics (mean, max, min, median, percentiles, std, weighted average), and listings handling (dropshipper_out_of_stock, no-seller-inventory); resolved clean_data error and TimescaleDB call issues; .env used for TimescaleDB credentials."
+  "notes": "Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter, price columns corrected by dividing by 100); clean_data in progress with IQR as primary outlier removal method (testing z-score, percentile-based, Isolation Forest, DBSCAN, modified z-score); enhanced price metrics (mean, max, min, median, percentiles, std, weighted average, skewness, kurtosis, volatility); listings handling updated to denote dropshipper_out_of_stock (direct_inventory_count == 0, confirmed by testing, to be imputed later) and no-seller-inventory (quantity == 0) with boolean flags instead of removal, flags passed to feature_engineering; resolved clean_data error and TimescaleDB call issues; .env used for TimescaleDB credentials."
 }

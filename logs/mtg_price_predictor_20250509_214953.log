@@ -1,0 +1,15 @@
+2025-05-09 21:49:53,712 - INFO - Cleaning log files in C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs
+2025-05-09 21:49:53,713 - INFO - Keeping latest log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_214953.log
+2025-05-09 21:49:53,714 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_214109.log
+2025-05-09 21:49:53,714 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_213037.log
+2025-05-09 21:49:53,714 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_212842.log
+2025-05-09 21:49:53,715 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_210927.log
+2025-05-09 21:49:53,715 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_202757.log
+2025-05-09 21:49:53,715 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_201757.log
+2025-05-09 21:49:53,715 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_201744.log
+2025-05-09 21:49:53,716 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_195019.log
+2025-05-09 21:49:53,716 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_191308.log
+2025-05-09 21:49:53,716 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_180403.log
+2025-05-09 21:49:53,716 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_173146.log
+2025-05-09 21:49:53,716 - INFO - Deleted outdated log file: C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\mtg_price_predictor_20250509_172853.log
+2025-05-09 21:49:53,716 - INFO - Log cleanup completed successfully

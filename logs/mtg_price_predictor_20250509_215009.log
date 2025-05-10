@@ -1,0 +1,30 @@
+2025-05-09 21:50:09,100 - INFO - Loading card data from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 21:50:09,125 - INFO - Loaded 22037 cards from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 21:50:09,125 - INFO - Loading card attributes from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_attributes.csv
+2025-05-09 21:50:09,281 - INFO - Loaded 284714 card attributes from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_attributes.csv
+2025-05-09 21:50:09,308 - INFO - Merged data contains 22037 cards with attributes
+2025-05-09 21:50:09,606 - INFO - Saved 22037 cards to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_data_20250509_215009.json
+2025-05-09 21:50:09,611 - INFO - Card data processing completed successfully
+2025-05-09 21:50:09,638 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 21:50:09,776 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-09 21:50:35,105 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-09 21:50:35,108 - INFO - Querying table: market_prices
+2025-05-09 21:50:42,437 - INFO - Queried market_prices with 897172 records in 7.33 seconds
+2025-05-09 21:50:42,437 - INFO - Querying table: sales_history
+2025-05-09 21:51:01,333 - INFO - Queried sales_history with 1644689 records in 18.90 seconds
+2025-05-09 21:51:01,333 - INFO - Querying table: listings
+2025-05-09 21:51:49,534 - INFO - Queried listings with 2523088 records in 48.20 seconds
+2025-05-09 21:51:49,604 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-09 21:51:49,777 - INFO - Starting data cleaning with card and market DataFrames
+2025-05-09 21:51:49,777 - INFO - Card DataFrame columns: ['card_sku_id', 'set_name', 'product_name', 'rarity', 'condition'], shape: (22037, 5)
+2025-05-09 21:51:49,777 - INFO - market_prices DataFrame columns: ['id', 'card_sku_id', 'low', 'lowest_list', 'market', 'direct_low', 'updated_at'], shape: (897172, 7)
+2025-05-09 21:51:49,777 - INFO - sales_history DataFrame columns: ['id', 'card_sku_id', 'order_date', 'quantity', 'price'], shape: (1644689, 5)
+2025-05-09 21:51:49,777 - INFO - listings DataFrame columns: ['id', 'card_sku_id', 'seller_id', 'direct_inventory_count', 'shipping_price', 'quantity', 'price', 'updated_at', 'price_rank'], shape: (2523088, 9)
+2025-05-09 21:51:49,922 - INFO - Processed market_prices with 897172 records
+2025-05-09 21:51:50,000 - INFO - Original sales_history price stats: mean=6.23, median=6.08, std=1.25
+2025-05-09 21:51:53,316 - INFO - Method zscore: Removed 1252 outliers from price in sales_history
+2025-05-09 21:52:01,797 - INFO - Method iqr: Removed 88542 outliers from price in sales_history
+2025-05-09 21:52:10,382 - INFO - Method percentile: Removed 36704 outliers from price in sales_history
+2025-05-09 21:52:10,471 - INFO - zscore cleaned stats: mean=6.23, median=6.08, std=1.23
+2025-05-09 21:52:10,545 - INFO - iqr cleaned stats: mean=6.14, median=6.06, std=0.93
+2025-05-09 21:52:10,630 - INFO - percentile cleaned stats: mean=6.21, median=6.08, std=1.10

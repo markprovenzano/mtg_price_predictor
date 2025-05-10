@@ -1,9 +1,0 @@
-2025-05-09 19:13:09,016 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
-2025-05-09 19:13:09,175 - INFO - Connected to TimescaleDB database: tsdb
-2025-05-09 19:13:09,175 - INFO - Querying table: market_prices
-2025-05-09 19:14:07,433 - INFO - Queried market_prices with 11450141 records in 58.26 seconds
-2025-05-09 19:14:07,433 - INFO - Querying table: sales_history
-2025-05-09 19:14:48,071 - INFO - Queried sales_history with 1675639 records in 40.64 seconds
-2025-05-09 19:14:48,071 - INFO - Querying table: listings
-2025-05-09 19:33:56,442 - INFO - Queried listings with 34121808 records in 1148.37 seconds
-2025-05-09 19:34:01,358 - INFO - Market data fetch from TimescaleDB completed successfully
