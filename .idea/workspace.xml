@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json">
-      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Fix pipeline.py NameError&#10;- Added pandas import to resolve pd undefined error&#10;Files: src/pipeline.py">
+      <change beforePath="$PROJECT_DIR$/project_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_summary.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +48,7 @@
     "Python.fetch_market_data.executor": "Run",
     "Python.logger.executor": "Run",
     "Python.merge_data.executor": "Run",
+    "Python.pipeline.executor": "Run",
     "Python.scratch_merge_data.executor": "Run",
     "Python.scratch_test_clean_data.executor": "Run",
     "Python.scratch_test_listings_out_of_stock.executor": "Run",
@@ -86,22 +87,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables">
-      <option name="closed" value="true" />
-      <created>1746822495641</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1746822495641</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Update general_preferences.json to include rules for concise responses and repository access explanations">
-      <option name="closed" value="true" />
-      <created>1746822777852</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1746822777852</updated>
     </task>
     <task id="LOCAL-00046" summary="Add fetch_market_data module to query TimescaleDB tables using .env credentials">
       <option name="closed" value="true" />
@@ -479,13 +464,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746892654681</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Update merge_data.py for pipeline integration&#10;- Removed __main__ block to prevent double-calling modules&#10;- Added input logging for pipeline debugging&#10;Files: src/data_preprocessing/merge_data.py">
+      <option name="closed" value="true" />
+      <created>1746892944610</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1746892944610</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Fix pipeline.py NameError&#10;- Added pandas import to resolve pd undefined error&#10;Files: src/pipeline.py">
+      <option name="closed" value="true" />
+      <created>1746893199451</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1746893199451</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update project_status.json to reflect clean_data test error and ongoing fixes" />
-    <MESSAGE value="logs" />
     <MESSAGE value="Update project_status.json to reflect clean_data test error resolution" />
     <MESSAGE value="Update project_status.json with clean_data requirements&#10;- Specified IQR as primary outlier removal method, testing additional methods&#10;- Updated listings handling to denote dropshipper_out_of_stock and no-seller-inventory&#10;- Added skewness, kurtosis, volatility to price metrics&#10;Files: project_status.json" />
     <MESSAGE value="Simplify listings query in fetch_market_data.py&#10;- Removed price_rank &lt;= 5 filter to capture all listings&#10;- Retained card_sku_id filter for &gt;= 12 sales over 60 days&#10;- Added pd.to_numeric for robust price handling&#10;- Added is_low_inventory flag for direct_inventory_count &lt;= 5&#10;Files: src/data_collection/fetch_market_data.py" />
@@ -509,6 +508,8 @@
     <MESSAGE value="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py" />
     <MESSAGE value="initial pipeline implementation." />
     <MESSAGE value="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json" />
+    <MESSAGE value="Update merge_data.py for pipeline integration&#10;- Removed __main__ block to prevent double-calling modules&#10;- Added input logging for pipeline debugging&#10;Files: src/data_preprocessing/merge_data.py" />
+    <MESSAGE value="Fix pipeline.py NameError&#10;- Added pandas import to resolve pd undefined error&#10;Files: src/pipeline.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix pipeline.py NameError&#10;- Added pandas import to resolve pd undefined error&#10;Files: src/pipeline.py" />
   </component>
 </project>

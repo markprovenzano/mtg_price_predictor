@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-11T01:00:00",
-  "version": "0.2.5",
+  "timestamp": "2025-05-11T03:00:00",
+  "version": "0.2.7",
   "data_handling": {
     "market_prices": {
       "direct_low": {
@@ -12,7 +12,7 @@
           "nan_count_granular": 89766,
           "nan_proportion_granular": 0.0136
         },
-        "evaluation": "Minimal NaNs, preservesapt price trends."
+        "evaluation": "Minimal NaNs, preserves price trends."
       },
       "market": {
         "description": "Average market price",
@@ -148,7 +148,11 @@
     "issues": [
       {
         "description": "merge_data.py initially designed as standalone, risking pipeline integrity",
-        "resolution": "Designed pipeline.py with switches to integrate merge_data as a module, maintaining standalone testing capability"
+        "resolution": "Removed merge_data.py __main__ block to prevent double-calling modules"
+      },
+      {
+        "description": "pipeline.py failed due to missing pandas import",
+        "resolution": "Added import pandas as pd to pipeline.py"
       }
     ]
   }
