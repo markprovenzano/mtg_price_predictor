@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-10T23:30:00",
-  "version": "0.2.3",
+  "timestamp": "2025-05-11T00:00:00",
+  "version": "0.2.4",
   "data_handling": {
     "market_prices": {
       "direct_low": {
@@ -134,6 +134,12 @@
         },
         "evaluation": "Minimal NaNs, strategy effective."
       }
-    }
+    },
+    "issues": [
+      {
+        "description": "merge_data.py failed to generate diagnostic JSON",
+        "resolution": "Added input validation and ensured diagnostic output in updated merge_data.py"
+      }
+    ]
   }
 }
