@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-10T23:00:00",
-  "version": "0.2.2",
+  "timestamp": "2025-05-10T23:30:00",
+  "version": "0.2.3",
   "data_handling": {
     "market_prices": {
       "direct_low": {
@@ -101,6 +101,38 @@
           "nan_proportion_granular": 0.0
         },
         "evaluation": "Eliminates NaNs, suitable for inventory tracking."
+      }
+    },
+    "card_attributes": {
+      "set_name": {
+        "description": "Card set name",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Minimal NaNs, strategy effective."
+      },
+      "rarity": {
+        "description": "Card rarity",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Minimal NaNs, strategy effective."
+      },
+      "condition": {
+        "description": "Card condition",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Minimal NaNs, strategy effective."
       }
     }
   }
