@@ -29,7 +29,7 @@ def remove_outliers(df: pd.DataFrame, column: str, group_by: str, method: str = 
             std = group[column].std()
             return group[(group[column] - mean).abs() / std <= z_threshold]
 
-        df_cleaned = df.groupby(group_by).apply(zscore_filter).reset_index(drop=True)
+        df_cleaned = df.groupby(group_by, group_keys=False).apply(zscore_filter, include_groups=False).reset_index()
     elif method == "iqr":
         def iqr_filter(group):
             Q1 = group[column].quantile(0.25)
@@ -39,14 +39,14 @@ def remove_outliers(df: pd.DataFrame, column: str, group_by: str, method: str = 
             upper_bound = Q3 + 1.5 * IQR
             return group[(group[column] >= lower_bound) & (group[column] <= upper_bound)]
 
-        df_cleaned = df.groupby(group_by).apply(iqr_filter).reset_index(drop=True)
+        df_cleaned = df.groupby(group_by, group_keys=False).apply(iqr_filter, include_groups=False).reset_index()
     elif method == "percentile":
         def percentile_filter(group):
             lower_bound = group[column].quantile(percentile_lower)
             upper_bound = group[column].quantile(percentile_upper)
             return group[(group[column] >= lower_bound) & (group[column] <= upper_bound)]
 
-        df_cleaned = df.groupby(group_by).apply(percentile_filter).reset_index(drop=True)
+        df_cleaned = df.groupby(group_by, group_keys=False).apply(percentile_filter, include_groups=False).reset_index()
     else:
         raise ValueError(f"Unknown outlier removal method: {method}")
 
@@ -87,16 +87,14 @@ def clean_data(card_df: pd.DataFrame, market_dfs: dict):
                 log_error(ValueError(f"Invalid DataFrame for {table}: missing card_sku_id"), f"Cleaning {table} data")
                 return None
             if table == "sales_history":
-                # Apply outlier removal strategies
+                # Log original stats
                 original_stats = df.groupby("card_sku_id")["price"].agg(["mean", "median", "std"]).mean()
                 logger.info(
                     f"Original sales_history price stats: mean={original_stats['mean']:.2f}, median={original_stats['median']:.2f}, std={original_stats['std']:.2f}")
 
-                # Z-score method
+                # Apply outlier removal strategies
                 df_zscore = remove_outliers(df, "price", "card_sku_id", method="zscore", z_threshold=6)
-                # IQR method
                 df_iqr = remove_outliers(df, "price", "card_sku_id", method="iqr")
-                # Percentile method
                 df_percentile = remove_outliers(df, "price", "card_sku_id", method="percentile", percentile_lower=0.01,
                                                 percentile_upper=0.99)
 
