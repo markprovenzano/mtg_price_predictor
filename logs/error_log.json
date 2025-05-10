@@ -11,3 +11,4 @@
 {"timestamp": "2025-05-10T02:05:46.998975", "context": "Merging data", "error": "Object of type Timestamp is not JSON serializable"}
 {"timestamp": "2025-05-10T02:20:40.431214", "context": "Merging data", "error": "Object of type Timestamp is not JSON serializable"}
 {"timestamp": "2025-05-10T03:15:00.162695", "context": "Merging data", "error": "\"['price_listings', 'quantity_listings'] not in index\""}
+{"timestamp": "2025-05-10T14:55:48.584555", "context": "merge_data", "error": "\"None of [Index(['quantity', 'price'], dtype='object')] are in the [columns]\""}
