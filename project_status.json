@@ -72,7 +72,7 @@
     }
   },
   "pipeline_status": {
-    "last_run": "2025-05-10T14:52:47",
+    "last_run": "2025-05-10T15:18:56",
     "success": false,
     "error_log": "logs/error_log.json"
   },
@@ -85,10 +85,10 @@
         "stats": {
           "nan_count_granular": 148053,
           "nan_proportion_granular": 0.0210,
-          "raw_nan_count": 358317,
-          "raw_nan_proportion": 0.3961
+          "raw_nan_count": 361366,
+          "raw_nan_proportion": 0.3957
         },
-        "evaluation": "NaNs preserved for clean_data.py imputation."
+        "evaluation": "NaNs preserved for clean_data.py imputation using listings price or recent sales_history sales_price."
       },
       "market": {
         "description": "Average market price",
@@ -107,7 +107,7 @@
         "stats": {
           "nan_count_granular": 492,
           "nan_proportion_granular": 0.00007,
-          "raw_nan_count": 4557,
+          "raw_nan_count": 4592,
           "raw_nan_proportion": 0.0050
         },
         "evaluation": "NaNs preserved for clean_data.py imputation."
@@ -117,9 +117,9 @@
         "strategy": "preserve_nans",
         "method": "Flag NaNs as is_lowest_list_nan, impute in clean_data.py using sales_history",
         "stats": {
-          "nan_count_granular": 4557,
+          "nan_count_granular": 4592,
           "nan_proportion_granular": 0.00065,
-          "raw_nan_count": 4557,
+          "raw_nan_count": 4592,
           "raw_nan_proportion": 0.0050
         },
         "evaluation": "NaNs preserved for clean_data.py imputation."
@@ -265,7 +265,12 @@
       "type": "operational",
       "description": "merge_data.py failed due to KeyError: None of [Index(['quantity', 'price'], dtype='object')] are in the [columns]",
       "resolution": "Fixed by correcting sales_history column handling"
+    },
+    {
+      "type": "operational",
+      "description": "merge_data.py failed due to KeyError: 'quantity'",
+      "resolution": "Fixed by renaming sales_history columns during merge"
     }
   ],
-  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge with a complete card_sku_id × date grid, preserving direct_low/low/lowest_list NaNs, zero-filling listings quantity and direct_inventory_count, and merging sales_history at raw granularity. Latest run (2025-05-10T14:52:47) failed due to KeyError, fixed in merge_data.py. Dropped card_sku_ids with all direct_low NaNs, logged to logs/dropped_sku_ids_<timestamp>.txt. Added config/filters.json for dynamic thresholds. Flags for clean_data.py: is_direct_low_nan, is_missing_day, is_extreme_outlier, is_all_direct_low_nan, is_low_inventory, is_low_nan, is_lowest_list_nan, is_no_recent_sales. Samples in merge_data_diagnostic_<timestamp>.json for NaNs and outliers. Next Steps: Develop clean_data.py to impute direct_low using listings and sales_history, validate outliers, and encode features. Optimize fetch_market_data.py for speed."
+  "notes": "Project predicts maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data, fetch_market_data, merge_data, and pipeline modules. fetch_market_data.py simplified listings query (removed price_rank <= 5, added is_low_inventory flag for direct_inventory_count <= 5). merge_data.py implements granular merge with a complete card_sku_id × date grid, preserving direct_low/low/lowest_list NaNs, zero-filling listings quantity and direct_inventory_count, and merging sales_history at raw granularity. Latest run (2025-05-10T15:18:56) failed due to KeyError: 'quantity', fixed in merge_data.py. Drops card_sku_ids with no direct_low data across the entire date range, logged to logs/dropped_sku_ids_<timestamp>.txt. Added config/filters.json for dynamic thresholds (outliers, inventory, query filters). Flags for clean_data.py: is_direct_low_nan, is_missing_day, is_extreme_outlier, is_all_direct_low_nan, is_low_inventory, is_low_nan, is_lowest_list_nan, is_no_recent_sales. clean_data.py will impute direct_low using listings price (mean/median) or recent sales_history sales_price, handling cases where a sale causes dropshipper out-of-stock (e.g., listings at $10/$11, $10 sale, impute $11 for next day's direct_low NaN). Samples in merge_data_diagnostic_<timestamp>.json for NaNs and outliers. Next Steps: Develop clean_data.py to impute direct_low, validate outliers, and encode features. Optimize fetch_market_data.py for speed."
 }
