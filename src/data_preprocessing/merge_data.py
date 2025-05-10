@@ -16,7 +16,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.StreamHandler(),  # Output to console
+        logging.StreamHandler(),
         logging.FileHandler(os.path.join(LOG_DIR, "merge_data.log"))
     ]
 )
@@ -62,7 +62,7 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
         raise ValueError("Missing required market_data components")
 
     logger.info(
-        f"Input sizes: market_prices={len(market_prices)}, sales_history={len(sales_history)}, listings={len(listings)}, card_attributes={len(card_attributes)}")
+        f"Received input sizes: market_prices={len(market_prices)}, sales_history={len(sales_history)}, listings={len(listings)}, card_attributes={len(card_attributes)}")
 
     # Filter card_attributes to relevant card_sku_id
     relevant_sku = set(market_prices["card_sku_id"]).union(set(sales_history["card_sku_id"]))
@@ -106,7 +106,7 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
         "sales_price_max": 0
     })
 
-    # Granular merge: market_prices -> listings -> sales_agg -> card_attributes
+    # Granular merge
     merged = market_prices.merge(
         listings,
         on=["card_sku_id", "date"],
@@ -174,28 +174,3 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
     print(f"Saved diagnostics to {diagnostic_path}")
 
     return merged, stats
-
-
-# Standalone execution
-if __name__ == "__main__":
-    from src.data_collection.fetch_market_data import fetch_market_data
-
-
-    def load_card_attributes():
-        csv_path = os.path.join(PROJECT_ROOT, "data", "raw", "card_attributes.csv")
-        if not os.path.exists(csv_path):
-            raise FileNotFoundError(f"Card attributes CSV not found at {csv_path}")
-        df = pd.read_csv(csv_path)
-        logger.info(f"Loaded {len(df)} card_attributes records")
-        return df
-
-
-    try:
-        logger.info("Running merge_data.py standalone")
-        market_data = fetch_market_data()
-        card_attributes = load_card_attributes()
-        merged, stats = merge_data(market_data, card_attributes)
-        logger.info("Completed merge_data execution")
-    except Exception as e:
-        logger.error(f"Error during execution: {str(e)}")
-        raise
