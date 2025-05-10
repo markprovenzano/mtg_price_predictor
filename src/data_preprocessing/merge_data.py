@@ -40,6 +40,11 @@ def load_filters():
         "date_range": {
             "start_date": "2025-03-11",
             "end_date": "2025-05-09"
+        },
+        "query_filters": {
+            "sales_window_days": 60,
+            "min_sales_count": 12,
+            "min_avg_sales_per_day": 0.2
         }
     }
     if os.path.exists(filter_path):
@@ -145,15 +150,19 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
         merged = merged.merge(listings, on=["card_sku_id", "date"], how="left", suffixes=("", "_listings"))
 
         # Merge with sales_history (raw granularity)
+        if not all(col in sales_history.columns for col in ["card_sku_id", "date", "quantity", "price", "is_extreme_outlier"]):
+            missing_cols = [col for col in ["card_sku_id", "date", "quantity", "price", "is_extreme_outlier"] if col not in sales_history.columns]
+            raise ValueError(f"Missing columns in sales_history: {missing_cols}")
         merged = merged.merge(
-            sales_history[["card_sku_id", "date", "quantity", "price", "is_extreme_outlier"]],
+            sales_history[["card_sku_id", "date", "quantity", "price", "is_extreme_outlier"]].rename(
+                columns={"quantity": "sales_quantity", "price": "sales_price"}
+            ),
             on=["card_sku_id", "date"],
             how="left"
         )
-        merged["sales_quantity"] = merged["quantity"].fillna(0)
-        merged["sales_price"] = merged["price"].fillna(0)
+        merged["sales_quantity"] = merged["sales_quantity"].fillna(0)
+        merged["sales_price"] = merged["sales_price"].fillna(0)
         merged["is_extreme_outlier"] = merged["is_extreme_outlier"].fillna(False)
-        merged = merged.drop(columns=["quantity", "price"])  # Avoid confusion
 
         # Merge with card_attributes
         merged = merged.merge(card_attributes, on="card_sku_id", how="left")
