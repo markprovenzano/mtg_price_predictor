@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-10T16:00:00",
-  "version": "0.1.5",
+  "timestamp": "2025-05-10T18:00:00",
+  "version": "0.1.7",
   "status": {
     "completed_modules": [
       "logger",
@@ -72,14 +72,27 @@
     "clean_data.py error: 'card_sku_id' missing after outlier removal, fixed with robust column preservation",
     "clean_data.py triggered fetch_market_data.py in test, resolved with pre-fetched DataFrames",
     "listings table lacks explicit out-of-stock records (quantity == 0, direct_inventory_count == 0), likely due to data ingestion issue",
-    "significant missing days in listings data, requiring imputation or handling strategy in clean_data.py",
-    "recurring TypeError: Object of type Timestamp is not JSON serializable in scratch files, requiring timestamp string conversion",
-    "high NaNs in sales_history post-merge, indicating date or card_sku_id alignment issues"
+    "significant missing days in listings and market_prices data (e.g., 2025-04-19 to 2025-04-22, 2025-05-05), requiring imputation in clean_data.py",
+    "recurring TypeError: Object of type Timestamp is not JSON serializable in scratch files, resolved with timestamp string conversion",
+    "high NaNs in sales_history post-merge (34.85% granular, 45.81% aggregated), likely due to intraday timestamp misalignment",
+    "high outlier removal rate in sales_history (7.81%, IQR 2.0) risks removing legitimate max prices critical for prediction"
   ],
   "pipeline_status": {
-    "last_run": "2025-05-10T02:20:40",
-    "success": false,
+    "last_run": "2025-05-10T02:37:41",
+    "success": true,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter >= 12, price columns corrected by dividing by 100); updated fetch_market_data.py to simplify listings query (removed price_rank <= 5, retained sales filter, added is_low_inventory flag for direct_inventory_count <= 5); in progress with merging dataframes (scratch_merge_data.py, testing granular [6.6M rows] and aggregated [897K rows] listings merges); filtered 7.81% sales_history outliers before aggregation (IQR 2.0); clean_data in progress with outlier removal limited to sales_history.price using IQR (1.5, 2.0, 2.5) and z-score > 6; identified data ingestion issue in listings table (no quantity == 0 or direct_inventory_count == 0, low inventory <= 5 as proxy [27.36% granular], significant missing days); plan to impute or handle missing listings days in clean_data.py (e.g., direct_inventory_count = 0, is_missing_day flag); high NaNs in sales_history post-merge (34.85% granular, 45.81% aggregated) suggest date or card_sku_id alignment issues; tested NaN prevalence (0.55% in market_prices.low, 6.0% listings in granular merge); enhanced price metrics (mean, median, std, weighted average, skewness, kurtosis, volatility planned); listings handling denotes dropshipper_out_of_stock (direct_inventory_count == 0) and no-seller-inventory (quantity == 0) with boolean flags, low inventory flagged; encoding preferences: one-hot for condition, rarity; avoid cardinality for set, consider set release date later; resolved clean_data errors and TimescaleDB issues; fixed Timestamp JSON error in scratch files; .env used for TimescaleDB credentials; ongoing testing of merge_data for stability."
+  "notes": "Project focuses on predicting maximum sales prices for Magic: The Gathering cards using TimescaleDB data (market_prices, sales_history, listings) and card_attributes.csv. Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter >= 12, price columns corrected by dividing by 100). Updated fetch_market_data.py to simplify listings query (removed price_rank <= 5, retained sales filter, added is_low_inventory flag for direct_inventory_count <= 5). Currently testing merge_data via scratch_merge_data.py, producing granular (6.6M rows) and aggregated (897K rows) merges. Latest run (2025-05-10T02:37:41) succeeded, fetching 897,172 market_prices, 1,644,689 sales_history, 6,609,938 listings, and 284,714 card_attributes records, filtering 7.81% sales_history outliers (IQR 2.0).
+
+**Outlier Removal Concerns**: High outlier removal rate (7.81%, 128,497 rows) in sales_history.price is concerning, as the project aims to predict max prices, and removing high-value sales could bias predictions. Theory: sales_history.price is right-skewed (many low prices, few high prices), causing IQR 2.0 to flag both low-value errors (e.g., $0.25 for a $25 card) and legitimate high prices (e.g., $40+ for rares). Sample_granular shows low sales_price_mean ($0.39 for card_sku_id 7009269), suggesting many transactions are low-priced, but sample_aggregated includes higher prices (e.g., $32.99 for 7010582), indicating high-value sales at risk. Plan: Test IQR 3.0 or asymmetric IQR (low: 1.5, high: 4.0) to preserve max prices, quantify removed prices (min, max, mean, median), and compare to market_prices.market to identify ridiculous outliers (e.g., 100x deviation).
+
+**Market NaNs**: Aggregated market column shows 0 NaNs despite missing days (e.g., 2025-04-19 to 2025-04-22). Theory: market is computed during ingestion (e.g., average listings price) and stored non-null, with missing days resulting in absent rows, not NaNs. Confirmed by missing_days.market_prices showing systemic gaps. Plan: Impute missing days in clean_data.py (e.g., carry forward market value, flag is_missing_day).
+
+**Date Normalization**: High sales_history NaNs (34.85% granular, 45.81% aggregated) indicate date misalignment. Theory: order_date in sales_history includes intraday timestamps (e.g., 2025-03-12 14:30:00), misaligning with truncated date (\"%Y-%m-%d\") in market_prices and listings. Sample_granular shows partial alignment (e.g., sales_quantity for 7009269, NaNs for 7008945). Plan: Truncate all timestamps to date, verify order_date format, and test timezone conversion if needed. Next scratch_merge_data.py run will log timestamp formats to confirm.
+
+**Merge Strategy**: Granular merge (6.6M rows, 27.36% low-inventory) preserves seller variability, critical for max price prediction, but aggregated merge (897K rows, 17.63% low-inventory) loses signals. User prefers granular merge and plans to create src/data_processing/merge_data.py post-testing for modularity. Plan: Finalize scratch_merge_data.py with outlier analysis, then implement merge_data.py with granular merge, IQR 3.0, and date normalization.
+
+**Clean Data Plan**: clean_data.py will impute missing days (direct_inventory_count = 0, is_missing_day flag), flag sales_quantity NaNs (is_low_nan), apply IQR 3.0 for outliers, one-hot encode rarity and condition, and keep set_name raw. Granular data (6.6M rows) may require chunking. Encoding preferences: avoid set cardinality, consider set release date later via Scryfall.
+
+**Next Steps**: Run updated scratch_merge_data.py to analyze outlier distribution, verify date formats, and reduce sales_history NaNs. Create merge_data.py if stable, then develop clean_data.py. Address data ingestion issues (missing days, no out-of-stock records) in clean_data.py or pipeline."
 }
