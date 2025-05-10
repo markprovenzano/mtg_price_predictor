@@ -1,0 +1,14 @@
+2025-05-10 12:03:08,964 - INFO - Starting pipeline execution
+2025-05-10 12:03:08,964 - INFO - Fetching market data
+2025-05-10 12:03:08,993 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 12:03:09,199 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 12:03:33,828 - INFO - Filtered to 16035 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 12:03:33,830 - INFO - Querying table: market_prices
+2025-05-10 12:03:39,981 - INFO - Queried market_prices with 897956 records in 6.15 seconds
+2025-05-10 12:03:39,981 - INFO - Querying table: sales_history
+2025-05-10 12:03:58,699 - INFO - Queried sales_history with 1671935 records in 18.72 seconds
+2025-05-10 12:03:58,704 - INFO - Querying table: listings
+2025-05-10 12:04:41,255 - INFO - Queried listings with 6724910 records in 42.55 seconds
+2025-05-10 12:04:41,444 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 12:04:41,924 - INFO - Fetched market data: 897956 market_prices, 1671935 sales_history, 6724910 listings
+2025-05-10 12:04:41,925 - ERROR - Pipeline failed: name 'pd' is not defined

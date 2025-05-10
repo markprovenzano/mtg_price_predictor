@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py">
-      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_114603.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_114315.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/merge_data.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/merge_data.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipeline.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json">
+      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,22 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Update clean_logs.py to fix deletion of most recent log file">
-      <option name="closed" value="true" />
-      <created>1746821880102</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1746821880102</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Update general_preferences.json to include preference for concise responses">
-      <option name="closed" value="true" />
-      <created>1746822011758</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1746822011758</updated>
     </task>
     <task id="LOCAL-00044" summary="Update requirements.txt to include pyyaml and psycopg2 Add fetch_market_data module to query TimescaleDB tables">
       <option name="closed" value="true" />
@@ -482,13 +463,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746891784406</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="initial pipeline implementation.">
+      <option name="closed" value="true" />
+      <created>1746892573125</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1746892573125</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json">
+      <option name="closed" value="true" />
+      <created>1746892654680</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1746892654681</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix clean_data.py to inherit fetch_market_data DataFrames and address Pandas warnings" />
-    <MESSAGE value="logs and project status" />
     <MESSAGE value="Update project_status.json to reflect clean_data test error and ongoing fixes" />
     <MESSAGE value="logs" />
     <MESSAGE value="Update project_status.json to reflect clean_data test error resolution" />
@@ -512,6 +507,8 @@
     <MESSAGE value="Update merge_data.py with enhanced logging and diagnostics&#10;- Added input validation and ensured diagnostic JSON output&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Update project_summary.json with diagnostic issue resolution&#10;- Noted merge_data.py diagnostic issue and resolution&#10;Files: project_summary.json" />
     <MESSAGE value="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py" />
+    <MESSAGE value="initial pipeline implementation." />
+    <MESSAGE value="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update project_summary.json with pipeline design&#10;- Added pipeline strategy with modular switches&#10;- Noted merge_data integration resolution&#10;Files: project_summary.json" />
   </component>
 </project>

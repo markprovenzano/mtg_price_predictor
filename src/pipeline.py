@@ -2,6 +2,7 @@
 import argparse
 import logging
 import os
+import pandas as pd
 from datetime import datetime
 from src.data_collection.fetch_market_data import fetch_market_data
 from src.data_preprocessing.merge_data import merge_data
@@ -51,7 +52,14 @@ def run_pipeline(fetch_data=True, merge_data=True):
             raise
 
     # Step 2: Load card attributes
-    card_attributes = load_card_attributes()
+    card_attributes = None
+    if merge_data:
+        logger.info("Loading card attributes")
+        try:
+            card_attributes = load_card_attributes()
+        except Exception as e:
+            logger.error(f"Failed to load card attributes: {str(e)}")
+            raise
 
     # Step 3: Merge data
     merged_data = None
