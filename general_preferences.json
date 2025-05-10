@@ -10,7 +10,7 @@
   ],
   "output_files": [
     "Generate logs and timestamped outputs.",
-    "Update project_summary.json with data handling and evaluation stats."
+    "Update project_status.json with data handling and evaluation stats."
   ],
   "reporting": [
     "Explain metrics briefly (e.g., R²: model fit, 0-1).",

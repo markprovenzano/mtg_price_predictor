@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update merge_data.py to flag extreme outliers, add timing logs, and ensure error logging">
-      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_135627.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_135324.log" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_142217.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipeline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,22 +88,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Update project_status.json to reflect fetch_market_data with card_sku_id filter">
-      <option name="closed" value="true" />
-      <created>1746826279010</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1746826279010</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Update fetch_market_data.py to remove JSON output and optimize query performance">
-      <option name="closed" value="true" />
-      <created>1746828217812</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1746828217812</updated>
     </task>
     <task id="LOCAL-00056" summary="logs">
       <option name="closed" value="true" />
@@ -481,13 +465,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746899595403</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Combine project_status.json and project_summary.json into a single project_status.json, removing redundancy">
+      <option name="closed" value="true" />
+      <created>1746901290385</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1746901290385</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py">
+      <option name="closed" value="true" />
+      <created>1746901327032</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1746901327032</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Add merge_data module for granular merging&#10;- Implemented granular merge with asymmetric IQR (low: 1.5, high: 4.0)&#10;- Filled missing sales_history days with zeros&#10;- Handled ET timestamps&#10;Files: src/data_processing/merge_data.py, src/data_processing/__init__.py" />
-    <MESSAGE value="Update project_status.json with successful merge and reduced NaNs&#10;- Noted 3.65% outlier removal and 1.86% sales_history NaNs&#10;- Added clean_data.py plan with direct_low flagging&#10;Files: project_status.json" />
     <MESSAGE value="Update merge_data.py with dropshipper out-of-stock flag&#10;- Added is_dropshipper_out_of_stock for direct_low NaNs&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Add clean_data.py skeleton&#10;- Implemented direct_low flagging, missing day handling, and encoding&#10;Files: src/data_processing/clean_data.py" />
     <MESSAGE value="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py" />
@@ -511,6 +509,8 @@
     <MESSAGE value="Update general_preferences.json to clarify full file updates and Ctrl+K commit message prompts" />
     <MESSAGE value="Update merge_data.py to adjust IQR high_multiplier to 10.0, add is_missing_day flag for listings, and exclude direct_low zeros in outlier validation" />
     <MESSAGE value="Update merge_data.py to flag extreme outliers, add timing logs, and ensure error logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update merge_data.py to flag extreme outliers, add timing logs, and ensure error logging" />
+    <MESSAGE value="Combine project_status.json and project_summary.json into a single project_status.json, removing redundancy" />
+    <MESSAGE value="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update merge_data.py to use forward-fill, add raw direct_low NaN diagnostic, flag all_direct_low_nan, output extreme outliers and random samples, move outlier filtering to clean_data.py" />
   </component>
 </project>

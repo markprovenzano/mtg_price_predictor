@@ -1,0 +1,31 @@
+2025-05-10 14:22:17,343 - INFO - Starting pipeline execution
+2025-05-10 14:22:17,345 - INFO - Fetching market data
+2025-05-10 14:22:17,373 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 14:22:17,612 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 14:22:41,893 - INFO - Filtered to 16035 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 14:22:41,894 - INFO - Querying table: market_prices
+2025-05-10 14:22:48,479 - INFO - Queried market_prices with 904566 records in 6.59 seconds
+2025-05-10 14:22:48,479 - INFO - Querying table: sales_history
+2025-05-10 14:23:07,363 - INFO - Queried sales_history with 1671935 records in 18.88 seconds
+2025-05-10 14:23:07,368 - INFO - Querying table: listings
+2025-05-10 14:23:53,528 - INFO - Queried listings with 6724910 records in 46.16 seconds
+2025-05-10 14:23:53,718 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 14:23:54,161 - INFO - Fetched market data: 904566 market_prices, 1671935 sales_history, 6724910 listings
+2025-05-10 14:23:54,161 - INFO - Loading card attributes
+2025-05-10 14:23:54,431 - INFO - Loaded 284714 card_attributes records
+2025-05-10 14:23:54,432 - INFO - Running merge_data
+2025-05-10 14:23:54,432 - INFO - Starting merge_data execution
+2025-05-10 14:23:54,432 - INFO - Received input sizes: market_prices=904566, sales_history=1671935, listings=6724910, card_attributes=284714
+2025-05-10 14:23:54,437 - INFO - Raw NaN counts: {'direct_low_raw_nans': 358317, 'market_raw_nans': 0, 'low_raw_nans': 4557}
+2025-05-10 14:23:54,600 - INFO - Filtered card_attributes to 16035 relevant records
+2025-05-10 14:25:00,089 - INFO - Merged data size: 7038364
+2025-05-10 14:25:01,051 - INFO - Saved 42 extreme outliers to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\extreme_outliers_20250510_142501.csv
+2025-05-10 14:25:01,051 - INFO - Unique card_sku_ids in outliers: 7
+2025-05-10 14:25:01,229 - INFO - Saved 100 random samples to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\random_sample_20250510_142501.csv
+2025-05-10 14:25:01,324 - INFO - Outlier validation stats: {'25x': 427, '50x': 107, '100x': 42}
+2025-05-10 14:25:01,548 - INFO - Saved diagnostics to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\merge_data_diagnostic_20250510_142501.json
+2025-05-10 14:25:01,549 - INFO - merge_data completed in 67.12 seconds
+2025-05-10 14:25:01,552 - INFO - Merged data size: 7038364
+2025-05-10 14:25:01,552 - INFO - Merge stats: {'record_counts': {'market_prices': 904566, 'sales_history': 1671935, 'sales_history_filtered': 1671935, 'listings': 6724910, 'card_attributes': 16035, 'merged': 7038364}, 'nan_counts': {'low': 492, 'market': 0, 'direct_low': 148053, 'price': 426548, 'quantity': 0, 'direct_inventory_count': 0, 'sales_quantity': 0, 'sales_price_max': 0}, 'low_inventory': {'count': 2231603, 'proportion': 0.31706274355802}, 'outlier_stats': {'validation': {'25x': 427, '50x': 107, '100x': 42}}, 'extreme_outlier_count': 42, 'all_direct_low_nan_count': 96185, 'direct_low_zero_count': 0, 'non_zero_sales': 4924670, 'correlation': np.float64(0.10574531437809186), 'raw_stats': {'direct_low_raw_nans': 358317, 'market_raw_nans': 0, 'low_raw_nans': 4557}}
+2025-05-10 14:26:24,874 - INFO - Saved merged data to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\processed\merged_data_20250510_142501.csv
+2025-05-10 14:26:24,874 - INFO - Pipeline execution completed
