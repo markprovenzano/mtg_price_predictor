@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_summary.json with diagnostic issue resolution&#10;- Noted merge_data.py diagnostic issue and resolution&#10;Files: project_summary.json">
-      <change afterPath="$PROJECT_DIR$/logs/merge_data.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_113339.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_112522.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_113204.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py">
+      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_114603.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_114315.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/merge_data.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/merge_data.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipeline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,14 +89,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Update clean_logs.py to fix deletion of most recent log file">
-      <option name="closed" value="true" />
-      <created>1746821837605</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1746821837605</updated>
     </task>
     <task id="LOCAL-00042" summary="Update clean_logs.py to fix deletion of most recent log file">
       <option name="closed" value="true" />
@@ -484,12 +474,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746890711265</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py">
+      <option name="closed" value="true" />
+      <created>1746891784406</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1746891784406</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update fetch_market_data.py to correct price columns by dividing by 100" />
     <MESSAGE value="Fix clean_data.py to inherit fetch_market_data DataFrames and address Pandas warnings" />
     <MESSAGE value="logs and project status" />
     <MESSAGE value="Update project_status.json to reflect clean_data test error and ongoing fixes" />
@@ -514,6 +511,7 @@
     <MESSAGE value="Update project_summary.json with merge_data.py results&#10;- Updated stats based on latest merge_data.py run&#10;Files: project_summary.json" />
     <MESSAGE value="Update merge_data.py with enhanced logging and diagnostics&#10;- Added input validation and ensured diagnostic JSON output&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Update project_summary.json with diagnostic issue resolution&#10;- Noted merge_data.py diagnostic issue and resolution&#10;Files: project_summary.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_summary.json with diagnostic issue resolution&#10;- Noted merge_data.py diagnostic issue and resolution&#10;Files: project_summary.json" />
+    <MESSAGE value="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update merge_data.py with full granular merge logic&#10;- Implemented complete merge logic with outlier filtering, aggregation, imputation, and detailed diagnostics&#10;Files: src/data_preprocessing/merge_data.py" />
   </component>
 </project>

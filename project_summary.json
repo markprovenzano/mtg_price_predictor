@@ -1,7 +1,7 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-11T00:00:00",
-  "version": "0.2.4",
+  "timestamp": "2025-05-11T01:00:00",
+  "version": "0.2.5",
   "data_handling": {
     "market_prices": {
       "direct_low": {
@@ -9,10 +9,10 @@
         "strategy": "carry_forward",
         "method": "Fill NaNs with last known value per card_sku_id, then backfill",
         "stats": {
-          "nan_count_granular": 0,
-          "nan_proportion_granular": 0.0
+          "nan_count_granular": 89766,
+          "nan_proportion_granular": 0.0136
         },
-        "evaluation": "Eliminates NaNs, preserves price trends."
+        "evaluation": "Minimal NaNs, preservesapt price trends."
       },
       "market": {
         "description": "Average market price",
@@ -32,7 +32,7 @@
           "nan_count_granular": 0,
           "nan_proportion_granular": 0.0
         },
-        "evaluation": "Eliminates NaNs, suitable for price continuity."
+        "evaluation": "No NaNs, suitable for price continuity."
       },
       "lowest_list": {
         "description": "Lowest listing price",
@@ -54,7 +54,7 @@
           "nan_count_granular": 82438,
           "nan_proportion_granular": 0.0124,
           "non_zero_sales": 4528030,
-          "correlation_with_direct_low": 0.0531
+          "correlation_with_direct_low": 0.0540
         },
         "evaluation": "Minimal NaNs, sufficient for model."
       },
@@ -66,7 +66,7 @@
           "nan_count_granular": 82438,
           "nan_proportion_granular": 0.0124,
           "non_zero_sales": 4528030,
-          "correlation_with_direct_low": 0.0531
+          "correlation_with_direct_low": 0.0540
         },
         "evaluation": "Minimal NaNs, sufficient for model."
       }
@@ -77,30 +77,30 @@
         "strategy": "carry_forward",
         "method": "Fill NaNs with last known value per card_sku_id, then backfill",
         "stats": {
-          "nan_count_granular": 0,
-          "nan_proportion_granular": 0.0
+          "nan_count_granular": 115920,
+          "nan_proportion_granular": 0.0175
         },
-        "evaluation": "Eliminates NaNs, maintains price continuity."
+        "evaluation": "Minimal NaNs, maintains price continuity."
       },
       "quantity": {
         "description": "Listing quantity",
         "strategy": "carry_forward",
         "method": "Fill NaNs with last known value per card_sku_id, then backfill",
         "stats": {
-          "nan_count_granular": 0,
-          "nan_proportion_granular": 0.0
+          "nan_count_granular": 115920,
+          "nan_proportion_granular": 0.0175
         },
-        "evaluation": "Eliminates NaNs, suitable for inventory tracking."
+        "evaluation": "Minimal NaNs, suitable for inventory tracking."
       },
       "direct_inventory_count": {
         "description": "Direct inventory count",
         "strategy": "carry_forward",
         "method": "Fill NaNs with last known value per card_sku_id, then backfill",
         "stats": {
-          "nan_count_granular": 0,
-          "nan_proportion_granular": 0.0
+          "nan_count_granular": 115920,
+          "nan_proportion_granular": 0.0175
         },
-        "evaluation": "Eliminates NaNs, suitable for inventory tracking."
+        "evaluation": "Minimal NaNs, suitable for inventory tracking."
       }
     },
     "card_attributes": {
@@ -135,10 +135,20 @@
         "evaluation": "Minimal NaNs, strategy effective."
       }
     },
+    "pipeline": {
+      "description": "Pipeline orchestrates data fetching and merging with modular switches",
+      "strategy": "modular_with_switches",
+      "method": "pipeline.py runs modules (fetch_market_data, merge_data) with argparse switches to enable/disable for testing",
+      "stats": {
+        "modules_implemented": ["fetch_market_data", "merge_data"],
+        "modules_pending": ["clean_data", "feature_engineering", "train_model", "predict", "evaluate_model"]
+      },
+      "evaluation": "Ensures modularity and testing flexibility, integrates merge_data.py seamlessly."
+    },
     "issues": [
       {
-        "description": "merge_data.py failed to generate diagnostic JSON",
-        "resolution": "Added input validation and ensured diagnostic output in updated merge_data.py"
+        "description": "merge_data.py initially designed as standalone, risking pipeline integrity",
+        "resolution": "Designed pipeline.py with switches to integrate merge_data as a module, maintaining standalone testing capability"
       }
     ]
   }
