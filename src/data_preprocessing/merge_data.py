@@ -22,8 +22,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
-    """Filter outliers using asymmetric IQR method."""
+def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=10.0):
+    """Filter outliers using asymmetric IQR method.
+
+    Args:
+        df (pd.DataFrame): Input DataFrame.
+        column (str): Column to filter outliers on.
+        low_multiplier (float): Multiplier for lower bound (default: 1.5).
+        high_multiplier (float): Multiplier for upper bound (default: 10.0).
+
+    Returns:
+        tuple: Filtered DataFrame and statistics dictionary.
+    """
     Q1 = df[column].quantile(0.25)
     Q3 = df[column].quantile(0.75)
     IQR = Q3 - Q1
@@ -43,7 +53,15 @@ def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
     return filtered, stats
 
 def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
-    """Perform granular merge of market_data and card_attributes with diagnostics."""
+    """Perform granular merge of market_data and card_attributes with diagnostics.
+
+    Args:
+        market_data (dict): Dictionary containing market_prices, sales_history, and listings DataFrames.
+        card_attributes (pd.DataFrame): DataFrame with card attributes.
+
+    Returns:
+        tuple: Merged DataFrame and statistics dictionary.
+    """
     logger.info("Starting merge_data execution")
 
     # Validate inputs
@@ -67,13 +85,13 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
     card_attributes = card_attributes[card_attributes["card_sku_id"].isin(relevant_sku)]
     logger.info(f"Filtered card_attributes to {len(card_attributes)} relevant records")
 
-    # Normalize dates to Eastern Time (ET)
+    # Normalize dates to Eastern Time (ET) and convert to strings
     market_prices["date"] = pd.to_datetime(market_prices["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
     listings["date"] = pd.to_datetime(listings["updated_at"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
     sales_history["date"] = pd.to_datetime(sales_history["order_date"]).dt.tz_localize("US/Eastern").dt.strftime("%Y-%m-%d")
 
     # Filter outliers from sales_history.price
-    sales_history_filtered, outlier_stats = filter_outliers(sales_history, "price", low_multiplier=1.5, high_multiplier=5.0)
+    sales_history_filtered, outlier_stats = filter_outliers(sales_history, "price", low_multiplier=1.5, high_multiplier=10.0)
 
     # Aggregate sales_history by date
     sales_agg = sales_history_filtered.groupby(["card_sku_id", "date"]).agg({
@@ -146,7 +164,7 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> tuple[pd.Dat
             "proportion": float(merged["is_low_inventory"].mean()) if "is_low_inventory" in merged.columns else 0
         },
         "outlier_stats": outlier_stats,
-        "direct_low_zero_count": int((merged["direct_low"] == 0).sum()),  # Added to track zeros
+        "direct_low_zero_count": int((merged["direct_low"] == 0).sum()),
         "non_zero_sales": int(merged["sales_price_max"].gt(0).sum()),
         "correlation": merged["sales_price_max"].corr(merged["direct_low"]) if "direct_low" in merged.columns else None
     }
