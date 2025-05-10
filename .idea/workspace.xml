@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json">
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_111111.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
-    </list>
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_summary.json with merge_data.py results&#10;- Updated stats based on latest merge_data.py run&#10;Files: project_summary.json" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,22 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
-      <option name="closed" value="true" />
-      <created>1746820206420</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1746820206420</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
-      <option name="closed" value="true" />
-      <created>1746821175350</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1746821175350</updated>
     </task>
     <task id="LOCAL-00039" summary="Update general_preferences.json to include notification of changes">
       <option name="closed" value="true" />
@@ -480,13 +461,27 @@
       <option name="project" value="LOCAL" />
       <updated>1746889853294</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Update merge_data.py with diagnostic output&#10;- Added JSON diagnostic output and outlier validation (25x, 50x, 100x)&#10;Files: src/data_processing/merge_data.py">
+      <option name="closed" value="true" />
+      <created>1746890245391</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1746890245391</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Update project_summary.json with merge_data.py results&#10;- Updated stats based on latest merge_data.py run&#10;Files: project_summary.json">
+      <option name="closed" value="true" />
+      <created>1746890291331</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1746890291331</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update project_status.json to mark fetch_market_data complete and start clean_data" />
-    <MESSAGE value="initial clean_data.py" />
     <MESSAGE value="Update fetch_card_data.py to merge card_list.csv and card_attributes.csv" />
     <MESSAGE value="Add clean_data.py with multiple outlier removal strategies for sales_history" />
     <MESSAGE value="Update fetch_market_data.py to correct price columns by dividing by 100" />
@@ -510,6 +505,8 @@
     <MESSAGE value="Update general_preferences.json with new project_summary.json rule&#10;- Added rule to document data handling and strategies&#10;Files: general_preferences.json" />
     <MESSAGE value="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json" />
+    <MESSAGE value="Update merge_data.py with diagnostic output&#10;- Added JSON diagnostic output and outlier validation (25x, 50x, 100x)&#10;Files: src/data_processing/merge_data.py" />
+    <MESSAGE value="Update project_summary.json with merge_data.py results&#10;- Updated stats based on latest merge_data.py run&#10;Files: project_summary.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update project_summary.json with merge_data.py results&#10;- Updated stats based on latest merge_data.py run&#10;Files: project_summary.json" />
   </component>
 </project>

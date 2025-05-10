@@ -37,9 +37,25 @@ def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
 def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> pd.DataFrame:
     """Merge market_data and card_attributes dataframes with carry-forward imputation."""
     try:
+        # Validate inputs
+        if not market_data or not isinstance(market_data, dict):
+            raise ValueError("Invalid or empty market_data")
+        if card_attributes is None or card_attributes.empty:
+            raise ValueError("Invalid or empty card_attributes")
+
         market_prices = market_data.get("market_prices")
         sales_history = market_data.get("sales_history")
         listings = market_data.get("listings")
+
+        if market_prices is None or market_prices.empty:
+            raise ValueError("market_prices is empty")
+        if sales_history is None or sales_history.empty:
+            raise ValueError("sales_history is empty")
+        if listings is None or listings.empty:
+            raise ValueError("listings is empty")
+
+        logger.info(
+            f"Input sizes: market_prices={len(market_prices)}, sales_history={len(sales_history)}, listings={len(listings)}, card_attributes={len(card_attributes)}")
 
         # Filter card_attributes to relevant card_sku_id
         relevant_sku = set(market_prices["card_sku_id"]).union(set(sales_history["card_sku_id"]))
@@ -145,10 +161,14 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> pd.DataFrame
         # Save diagnostic
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_path = os.path.join(LOG_DIR, f"merge_data_diagnostic_{timestamp}.json")
-        with open(output_path, "w") as f:
-            json.dump(stats, f, indent=4)
-        logger.info(f"Saved merge diagnostics to {output_path}")
-        print(f"Saved merge diagnostics to {output_path}")
+        try:
+            with open(output_path, "w") as f:
+                json.dump(stats, f, indent=4)
+            logger.info(f"Saved merge diagnostics to {output_path}")
+            print(f"Saved merge diagnostics to {output_path}")
+        except Exception as e:
+            logger.error(f"Failed to save diagnostic: {str(e)}")
+            raise
 
         return merged, stats
 
