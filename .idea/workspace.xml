@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json to mark fetch_market_data complete and start clean_data">
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logs">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_201757.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250509_202757.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data_preprocessing/clean_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/clean_data.py" afterDir="false" />
     </list>
@@ -82,30 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00012" summary="log files.">
-      <option name="closed" value="true" />
-      <created>1746814161561</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1746814161561</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Fix log paths in logger.py, error_handler.py, and test_logger.py to write to root logs/, move existing logs from src/utils/logs/">
-      <option name="closed" value="true" />
-      <created>1746814719873</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1746814719873</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json from test_logger.py run">
-      <option name="closed" value="true" />
-      <created>1746814945002</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1746814945002</updated>
     </task>
     <task id="LOCAL-00015" summary="updated general preferences.">
       <option name="closed" value="true" />
@@ -475,13 +453,35 @@
       <option name="project" value="LOCAL" />
       <updated>1746834944196</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="initial clean_data.py">
+      <option name="closed" value="true" />
+      <created>1746836191732</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1746836191732</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Update fetch_card_data.py to merge card_list.csv and card_attributes.csv">
+      <option name="closed" value="true" />
+      <created>1746836236517</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1746836236517</updated>
+    </task>
+    <task id="LOCAL-00063" summary="logs">
+      <option name="closed" value="true" />
+      <created>1746836416080</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1746836416080</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks for file structure and contents" />
-    <MESSAGE value="Update fetch_card_data.py to load card_list.csv instead of Scryfall API" />
     <MESSAGE value="Update general_preferences.json to prioritize automatic repository checks and requirements.txt verification" />
     <MESSAGE value="Update clean_logs.py to fix relative import error" />
     <MESSAGE value="Add card_list.csv to data/raw/ for card data processing" />
@@ -502,9 +502,11 @@
     <MESSAGE value="Update project_status.json to reflect fetch_market_data with card_sku_id filter" />
     <MESSAGE value="Update fetch_market_data.py to remove JSON output and optimize query performance" />
     <MESSAGE value="project status and Update fetch_market_data.py to query bottom 5 prices per card_sku_id per day for listings" />
-    <MESSAGE value="logs" />
     <MESSAGE value="Update fetch_market_data.py to add 60-day limit to all queries and filter by sales_history with &gt;= 12 sales" />
     <MESSAGE value="Update project_status.json to mark fetch_market_data complete and start clean_data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json to mark fetch_market_data complete and start clean_data" />
+    <MESSAGE value="initial clean_data.py" />
+    <MESSAGE value="Update fetch_card_data.py to merge card_list.csv and card_attributes.csv" />
+    <MESSAGE value="logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="logs" />
   </component>
 </project>
