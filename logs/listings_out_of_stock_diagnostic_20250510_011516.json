@@ -1,0 +1,44 @@
+{
+    "timestamp": "2025-05-10T01:15:16.185394",
+    "tests": {
+        "listings": {
+            "price": {
+                "dtype": "float64",
+                "nan_count": 0,
+                "nan_percent": 0.0,
+                "sample_values": [
+                    2.99,
+                    19.99,
+                    4.5,
+                    1.5,
+                    3.5
+                ]
+            },
+            "quantity": {
+                "dtype": "int64",
+                "nan_count": 0,
+                "nan_percent": 0.0,
+                "sample_values": [
+                    22,
+                    8,
+                    1,
+                    1,
+                    4
+                ]
+            },
+            "direct_inventory_count": {
+                "dtype": "int64",
+                "nan_count": 0,
+                "nan_percent": 0.0,
+                "sample_values": [
+                    177,
+                    33,
+                    28,
+                    32,
+                    59
+                ]
+            },
+            "daily_availability": {
+                "days_with_data": [
+                    {
+                        "date": 

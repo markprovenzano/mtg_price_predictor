@@ -1,0 +1,14 @@
+2025-05-10 00:41:50,468 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 00:41:50,620 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 00:42:15,110 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 00:42:15,112 - INFO - Querying table: market_prices
+2025-05-10 00:42:22,117 - INFO - Queried market_prices with 897172 records in 7.01 seconds
+2025-05-10 00:42:22,117 - INFO - Querying table: sales_history
+2025-05-10 00:42:40,561 - INFO - Queried sales_history with 1644689 records in 18.44 seconds
+2025-05-10 00:42:40,561 - INFO - Querying table: listings
+2025-05-10 00:43:30,928 - INFO - Queried listings with 2523088 records in 50.37 seconds
+2025-05-10 00:43:31,019 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 00:43:31,210 - INFO - Testing market_prices with 10000 records
+2025-05-10 00:43:31,259 - INFO - Testing sales_history with 10000 records
+2025-05-10 00:43:33,589 - INFO - Testing listings with 10000 records
+2025-05-10 00:43:36,284 - INFO - Saved test results to C:\Users\mprov\AppData\Roaming\JetBrains\mtg_price_predictor\logs\clean_data_test_results_20250510_004336.json

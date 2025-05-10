@@ -1,0 +1,6 @@
+2025-05-10 01:16:56,281 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 01:16:56,440 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 01:17:21,246 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 01:18:06,446 - INFO - Queried listings with 6609938 records
+2025-05-10 01:18:07,063 - INFO - Testing listings with 10000 records
+2025-05-10 01:18:07,104 - INFO - Saved results to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\listings_out_of_stock_diagnostic_20250510_011807.json

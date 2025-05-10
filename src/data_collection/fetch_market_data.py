@@ -107,17 +107,10 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
             start_time = datetime.now()
             if table == "listings":
                 query = f"""
-                    WITH ranked_listings AS (
-                        SELECT *,
-                               ROW_NUMBER() OVER (
-                                   PARTITION BY card_sku_id, DATE(updated_at)
-                                   ORDER BY price ASC
-                               ) AS price_rank
-                        FROM listings
-                        WHERE card_sku_id IN ({sku_id_str})
-                        AND updated_at >= CURRENT_DATE - INTERVAL '60 days'
-                    )
-                    SELECT * FROM ranked_listings WHERE price_rank <= 5
+                    SELECT *
+                    FROM listings
+                    WHERE card_sku_id IN ({sku_id_str})
+                    AND updated_at >= CURRENT_DATE - INTERVAL '60 days'
                 """
             elif table == "sales_history":
                 query = f"SELECT * FROM {table} WHERE order_date >= CURRENT_DATE - INTERVAL '60 days' AND card_sku_id IN ({sku_id_str})"
@@ -132,7 +125,8 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
 
             # Correct price columns (divide by 100 to convert from cents to dollars)
             if table == "listings":
-                data_df["price"] = data_df["price"] / 100
+                data_df["price"] = pd.to_numeric(data_df["price"], errors="coerce") / 100
+                data_df["is_low_inventory"] = data_df["direct_inventory_count"] <= 5  # Flag potential out-of-stock
             elif table == "sales_history":
                 data_df["price"] = data_df["price"] / 100
             elif table == "market_prices":

@@ -1,0 +1,12 @@
+2025-05-10 00:21:59,614 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 00:21:59,808 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 00:22:24,383 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 00:22:24,385 - INFO - Querying table: market_prices
+2025-05-10 00:22:31,562 - INFO - Queried market_prices with 897172 records in 7.18 seconds
+2025-05-10 00:22:31,562 - INFO - Querying table: sales_history
+2025-05-10 00:22:50,335 - INFO - Queried sales_history with 1644689 records in 18.77 seconds
+2025-05-10 00:22:50,335 - INFO - Querying table: listings
+2025-05-10 00:23:39,419 - INFO - Queried listings with 2523088 records in 49.08 seconds
+2025-05-10 00:23:39,488 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 00:25:11,817 - ERROR - Error in test_clean_data: 
+2025-05-10 00:25:11,828 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Testing clean_data

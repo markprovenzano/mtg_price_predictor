@@ -1,0 +1,7 @@
+2025-05-10 01:14:03,661 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 01:14:03,838 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 01:14:28,603 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 01:15:15,598 - INFO - Queried listings with 6609938 records
+2025-05-10 01:15:16,185 - INFO - Testing listings with 10000 records
+2025-05-10 01:15:16,224 - ERROR - Error in test_listings_data: Object of type date is not JSON serializable
+2025-05-10 01:15:16,224 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Testing listings out-of-stock

@@ -1,0 +1,17 @@
+2025-05-10 00:30:46,599 - INFO - Fetching market data
+2025-05-10 00:30:46,627 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 00:30:46,859 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 00:31:11,993 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 00:31:11,996 - INFO - Querying table: market_prices
+2025-05-10 00:31:19,265 - INFO - Queried market_prices with 897172 records in 7.27 seconds
+2025-05-10 00:31:19,265 - INFO - Querying table: sales_history
+2025-05-10 00:31:37,514 - INFO - Queried sales_history with 1644689 records in 18.25 seconds
+2025-05-10 00:31:37,519 - INFO - Querying table: listings
+2025-05-10 00:32:27,044 - INFO - Queried listings with 2523088 records in 49.53 seconds
+2025-05-10 00:32:27,120 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 00:32:27,296 - INFO - Testing market_prices with 897172 records
+2025-05-10 00:32:27,296 - INFO - Processing chunk 1/9 for market_prices.low
+2025-05-10 00:34:13,483 - WARNING - DBSCAN failed for market_prices.low: bad allocation
+2025-05-10 00:34:22,595 - INFO - Processing chunk 2/9 for market_prices.low
+2025-05-10 00:36:02,872 - WARNING - DBSCAN failed for market_prices.low: bad allocation
+2025-05-10 00:36:20,032 - INFO - Processing chunk 3/9 for market_prices.low
