@@ -4,3 +4,4 @@
 {"timestamp": "2025-05-09T16:38:02.232789", "context": "Fetching market data from TimescaleDB", "error": "relation \"prices\" does not exist\nLINE 1: SELECT * FROM prices\n                      ^\n"}
 {"timestamp": "2025-05-09T17:05:20.490140", "context": "Unexpected error in fetch_market_data", "error": "Object of type datetime is not JSON serializable"}
 {"timestamp": "2025-05-09T17:57:40.833015", "context": "Unexpected error in fetch_market_data", "error": "Unable to allocate 812. MiB for an array with shape (106410110,) and data type datetime64[ns]"}
+{"timestamp": "2025-05-09T21:32:52.855921", "context": "Cleaning data", "error": "'card_sku_id'"}

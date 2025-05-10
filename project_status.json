@@ -1,6 +1,6 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-09T19:52:00",
+  "timestamp": "2025-05-09T21:20:00",
   "version": "0.1.0",
   "status": {
     "completed_modules": [
@@ -70,9 +70,9 @@
   },
   "issues": [],
   "pipeline_status": {
-    "last_run": "2025-05-09T19:52:00",
-    "success": true,
+    "last_run": "2025-05-09T21:20:00",
+    "success": null,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Completed fetch_card_data and fetch_market_data with 60-day limit and sales frequency filter; clean_data in progress; .env used for TimescaleDB credentials."
+  "notes": "Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter, price columns corrected by dividing by 100); clean_data in progress with z-score, IQR, and percentile-based outlier removal for sales_history, enhanced price metrics, and listings handling (dropshipper_out_of_stock, no-seller-inventory); .env used for TimescaleDB credentials."
 }
