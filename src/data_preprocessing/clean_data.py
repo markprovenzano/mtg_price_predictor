@@ -22,35 +22,27 @@ def remove_outliers(df: pd.DataFrame, column: str, group_by: str, method: str = 
         pd.DataFrame: DataFrame with outliers removed.
     """
     original_len = len(df)
+    df = df.copy()  # Avoid modifying input DataFrame
 
     if method == "zscore":
-        def zscore_filter(group):
-            mean = group[column].mean()
-            std = group[column].std()
-            return group[(group[column] - mean).abs() / std <= z_threshold]
-
-        df_cleaned = df.groupby(group_by, group_keys=False).apply(zscore_filter, include_groups=False).reset_index()
+        df["zscore"] = df.groupby(group_by)[column].transform(lambda x: (x - x.mean()).abs() / x.std())
+        df_cleaned = df[df["zscore"] <= z_threshold].drop(columns=["zscore"])
     elif method == "iqr":
-        def iqr_filter(group):
-            Q1 = group[column].quantile(0.25)
-            Q3 = group[column].quantile(0.75)
-            IQR = Q3 - Q1
-            lower_bound = Q1 - 1.5 * IQR
-            upper_bound = Q3 + 1.5 * IQR
-            return group[(group[column] >= lower_bound) & (group[column] <= upper_bound)]
-
-        df_cleaned = df.groupby(group_by, group_keys=False).apply(iqr_filter, include_groups=False).reset_index()
+        df["Q1"] = df.groupby(group_by)[column].transform(lambda x: x.quantile(0.25))
+        df["Q3"] = df.groupby(group_by)[column].transform(lambda x: x.quantile(0.75))
+        df["IQR"] = df["Q3"] - df["Q1"]
+        df["lower_bound"] = df["Q1"] - 1.5 * df["IQR"]
+        df["upper_bound"] = df["Q3"] + 1.5 * df["IQR"]
+        df_cleaned = df[(df[column] >= df["lower_bound"]) & (df[column] <= df["upper_bound"])].drop(
+            columns=["Q1", "Q3", "IQR", "lower_bound", "upper_bound"])
     elif method == "percentile":
-        def percentile_filter(group):
-            lower_bound = group[column].quantile(percentile_lower)
-            upper_bound = group[column].quantile(percentile_upper)
-            return group[(group[column] >= lower_bound) & (group[column] <= upper_bound)]
-
-        df_cleaned = df.groupby(group_by, group_keys=False).apply(percentile_filter, include_groups=False).reset_index()
+        df["lower_bound"] = df.groupby(group_by)[column].transform(lambda x: x.quantile(percentile_lower))
+        df["upper_bound"] = df.groupby(group_by)[column].transform(lambda x: x.quantile(percentile_upper))
+        df_cleaned = df[(df[column] >= df["lower_bound"]) & (df[column] <= df["upper_bound"])].drop(
+            columns=["lower_bound", "upper_bound"])
     else:
         raise ValueError(f"Unknown outlier removal method: {method}")
 
-    # Ensure card_sku_id is preserved
     if group_by not in df_cleaned.columns:
         logger.error(f"{group_by} column missing after outlier removal")
         raise ValueError(f"{group_by} column missing after outlier removal")
@@ -84,10 +76,10 @@ def clean_data(card_df: pd.DataFrame, market_dfs: dict):
             log_error(ValueError("Invalid market DataFrames: missing required tables"), "Cleaning market data")
             return None
 
-        # Log input DataFrame columns for debugging
-        logger.info(f"Card DataFrame columns: {list(card_df.columns)}")
+        # Log input DataFrame columns and shapes
+        logger.info(f"Card DataFrame columns: {list(card_df.columns)}, shape: {card_df.shape}")
         for table, df in market_dfs.items():
-            logger.info(f"{table} DataFrame columns: {list(df.columns)}")
+            logger.info(f"{table} DataFrame columns: {list(df.columns)}, shape: {df.shape}")
 
         # Normalize timestamps
         processed_dfs = {}

@@ -1,6 +1,6 @@
 {
   "project_name": "mtg_price_predictor",
-  "timestamp": "2025-05-09T21:32:00",
+  "timestamp": "2025-05-09T21:42:00",
   "version": "0.1.0",
   "status": {
     "completed_modules": [
@@ -69,13 +69,13 @@
     }
   },
   "issues": [
-    "clean_data.py error: 'card_sku_id' during outlier removal or merge, under investigation",
-    "clean_data.py incorrectly called fetch_market_data.py, fixed to inherit DataFrames"
+    "clean_data.py error: 'card_sku_id' missing after outlier removal, fixed with robust column preservation",
+    "clean_data.py triggered fetch_market_data.py in test, resolved with pre-fetched DataFrames"
   ],
   "pipeline_status": {
-    "last_run": "2025-05-09T21:32:00",
+    "last_run": "2025-05-09T21:42:00",
     "success": false,
     "error_log": "logs/error_log.json"
   },
-  "notes": "Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter, price columns corrected by dividing by 100); clean_data in progress with z-score, IQR, and percentile-based outlier removal for sales_history, enhanced price metrics (mean, max, min, median, percentiles, std, weighted average), and listings handling (dropshipper_out_of_stock, no-seller-inventory); addressing clean_data error and TimescaleDB call; .env used for TimescaleDB credentials."
+  "notes": "Completed fetch_card_data (merging card_list.csv and card_attributes.csv) and fetch_market_data (60-day limit, sales frequency filter, price columns corrected by dividing by 100); clean_data in progress with z-score, IQR, and percentile-based outlier removal for sales_history, enhanced price metrics (mean, max, min, median, percentiles, std, weighted average), and listings handling (dropshipper_out_of_stock, no-seller-inventory); resolved clean_data error and TimescaleDB call issues; .env used for TimescaleDB credentials."
 }
