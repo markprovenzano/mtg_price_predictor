@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json with outlier and timestamp findings&#10;- Added outlier distribution analysis and IQR 3.0 results&#10;- Confirmed intraday timestamps and zero-filled sales_history plan&#10;Files: project_status.json">
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_031300.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_log.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Add merge_data module for granular merging&#10;- Implemented granular merge with asymmetric IQR (low: 1.5, high: 4.0)&#10;- Filled missing sales_history days with zeros&#10;- Handled ET timestamps&#10;Files: src/data_processing/merge_data.py, src/data_processing/__init__.py">
+      <change beforePath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_032330.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_032330.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_status.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,14 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Update general_preferences.json to prioritize automatic repository checks for file structure and contents">
-      <option name="closed" value="true" />
-      <created>1746818987756</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1746818987756</updated>
     </task>
     <task id="LOCAL-00030" summary="Update fetch_card_data.py to load card_list.csv instead of Scryfall API">
       <option name="closed" value="true" />
@@ -480,12 +471,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746861115549</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Add merge_data module for granular merging&#10;- Implemented granular merge with asymmetric IQR (low: 1.5, high: 4.0)&#10;- Filled missing sales_history days with zeros&#10;- Handled ET timestamps&#10;Files: src/data_processing/merge_data.py, src/data_processing/__init__.py">
+      <option name="closed" value="true" />
+      <created>1746861982724</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1746861982724</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Add log files to repository for access" />
     <MESSAGE value="Update fetch_market_data.py to return DataFrames and handle datetime serialization" />
     <MESSAGE value="update after running clean_logs.py" />
     <MESSAGE value="Update fetch_market_data.py to filter queries by card_sku_id from card_list.csv" />
@@ -510,6 +508,7 @@
     <MESSAGE value="Update project_status.json with merge progress and issues&#10;- Noted high NaNs in sales_history post-merge&#10;- Updated merge_data testing with granular and aggregated results&#10;- Documented sales_history outlier filtering and Timestamp error fix&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with comprehensive merge findings&#10;- Detailed outlier removal, market NaNs, and date normalization theories&#10;- Noted successful merge run and merge_data.py plan&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with outlier and timestamp findings&#10;- Added outlier distribution analysis and IQR 3.0 results&#10;- Confirmed intraday timestamps and zero-filled sales_history plan&#10;Files: project_status.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json with outlier and timestamp findings&#10;- Added outlier distribution analysis and IQR 3.0 results&#10;- Confirmed intraday timestamps and zero-filled sales_history plan&#10;Files: project_status.json" />
+    <MESSAGE value="Add merge_data module for granular merging&#10;- Implemented granular merge with asymmetric IQR (low: 1.5, high: 4.0)&#10;- Filled missing sales_history days with zeros&#10;- Handled ET timestamps&#10;Files: src/data_processing/merge_data.py, src/data_processing/__init__.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add merge_data module for granular merging&#10;- Implemented granular merge with asymmetric IQR (low: 1.5, high: 4.0)&#10;- Filled missing sales_history days with zeros&#10;- Handled ET timestamps&#10;Files: src/data_processing/merge_data.py, src/data_processing/__init__.py" />
   </component>
 </project>
