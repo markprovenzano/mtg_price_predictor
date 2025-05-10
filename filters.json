@@ -1,0 +1,18 @@
+{
+  "outlier_thresholds": {
+    "extreme_outlier_multiplier": 100,
+    "validation_multipliers": [25, 50, 100]
+  },
+  "inventory": {
+    "low_inventory_threshold": 5
+  },
+  "date_range": {
+    "start_date": "2025-03-11",
+    "end_date": "2025-05-09"
+  },
+  "query_filters": {
+    "sales_window_days": 60,
+    "min_sales_count": 12,
+    "min_avg_sales_per_day": 0.2
+  }
+}
