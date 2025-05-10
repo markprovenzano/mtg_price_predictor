@@ -34,7 +34,7 @@ def load_card_attributes():
     return df
 
 
-def run_pipeline(fetch_data=True, merge_data=True):
+def run_pipeline(fetch_data=True, run_merge_data=True):
     """Run the data pipeline with optional module switches."""
     logger.info("Starting pipeline execution")
 
@@ -53,7 +53,7 @@ def run_pipeline(fetch_data=True, merge_data=True):
 
     # Step 2: Load card attributes
     card_attributes = None
-    if merge_data:
+    if run_merge_data:
         logger.info("Loading card attributes")
         try:
             card_attributes = load_card_attributes()
@@ -63,7 +63,7 @@ def run_pipeline(fetch_data=True, merge_data=True):
 
     # Step 3: Merge data
     merged_data = None
-    if merge_data:
+    if run_merge_data:
         logger.info("Running merge_data")
         try:
             merged_data, stats = merge_data(market_data, card_attributes)
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     try:
-        run_pipeline(fetch_data=args.fetch_data, merge_data=args.merge_data)
+        run_pipeline(fetch_data=args.fetch_data, run_merge_data=args.merge_data)
     except Exception as e:
         logger.error(f"Pipeline failed: {str(e)}")
         raise

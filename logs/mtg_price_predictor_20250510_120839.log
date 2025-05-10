@@ -1,0 +1,18 @@
+2025-05-10 12:08:39,067 - INFO - Starting pipeline execution
+2025-05-10 12:08:39,067 - INFO - Fetching market data
+2025-05-10 12:08:39,098 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-10 12:08:39,302 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-10 12:09:03,898 - INFO - Filtered to 16035 card_sku_id values with >= 12 sales over 60 days
+2025-05-10 12:09:03,900 - INFO - Querying table: market_prices
+2025-05-10 12:09:10,842 - INFO - Queried market_prices with 897956 records in 6.94 seconds
+2025-05-10 12:09:10,842 - INFO - Querying table: sales_history
+2025-05-10 12:09:29,407 - INFO - Queried sales_history with 1671935 records in 18.57 seconds
+2025-05-10 12:09:29,409 - INFO - Querying table: listings
+2025-05-10 12:10:12,285 - INFO - Queried listings with 6724910 records in 42.88 seconds
+2025-05-10 12:10:12,458 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-10 12:10:12,976 - INFO - Fetched market data: 897956 market_prices, 1671935 sales_history, 6724910 listings
+2025-05-10 12:10:12,976 - INFO - Loading card attributes
+2025-05-10 12:10:13,127 - INFO - Loaded 284714 card_attributes records
+2025-05-10 12:10:13,127 - INFO - Running merge_data
+2025-05-10 12:10:13,127 - ERROR - Failed to merge data: 'bool' object is not callable
+2025-05-10 12:10:13,127 - ERROR - Pipeline failed: 'bool' object is not callable
