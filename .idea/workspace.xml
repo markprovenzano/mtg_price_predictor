@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json">
-      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_121850.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_121559.log" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="pipeline and merge_data update with new chat.">
+      <change afterPath="$PROJECT_DIR$/logs/merge_data_diagnostic_20250510_125015.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_124729.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,14 +89,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Update fetch_market_data.py to query correct TimescaleDB tables (market_prices, sales_history, listings)">
-      <option name="closed" value="true" />
-      <created>1746824275962</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1746824275962</updated>
     </task>
     <task id="LOCAL-00050" summary="Add log files to repository for access">
       <option name="closed" value="true" />
@@ -482,12 +474,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746893619608</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="pipeline and merge_data update with new chat.">
+      <option name="closed" value="true" />
+      <created>1746895639668</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1746895639668</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update project_status.json with recent progress&#10;- Added simplified listings query in fetch_market_data.py&#10;- Noted data ingestion issue and missing days in listings&#10;- Planned imputation strategy for clean_data.py&#10;- Updated issues and notes with diagnostic findings&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with merge progress and Timestamp issue&#10;- Added TypeError: Timestamp not JSON serializable as issue&#10;- Noted merge_data progress with granular and aggregated listings&#10;- Updated sales_history outlier filtering and encoding preferences&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with merge progress and issues&#10;- Noted high NaNs in sales_history post-merge&#10;- Updated merge_data testing with granular and aggregated results&#10;- Documented sales_history outlier filtering and Timestamp error fix&#10;Files: project_status.json" />
     <MESSAGE value="Update project_status.json with comprehensive merge findings&#10;- Detailed outlier removal, market NaNs, and date normalization theories&#10;- Noted successful merge run and merge_data.py plan&#10;Files: project_status.json" />
@@ -512,6 +511,7 @@
     <MESSAGE value="Update project_summary.json with pipeline fix&#10;- Documented resolution of pipeline.py NameError&#10;Files: project_summary.json" />
     <MESSAGE value="Fix pipeline.py TypeError&#10;- Renamed merge_data argument to run_merge_data to avoid function shadowing&#10;Files: src/pipeline.py" />
     <MESSAGE value="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project_status.json with pipeline progress&#10;- Moved pipeline to completed modules&#10;- Added pipeline.py naming conflict issue and resolution&#10;Files: project_status.json" />
+    <MESSAGE value="pipeline and merge_data update with new chat." />
+    <option name="LAST_COMMIT_MESSAGE" value="pipeline and merge_data update with new chat." />
   </component>
 </project>
