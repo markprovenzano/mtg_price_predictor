@@ -74,7 +74,7 @@ def load_card_sku_ids(csv_path: str = os.path.join(RAW_DATA_DIR, "card_list.csv"
 
 def fetch_market_data(tables: list = ["market_prices", "sales_history", "listings"]):
     """
-    Fetch data from specified TimescaleDB tables, filtered by card_sku_id with >= 12 sales and 60-day limit, and return DataFrames.
+    Fetch data from specified TimescaleDB tables, filtered by card_sku_id with >= 12 sales and 60-day limit, and return DataFrames with corrected prices.
 
     Args:
         tables (list): List of table names to query (market_prices, sales_history, listings).
@@ -129,6 +129,18 @@ def fetch_market_data(tables: list = ["market_prices", "sales_history", "listing
 
             # Create DataFrame
             data_df = pd.DataFrame(rows, columns=columns)
+
+            # Correct price columns (divide by 100 to convert from cents to dollars)
+            if table == "listings":
+                data_df["price"] = data_df["price"] / 100
+            elif table == "sales_history":
+                data_df["price"] = data_df["price"] / 100
+            elif table == "market_prices":
+                price_columns = ["low", "lowest_list", "market", "direct_low"]
+                for col in price_columns:
+                    if col in data_df.columns:
+                        data_df[col] = data_df[col] / 100
+
             dataframes[table] = data_df
             query_duration = (datetime.now() - start_time).total_seconds()
             logger.info(f"Queried {table} with {len(data_df)} records in {query_duration:.2f} seconds")
