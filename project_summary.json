@@ -1,0 +1,107 @@
+{
+  "project_name": "mtg_price_predictor",
+  "timestamp": "2025-05-10T23:00:00",
+  "version": "0.2.2",
+  "data_handling": {
+    "market_prices": {
+      "direct_low": {
+        "description": "Lowest direct price, key max price indicator",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Eliminates NaNs, preserves price trends."
+      },
+      "market": {
+        "description": "Average market price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      },
+      "low": {
+        "description": "Lowest price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Eliminates NaNs, suitable for price continuity."
+      },
+      "lowest_list": {
+        "description": "Lowest listing price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "No NaNs, strategy effective."
+      }
+    },
+    "sales_history": {
+      "sales_quantity": {
+        "description": "Total sales quantity per day",
+        "strategy": "current",
+        "method": "Aggregate by card_sku_id and date, fill missing days with 0",
+        "stats": {
+          "nan_count_granular": 82438,
+          "nan_proportion_granular": 0.0124,
+          "non_zero_sales": 4528030,
+          "correlation_with_direct_low": 0.0531
+        },
+        "evaluation": "Minimal NaNs, sufficient for model."
+      },
+      "sales_price_max": {
+        "description": "Maximum sale price per day",
+        "strategy": "current",
+        "method": "Aggregate by card_sku_id and date, fill missing days with 0",
+        "stats": {
+          "nan_count_granular": 82438,
+          "nan_proportion_granular": 0.0124,
+          "non_zero_sales": 4528030,
+          "correlation_with_direct_low": 0.0531
+        },
+        "evaluation": "Minimal NaNs, sufficient for model."
+      }
+    },
+    "listings": {
+      "price": {
+        "description": "Listing price",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Eliminates NaNs, maintains price continuity."
+      },
+      "quantity": {
+        "description": "Listing quantity",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Eliminates NaNs, suitable for inventory tracking."
+      },
+      "direct_inventory_count": {
+        "description": "Direct inventory count",
+        "strategy": "carry_forward",
+        "method": "Fill NaNs with last known value per card_sku_id, then backfill",
+        "stats": {
+          "nan_count_granular": 0,
+          "nan_proportion_granular": 0.0
+        },
+        "evaluation": "Eliminates NaNs, suitable for inventory tracking."
+      }
+    }
+  }
+}

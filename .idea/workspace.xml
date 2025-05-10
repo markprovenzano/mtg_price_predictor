@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Update general_preferences.json with new project_summary.json rule&#10;- Added rule to document data handling and strategies&#10;Files: general_preferences.json" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py">
+      <change afterPath="$PROJECT_DIR$/project_summary.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,14 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Add log files and card data JSON from fetch_card_data run">
-      <option name="closed" value="true" />
-      <created>1746820082806</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1746820082806</updated>
     </task>
     <task id="LOCAL-00036" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
       <option name="closed" value="true" />
@@ -477,12 +471,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746889528751</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py">
+      <option name="closed" value="true" />
+      <created>1746889784553</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1746889784553</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="project status and Update fetch_market_data.py to query bottom 5 prices per card_sku_id per day for listings" />
     <MESSAGE value="Update fetch_market_data.py to add 60-day limit to all queries and filter by sales_history with &gt;= 12 sales" />
     <MESSAGE value="Update project_status.json to mark fetch_market_data complete and start clean_data" />
     <MESSAGE value="initial clean_data.py" />
@@ -507,6 +508,7 @@
     <MESSAGE value="Add clean_data.py skeleton&#10;- Implemented direct_low flagging, missing day handling, and encoding&#10;Files: src/data_processing/clean_data.py" />
     <MESSAGE value="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Update general_preferences.json with new project_summary.json rule&#10;- Added rule to document data handling and strategies&#10;Files: general_preferences.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update general_preferences.json with new project_summary.json rule&#10;- Added rule to document data handling and strategies&#10;Files: general_preferences.json" />
+    <MESSAGE value="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py" />
   </component>
 </project>
