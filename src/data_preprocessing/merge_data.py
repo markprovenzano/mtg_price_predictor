@@ -1,8 +1,15 @@
 # src/data_processing/merge_data.py
 import pandas as pd
 import numpy as np
+import os
+import json
+from datetime import datetime
 from src.utils.logger import logger
 from src.utils.error_handler import log_error
+
+PROJECT_ROOT = r"C:\Users\mprov\PycharmProjects\mtg_price_predictor"
+LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
 
 
 def filter_outliers(df, column, low_multiplier=1.5, high_multiplier=5.0):
@@ -100,6 +107,15 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> pd.DataFrame
         # Flag dropshipper out-of-stock
         merged["is_dropshipper_out_of_stock"] = merged["direct_low"].isna()
 
+        # Outlier validation against direct_low
+        validation_stats = {
+            "25x": int((merged["sales_price_max"] > 25 * merged["direct_low"]).sum()),
+            "50x": int((merged["sales_price_max"] > 50 * merged["direct_low"]).sum()),
+            "100x": int((merged["sales_price_max"] > 100 * merged["direct_low"]).sum())
+        }
+        outlier_stats["validation"] = validation_stats
+        logger.info(f"Outlier validation stats: {validation_stats}")
+
         # Statistics
         stats = {
             "record_counts": {
@@ -120,9 +136,20 @@ def merge_data(market_data: dict, card_attributes: pd.DataFrame) -> pd.DataFrame
                 "count": int(merged["is_low_inventory"].sum()) if "is_low_inventory" in merged.columns else 0,
                 "proportion": float(merged["is_low_inventory"].mean()) if "is_low_inventory" in merged.columns else 0
             },
-            "outlier_stats": outlier_stats
+            "outlier_stats": outlier_stats,
+            "non_zero_sales": int(merged["sales_price_max"].gt(0).sum()),
+            "correlation": merged["sales_price_max"].corr(
+                merged["direct_low"]) if "direct_low" in merged.columns else None
         }
-        logger.info(f"Merge stats: {stats}")
+
+        # Save diagnostic
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = os.path.join(LOG_DIR, f"merge_data_diagnostic_{timestamp}.json")
+        with open(output_path, "w") as f:
+            json.dump(stats, f, indent=4)
+        logger.info(f"Saved merge diagnostics to {output_path}")
+        print(f"Saved merge diagnostics to {output_path}")
+
         return merged, stats
 
     except Exception as e:

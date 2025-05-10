@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py">
-      <change afterPath="$PROJECT_DIR$/project_summary.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json">
+      <change afterPath="$PROJECT_DIR$/logs/mtg_price_predictor_20250510_111111.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/merge_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,14 +87,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
-      <option name="closed" value="true" />
-      <created>1746820172460</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1746820172460</updated>
     </task>
     <task id="LOCAL-00037" summary="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json">
       <option name="closed" value="true" />
@@ -479,12 +472,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746889784553</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json">
+      <option name="closed" value="true" />
+      <created>1746889853294</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1746889853294</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update fetch_market_data.py to add 60-day limit to all queries and filter by sales_history with &gt;= 12 sales" />
     <MESSAGE value="Update project_status.json to mark fetch_market_data complete and start clean_data" />
     <MESSAGE value="initial clean_data.py" />
     <MESSAGE value="Update fetch_card_data.py to merge card_list.csv and card_attributes.csv" />
@@ -509,6 +509,7 @@
     <MESSAGE value="Update merge_data.py with outlier validation&#10;- Added 25x, 50x, 100x sales_price_max vs. direct_low validation&#10;Files: src/data_processing/merge_data.py" />
     <MESSAGE value="Update general_preferences.json with new project_summary.json rule&#10;- Added rule to document data handling and strategies&#10;Files: general_preferences.json" />
     <MESSAGE value="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalize merge_data.py with IQR 5.0 and carry-forward imputation&#10;- Integrated IQR high multiplier 5.0, carry-forward imputation, and card_attributes filtering&#10;- Fixed pandas deprecation warnings&#10;Files: src/data_processing/merge_data.py" />
+    <MESSAGE value="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create project_summary.json with initial data handling details&#10;- Documented strategies and stats for merge_data.py&#10;Files: project_summary.json" />
   </component>
 </project>
