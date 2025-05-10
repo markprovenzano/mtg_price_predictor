@@ -5,3 +5,4 @@
 {"timestamp": "2025-05-09T17:05:20.490140", "context": "Unexpected error in fetch_market_data", "error": "Object of type datetime is not JSON serializable"}
 {"timestamp": "2025-05-09T17:57:40.833015", "context": "Unexpected error in fetch_market_data", "error": "Unable to allocate 812. MiB for an array with shape (106410110,) and data type datetime64[ns]"}
 {"timestamp": "2025-05-09T21:32:52.855921", "context": "Cleaning data", "error": "'card_sku_id'"}
+{"timestamp": "2025-05-09T21:42:57.206083", "context": "Cleaning data", "error": "card_sku_id column missing after outlier removal"}

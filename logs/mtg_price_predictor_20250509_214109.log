@@ -1,0 +1,27 @@
+2025-05-09 21:41:09,463 - INFO - Loading card data from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 21:41:09,489 - INFO - Loaded 22037 cards from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 21:41:09,489 - INFO - Loading card attributes from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_attributes.csv
+2025-05-09 21:41:09,639 - INFO - Loaded 284714 card attributes from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_attributes.csv
+2025-05-09 21:41:09,665 - INFO - Merged data contains 22037 cards with attributes
+2025-05-09 21:41:09,960 - INFO - Saved 22037 cards to C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_data_20250509_214109.json
+2025-05-09 21:41:09,960 - INFO - Card data processing completed successfully
+2025-05-09 21:41:09,991 - INFO - Loaded 22037 card_sku_id values from C:\Users\mprov\PycharmProjects\mtg_price_predictor\data\raw\card_list.csv
+2025-05-09 21:41:10,228 - INFO - Connected to TimescaleDB database: tsdb
+2025-05-09 21:41:34,926 - INFO - Filtered to 16021 card_sku_id values with >= 12 sales over 60 days
+2025-05-09 21:41:34,928 - INFO - Querying table: market_prices
+2025-05-09 21:41:41,953 - INFO - Queried market_prices with 897172 records in 7.02 seconds
+2025-05-09 21:41:41,953 - INFO - Querying table: sales_history
+2025-05-09 21:42:01,143 - INFO - Queried sales_history with 1644689 records in 19.19 seconds
+2025-05-09 21:42:01,144 - INFO - Querying table: listings
+2025-05-09 21:42:49,403 - INFO - Queried listings with 2523088 records in 48.26 seconds
+2025-05-09 21:42:49,476 - INFO - Market data fetch from TimescaleDB completed successfully
+2025-05-09 21:42:49,632 - INFO - Starting data cleaning with card and market DataFrames
+2025-05-09 21:42:49,633 - INFO - Card DataFrame columns: ['card_sku_id', 'set_name', 'product_name', 'rarity', 'condition']
+2025-05-09 21:42:49,633 - INFO - market_prices DataFrame columns: ['id', 'card_sku_id', 'low', 'lowest_list', 'market', 'direct_low', 'updated_at']
+2025-05-09 21:42:49,633 - INFO - sales_history DataFrame columns: ['id', 'card_sku_id', 'order_date', 'quantity', 'price']
+2025-05-09 21:42:49,633 - INFO - listings DataFrame columns: ['id', 'card_sku_id', 'seller_id', 'direct_inventory_count', 'shipping_price', 'quantity', 'price', 'updated_at', 'price_rank']
+2025-05-09 21:42:49,768 - INFO - Processed market_prices with 897172 records
+2025-05-09 21:42:49,854 - INFO - Original sales_history price stats: mean=6.23, median=6.08, std=1.25
+2025-05-09 21:42:57,205 - ERROR - card_sku_id column missing after outlier removal
+2025-05-09 21:42:57,206 - ERROR - Unexpected error in clean_data: card_sku_id column missing after outlier removal
+2025-05-09 21:42:57,206 - INFO - Error logged to C:\Users\mprov\PycharmProjects\mtg_price_predictor\logs\error_log.json: Cleaning data
