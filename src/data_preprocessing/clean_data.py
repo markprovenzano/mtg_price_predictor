@@ -50,6 +50,11 @@ def remove_outliers(df: pd.DataFrame, column: str, group_by: str, method: str = 
     else:
         raise ValueError(f"Unknown outlier removal method: {method}")
 
+    # Ensure card_sku_id is preserved
+    if group_by not in df_cleaned.columns:
+        logger.error(f"{group_by} column missing after outlier removal")
+        raise ValueError(f"{group_by} column missing after outlier removal")
+
     logger.info(f"Method {method}: Removed {original_len - len(df_cleaned)} outliers from {column} in sales_history")
     return df_cleaned
 
@@ -78,6 +83,11 @@ def clean_data(card_df: pd.DataFrame, market_dfs: dict):
             logger.error("Invalid market DataFrames: missing required tables")
             log_error(ValueError("Invalid market DataFrames: missing required tables"), "Cleaning market data")
             return None
+
+        # Log input DataFrame columns for debugging
+        logger.info(f"Card DataFrame columns: {list(card_df.columns)}")
+        for table, df in market_dfs.items():
+            logger.info(f"{table} DataFrame columns: {list(df.columns)}")
 
         # Normalize timestamps
         processed_dfs = {}
@@ -159,16 +169,19 @@ def clean_data(card_df: pd.DataFrame, market_dfs: dict):
         return merged_df
 
     except Exception as e:
-        logger.error(f"Unexpected error in clean_data: {e}")
+        logger.error(f"Unexpected error in clean_data: {str(e)}")
         log_error(e, "Cleaning data")
         return None
 
 
 if __name__ == "__main__":
-    # Example usage
+    # Example usage with pre-fetched DataFrames
     from src.data_collection.fetch_card_data import fetch_card_data
     from src.data_collection.fetch_market_data import fetch_market_data
 
     card_df = fetch_card_data()
-    market_dfs = fetch_market_data()
-    result_df = clean_data(card_df, market_dfs)
+    market_dfs = fetch_market_data()  # Pre-fetch for testing
+    if card_df is not None and market_dfs is not None:
+        result_df = clean_data(card_df, market_dfs)
+    else:
+        logger.error("Failed to fetch input DataFrames")

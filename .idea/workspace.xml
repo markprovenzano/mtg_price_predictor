@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="Fix clean_data.py to inherit fetch_market_data DataFrames and address Pandas warnings">
-      <change beforePath="$PROJECT_DIR$/project_status.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_status.json" afterDir="false" />
+    <list default="true" id="1b7f4b57-0cab-401a-95de-ee836f4689dc" name="Changes" comment="logs and project status">
+      <change beforePath="$PROJECT_DIR$/src/data_preprocessing/clean_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_preprocessing/clean_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746800829756</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Update general_preferences.json">
-      <option name="closed" value="true" />
-      <created>1746816388453</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1746816388453</updated>
     </task>
     <task id="LOCAL-00019" summary="Update fetch_card_data.py in src/data_collection/ to save card data to data/raw/">
       <option name="closed" value="true" />
@@ -474,12 +466,19 @@
       <option name="project" value="LOCAL" />
       <updated>1746840406184</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="logs and project status">
+      <option name="closed" value="true" />
+      <created>1746840803979</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1746840803979</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Add log files and card data JSON from fetch_card_data run" />
     <MESSAGE value="Add log files including mtg_price_predictor_20250509_141700.log and updated error_log.json" />
     <MESSAGE value="Update general_preferences.json to include notification of changes" />
     <MESSAGE value="Update clean_logs.py to fix deletion of most recent log file" />
@@ -504,6 +503,7 @@
     <MESSAGE value="Add clean_data.py with multiple outlier removal strategies for sales_history" />
     <MESSAGE value="Update fetch_market_data.py to correct price columns by dividing by 100" />
     <MESSAGE value="Fix clean_data.py to inherit fetch_market_data DataFrames and address Pandas warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix clean_data.py to inherit fetch_market_data DataFrames and address Pandas warnings" />
+    <MESSAGE value="logs and project status" />
+    <option name="LAST_COMMIT_MESSAGE" value="logs and project status" />
   </component>
 </project>
